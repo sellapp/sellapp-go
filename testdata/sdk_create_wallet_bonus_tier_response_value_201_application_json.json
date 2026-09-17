@@ -1,0 +1,17 @@
+{
+  "data": {
+    "id": 1,
+    "minimum_top_up_cents": 1,
+    "bonus_kind": "fixed",
+    "fixed_bonus_cents": 1,
+    "percent_basis": 1,
+    "maximum_bonus_cents": 1,
+    "priority": 1,
+    "is_active": true,
+    "superseded_by_id": 1,
+    "restorable": true,
+    "created_at": "2023-01-01T00:00:00.000Z",
+    "updated_at": "2023-01-01T00:00:00.000Z",
+    "deleted_at": "2023-01-01T00:00:00.000Z"
+  }
+}

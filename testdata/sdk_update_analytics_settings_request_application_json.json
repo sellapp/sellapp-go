@@ -1,0 +1,8 @@
+{
+  "ga4_measurement_id": "ga4_measurement_id_01234",
+  "meta_pixel_id": "meta_pixel_id_01234",
+  "tiktok_pixel_id": "tiktok_pixel_id_01234",
+  "ga4_api_secret": "test_ga4_api_secret",
+  "meta_access_token": "test_meta_access_token",
+  "tiktok_access_token": "test_tiktok_access_token"
+}

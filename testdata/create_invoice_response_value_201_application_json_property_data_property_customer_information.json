@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "email": "test@example.com",
+  "country": "test_country",
+  "location": "test_location",
+  "ip": "test_ip",
+  "proxied": true,
+  "browser_agent": "test_browser_agent",
+  "vat": {
+    "amount": "test_amount",
+    "country": "test_country"
+  }
+}

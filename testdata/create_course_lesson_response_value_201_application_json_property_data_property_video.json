@@ -1,0 +1,7 @@
+{
+  "source": "mux",
+  "external_url": "https://example.com",
+  "mux_playback_id": "mux_playback_id_01234",
+  "mux_status": "test_mux_status",
+  "duration_seconds": 1
+}

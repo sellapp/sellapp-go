@@ -1,0 +1,155 @@
+{
+  "title": "test_title",
+  "description": "test_description",
+  "deliverable": {
+    "types": [
+      "DOWNLOADABLE",
+      "TEXT",
+      "DYNAMIC",
+      "MANUAL",
+      "LICENSE_KEY",
+      "BUNDLE",
+      "BOOKING",
+      "CREDITS"
+    ],
+    "data": {
+      "stock": 1,
+      "serials": [
+        "test_serials"
+      ],
+      "removeDuplicate": true,
+      "parsingMode": "COMMA",
+      "comment": "test_comment",
+      "webhook": "test_webhook",
+      "booking": {
+        "mode": "native",
+        "conflict_scope": "product",
+        "timezone": "America/New_York",
+        "duration_minutes": 30,
+        "capacity_per_slot": 1,
+        "min_notice_minutes": 1,
+        "max_advance_days": 1,
+        "buffer_before_minutes": 30,
+        "buffer_after_minutes": 30,
+        "availability": [
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          },
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          },
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          },
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          },
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          },
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          },
+          {
+            "day": 1,
+            "enabled": true,
+            "start": "09:00",
+            "end": "17:00"
+          }
+        ],
+        "provider_connection_ids": [
+          1
+        ],
+        "video_provider": "none",
+        "video_provider_connection_id": 1,
+        "reminders_enabled": true,
+        "reminder_offset_value": 1,
+        "reminder_offset_unit": "minutes",
+        "meta": {}
+      },
+      "credit_rate_tiers": [
+        {
+          "min_quantity": 1,
+          "max_quantity": 1,
+          "unit_price": "0.75"
+        }
+      ]
+    }
+  },
+  "pricing": {
+    "humble": true,
+    "price": {
+      "price": 1,
+      "currency": "test_currency"
+    }
+  },
+  "minimum_purchase_quantity": 1,
+  "maximum_purchase_quantity": 1,
+  "bulk_discount": [
+    {
+      "minimum_purchase_amount": 1,
+      "discount_percentage": 1
+    }
+  ],
+  "payment_methods": [
+    "AUTHNET",
+    "BTCPAY",
+    "CASHAPP",
+    "COINBASE",
+    "PADDLE",
+    "PAYDASH",
+    "PAYPAL",
+    "PAYSTACK",
+    "SQUARE",
+    "STRIPE",
+    "VENMO",
+    "NMI",
+    "MERCADO_PAGO",
+    "MOLLIE",
+    "RAZORPAY",
+    "CUSTOM_PAYMENT_METHOD",
+    "LIFI",
+    "BTC",
+    "LTC",
+    "ETH",
+    "XMR",
+    "SOL",
+    "ADA",
+    "BNB",
+    "TRX",
+    "MATIC",
+    "ETH_USDT",
+    "ETH_USDC",
+    "ETH_UNI",
+    "ETH_SHIB",
+    "ETH_DAI",
+    "BNB_USDT",
+    "BNB_USDC",
+    "TRX_USDT",
+    "TRX_USDC",
+    "SOL_USDT",
+    "SOL_USDC"
+  ],
+  "other_settings": {
+    "quantity_increments": 1
+  },
+  "expected_updated_at": "2023-01-01T00:00:00.000Z"
+}

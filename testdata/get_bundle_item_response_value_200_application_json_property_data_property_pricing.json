@@ -1,0 +1,12 @@
+{
+  "humble": true,
+  "frequency": {
+    "value": 1,
+    "interval": "test_interval"
+  },
+  "type": "test_type",
+  "price": {
+    "price": "test_price",
+    "currency": "test_currency"
+  }
+}

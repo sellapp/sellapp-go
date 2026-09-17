@@ -1,0 +1,31 @@
+{
+  "data": {
+    "id": 1,
+    "store_id": 1,
+    "customer_id": 1,
+    "customer_email": "test@example.com",
+    "product_id": 1,
+    "product_title": "test_product_title",
+    "balance_units": 1,
+    "ledger_entries": [
+      {
+        "id": 1,
+        "store_id": 1,
+        "customer_id": 1,
+        "product_id": 1,
+        "kind": "grant",
+        "amount_units": 1,
+        "balance_after_units": 1,
+        "idempotency_key": "idempotency_key_01234",
+        "source_type": "test_source_type",
+        "source_id": "source_id_01234",
+        "reason": "test_reason",
+        "metadata": {},
+        "actor_user_id": 1,
+        "created_at": "2023-01-01T00:00:00.000Z"
+      }
+    ],
+    "created_at": "2023-01-01T00:00:00.000Z",
+    "updated_at": "2023-01-01T00:00:00.000Z"
+  }
+}

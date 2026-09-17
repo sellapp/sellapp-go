@@ -1,0 +1,15 @@
+{
+  "code": "test_code",
+  "type": "PERCENTAGE",
+  "discount": 1,
+  "store_wide": true,
+  "products": [
+    1
+  ],
+  "product_variants": [
+    1
+  ],
+  "limit": 1,
+  "expires_at": "2023-01-01T00:00:00.000Z",
+  "minimum_amount": 1
+}

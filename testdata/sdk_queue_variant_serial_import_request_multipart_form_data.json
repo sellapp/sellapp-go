@@ -1,0 +1,7 @@
+{
+  "file": "dGVzdF9maWxl",
+  "parsing_mode": "COMMA",
+  "custom_delimiter": "test_custom_delimiter",
+  "remove_duplicates": true,
+  "mode": "append"
+}

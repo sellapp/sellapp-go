@@ -1,0 +1,7 @@
+{
+  "phase_id": 1,
+  "promotion_id": 1,
+  "name": "Test",
+  "discount_type": "test_discount_type",
+  "discount_value": "test_discount_value"
+}

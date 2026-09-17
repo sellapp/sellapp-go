@@ -1,0 +1,17 @@
+{
+  "id": 1,
+  "prompt": "test_prompt",
+  "question_type": "text",
+  "solution": "test_solution",
+  "sort_order": 1,
+  "answers": [
+    {
+      "id": 1,
+      "answer": "test_answer",
+      "is_correct": true,
+      "sort_order": 1
+    }
+  ],
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}

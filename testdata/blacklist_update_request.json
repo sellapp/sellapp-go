@@ -1,0 +1,5 @@
+{
+  "type": "ASN",
+  "data": "@blocked-domain.example",
+  "description": "Block purchases from this email domain."
+}

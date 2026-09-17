@@ -1,0 +1,9 @@
+{
+  "method": "AUTHNET",
+  "transaction_id": "transaction_id_01234",
+  "payment_id": "payment_id_01234",
+  "payment_capture_id": "payment_capture_id_01234",
+  "blockchain_txid": "blockchain_txid_01234",
+  "settlement_gateway": "test_settlement_gateway",
+  "has_checkout_url": true
+}

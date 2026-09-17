@@ -1,0 +1,35 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "type": "ASN",
+      "data": "leo.martin@example.com",
+      "description": "Block the address used by our launch-day load-test bot.",
+      "created_at": "2022-12-12T12:12:12.000000Z",
+      "updated_at": "2022-12-12T12:12:12.000000Z",
+      "store_id": 1
+    }
+  ],
+  "links": {
+    "first": "https://sell.app/api/v1/blacklists?page=1",
+    "last": "https://sell.app/api/v1/blacklists?page=4",
+    "prev": null,
+    "next": "https://sell.app/api/v1/blacklists?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 4,
+    "links": [
+      {
+        "url": "https://example.com",
+        "label": "test_label",
+        "active": true
+      }
+    ],
+    "path": "https://sell.app/api/v1/blacklists",
+    "per_page": 15,
+    "to": 15,
+    "total": 57
+  }
+}

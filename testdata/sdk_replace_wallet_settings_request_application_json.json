@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "minimum_top_up_cents": 1,
+  "maximum_top_up_cents": 1,
+  "expiration_days": 1,
+  "payment_methods": [
+    "test_payment_methods"
+  ]
+}

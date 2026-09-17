@@ -1,0 +1,8 @@
+{
+  "id": 1,
+  "type": "WALLET_CREDIT",
+  "payload": {},
+  "coupon_id": 1,
+  "wallet_ledger_entry_id": 1,
+  "created_at": "2023-01-01T00:00:00.000Z"
+}

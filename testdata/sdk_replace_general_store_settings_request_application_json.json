@@ -1,0 +1,7 @@
+{
+  "name": "Test",
+  "visibility": "PUBLIC",
+  "timezone": "test_timezone",
+  "currency": "tes",
+  "dark_mode": "light"
+}

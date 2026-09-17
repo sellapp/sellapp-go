@@ -1,0 +1,17 @@
+{
+  "coupon": {
+    "id": 1,
+    "code": "test_code"
+  },
+  "modifiers": [
+    {
+      "type": "test_type",
+      "key": "test_key",
+      "amount_cents": 1,
+      "attributes": {
+        "label": "test_label",
+        "code": "test_code"
+      }
+    }
+  ]
+}

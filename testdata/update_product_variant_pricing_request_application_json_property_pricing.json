@@ -1,0 +1,16 @@
+{
+  "type": "SINGLE_PAYMENT",
+  "price": {
+    "price": 1,
+    "currency": "AUD"
+  },
+  "compare_at_price": {
+    "price": 1,
+    "currency": "AUD"
+  },
+  "humble": true,
+  "frequency": {
+    "value": 1,
+    "interval": "DAY"
+  }
+}

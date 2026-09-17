@@ -1,0 +1,6 @@
+{
+  "required": true,
+  "key": "test_key",
+  "type": "test_type",
+  "label": "test_label"
+}

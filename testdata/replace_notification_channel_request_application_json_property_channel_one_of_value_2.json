@@ -1,0 +1,8 @@
+{
+  "type": "discord",
+  "channel": "test_channel",
+  "webhook": "test_webhook",
+  "allowed_notifications": [
+    "test_allowed_notifications"
+  ]
+}

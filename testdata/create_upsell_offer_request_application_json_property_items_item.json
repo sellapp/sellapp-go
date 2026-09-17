@@ -1,0 +1,10 @@
+{
+  "id": 1,
+  "target_listing_id": 1,
+  "target_variant_id": 1,
+  "headline": "test_headline",
+  "description": "test_description",
+  "discount_type": "percentage",
+  "discount_value": 1,
+  "maximum_discount_amount": 1
+}

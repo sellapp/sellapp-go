@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "identifier": "identifier_01234",
+  "bio": "test_bio",
+  "sites": [
+    "test_sites"
+  ],
+  "socials": [
+    "test_socials"
+  ],
+  "status": "pending",
+  "email_subscribers": "test@example.com",
+  "web_visitors": "test_web_visitors"
+}

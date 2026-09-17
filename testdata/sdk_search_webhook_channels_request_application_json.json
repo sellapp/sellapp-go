@@ -1,0 +1,8 @@
+{
+  "search": {
+    "value": "test_value"
+  },
+  "event": "booking.cancelled",
+  "page": 1,
+  "limit": 1
+}

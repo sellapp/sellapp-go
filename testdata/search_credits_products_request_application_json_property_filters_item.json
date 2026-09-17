@@ -1,0 +1,9 @@
+{
+  "field": "id",
+  "operator": "test_operator",
+  "value": {},
+  "type": "and",
+  "nested": [
+    {}
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "order_id": 1,
+  "line_item_id": 1,
+  "type": "test_type",
+  "status": "pending",
+  "product_variant_id": 1,
+  "quantity": 1,
+  "deliverable": {
+    "types": [
+      "test_types"
+    ],
+    "data": {}
+  },
+  "additional_information": [
+    {}
+  ]
+}

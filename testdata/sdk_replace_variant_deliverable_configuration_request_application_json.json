@@ -1,0 +1,23 @@
+{
+  "types": [
+    "DOWNLOADABLE",
+    "TEXT",
+    "DYNAMIC",
+    "MANUAL",
+    "LICENSE_KEY",
+    "BUNDLE",
+    "BOOKING",
+    "CREDITS"
+  ],
+  "expected_updated_at": "2023-01-01T00:00:00.000Z",
+  "data": {
+    "comment": "test_comment",
+    "webhook": "https://delivery.example.com/fulfill",
+    "licenseLength": 1,
+    "licenseLengthUnit": "day",
+    "isLicenseLengthUnlimited": true,
+    "licenseLimit": 1,
+    "isLicenseLimitUnlimited": true,
+    "licensePrefix": "test_licensePrefix"
+  }
+}

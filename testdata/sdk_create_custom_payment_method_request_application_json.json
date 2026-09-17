@@ -1,0 +1,19 @@
+{
+  "type": "instructions",
+  "name": "Test",
+  "description": "test_description",
+  "instructions": "test_instructions",
+  "steps": [
+    "test_steps"
+  ],
+  "redirect_url": "https://example.com",
+  "skip_interstitial_page": true,
+  "show_processing_status_page": true,
+  "require_proof_of_payment": true,
+  "enabled": true,
+  "sort_order": 1,
+  "modifier": {
+    "percentage": "test_percentage",
+    "fixed": "test_fixed"
+  }
+}

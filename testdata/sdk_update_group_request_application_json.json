@@ -1,0 +1,9 @@
+{
+  "title": "test_title",
+  "unlisted": true,
+  "order": 1,
+  "product_ids": [
+    1
+  ],
+  "section_id": 1
+}

@@ -1,0 +1,26 @@
+{
+  "types": [
+    "DOWNLOADABLE",
+    "TEXT",
+    "DYNAMIC",
+    "MANUAL",
+    "LICENSE_KEY",
+    "BUNDLE",
+    "BOOKING",
+    "CREDITS"
+  ],
+  "data": {
+    "serials": [
+      "test_serials"
+    ],
+    "delivered_files": [
+      "test_delivered_files"
+    ],
+    "dynamic": "test_dynamic",
+    "manual": "test_manual",
+    "license_keys": [
+      "test_license_keys"
+    ],
+    "credits_granted": 1
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "platform": "discord",
+      "label": "test_label",
+      "configured": true,
+      "healthy": true,
+      "credential_health_status": "test_credential_health_status",
+      "credential_health_checked_at": "2023-01-01T00:00:00.000Z",
+      "pending_grant_count": 1,
+      "failed_grant_count": 1,
+      "issues": [
+        {}
+      ],
+      "accounts": [
+        {
+          "id": "01234",
+          "username": "Test",
+          "display_name": "Test",
+          "avatar_url": "https://example.com"
+        }
+      ],
+      "servers": [
+        {
+          "id": "01234",
+          "name": "Test",
+          "type": "test_type",
+          "health_status": "test_health_status",
+          "health_checked_at": "2023-01-01T00:00:00.000Z",
+          "roles": [
+            {
+              "id": "01234",
+              "name": "Test",
+              "color": "test_color"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

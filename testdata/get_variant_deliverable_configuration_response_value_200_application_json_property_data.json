@@ -1,0 +1,15 @@
+{
+  "types": [
+    "DOWNLOADABLE",
+    "TEXT",
+    "DYNAMIC",
+    "MANUAL",
+    "LICENSE_KEY",
+    "BUNDLE",
+    "BOOKING",
+    "CREDITS"
+  ],
+  "data": {},
+  "webhook_configured": true,
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}

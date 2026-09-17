@@ -1,0 +1,39 @@
+{
+  "data": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "source": {
+        "type": "order",
+        "id": 1
+      },
+      "provider": "provider_01234",
+      "provider_dispute_id": "provider_dispute_id_01234",
+      "amount": 1,
+      "currency": "test_currency",
+      "status": "open",
+      "reason": "test_reason"
+    }
+  ],
+  "links": {
+    "first": "https://sell.app/api/v1/blacklists?page=1",
+    "last": "https://sell.app/api/v1/blacklists?page=4",
+    "prev": null,
+    "next": "https://sell.app/api/v1/blacklists?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 4,
+    "links": [
+      {
+        "url": "https://example.com",
+        "label": "test_label",
+        "active": true
+      }
+    ],
+    "path": "https://sell.app/api/v1/blacklists",
+    "per_page": 15,
+    "to": 15,
+    "total": 57
+  }
+}

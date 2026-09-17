@@ -1,0 +1,33 @@
+{
+  "auto_approve_affiliates": true,
+  "minimum_payout": "25",
+  "commission": {
+    "type": "percentage",
+    "amount": "20"
+  },
+  "referrer_type": "first_referrer",
+  "tracking_length": 1,
+  "subscription_commission": true,
+  "enabled_specific_products": true,
+  "payout_methods": [
+    "PAYPAL",
+    "CASHAPP",
+    "VENMO",
+    "WISE",
+    "BTC",
+    "LTC",
+    "ETH",
+    "XMR",
+    "SOL",
+    "ADA",
+    "BNB",
+    "TRX",
+    "MATIC",
+    "ETH_USDT",
+    "ETH_USDC",
+    "ETH_UNI",
+    "ETH_SHIB",
+    "ETH_DAI"
+  ],
+  "enable_hub": true
+}

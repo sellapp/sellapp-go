@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "product_id": 1,
+  "product_variant_id": 1,
+  "product_title": "test_product_title",
+  "variant_title": "test_variant_title",
+  "quantity": 1,
+  "status": "PENDING",
+  "currency": "test_cur",
+  "subtotal_cents": 1,
+  "total_exclusive_cents": 1,
+  "total_cents": 1,
+  "subscription_id": 1,
+  "created_at": "2023-01-01T00:00:00.000Z"
+}

@@ -1,0 +1,7 @@
+{
+  "idempotency_key": "idempotency_key_01234",
+  "renewal_date": "2023-01-01T00:00:00.000Z",
+  "preview_token": "test_preview_token",
+  "reason": "test_reason",
+  "metadata": {}
+}

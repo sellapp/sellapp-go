@@ -1,0 +1,6 @@
+{
+  "cancel_at_period_end": true,
+  "refund_last_payment": true,
+  "pro_rated_refund": true,
+  "idempotency_key": "idempotency_key_01234"
+}

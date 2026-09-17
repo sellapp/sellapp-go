@@ -1,0 +1,31 @@
+{
+  "title": "test_title",
+  "type": "lecture",
+  "content": "test_content",
+  "is_preview": true,
+  "is_published": true,
+  "assignment": {
+    "estimated_duration_minutes": 1,
+    "instructions": "test_instructions",
+    "questions": [
+      {
+        "prompt": "test_prompt",
+        "solution": "test_solution"
+      }
+    ]
+  },
+  "questions": [
+    {
+      "prompt": "test_prompt",
+      "question_type": "text",
+      "solution": "test_solution",
+      "answers": [
+        {
+          "answer": "test_answer",
+          "is_correct": true
+        }
+      ]
+    }
+  ],
+  "expected_updated_at": "2023-01-01T00:00:00.000Z"
+}

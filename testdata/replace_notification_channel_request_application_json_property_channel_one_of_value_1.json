@@ -1,0 +1,7 @@
+{
+  "type": "email",
+  "email": "test@example.com",
+  "allowed_notifications": [
+    "test_allowed_notifications"
+  ]
+}

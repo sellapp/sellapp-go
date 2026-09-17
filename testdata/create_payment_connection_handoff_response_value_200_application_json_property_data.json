@@ -1,0 +1,6 @@
+{
+  "payment_method": "test_payment_method",
+  "connect_url": "https://example.com",
+  "status_url": "https://example.com",
+  "expires_at": "2023-01-01T00:00:00.000Z"
+}

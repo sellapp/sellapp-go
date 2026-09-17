@@ -1,0 +1,8 @@
+{
+  "currency": "test_cur",
+  "subtotal_cents": 1,
+  "total_exclusive_cents": 1,
+  "total_cents": 1,
+  "total_exclusive_usd_cents": 1,
+  "total_usd_cents": 1
+}

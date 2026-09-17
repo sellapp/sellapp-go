@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "id": "0f33d01f-f9f8-45e8-80c8-7734d057196d",
+      "name": "Ship It webhook",
+      "url": "https://example.com/sellapp/webhooks",
+      "allowed_notifications": [
+        "order.created",
+        "order.paid"
+      ],
+      "signing_secret_configured": true
+    }
+  ],
+  "links": {
+    "first": "https://sell.app/api/v1/blacklists?page=1",
+    "last": "https://sell.app/api/v1/blacklists?page=4",
+    "prev": null,
+    "next": "https://sell.app/api/v1/blacklists?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 4,
+    "links": [
+      {
+        "url": "https://example.com",
+        "label": "test_label",
+        "active": true
+      }
+    ],
+    "path": "https://sell.app/api/v1/blacklists",
+    "per_page": 15,
+    "to": 15,
+    "total": 57
+  }
+}

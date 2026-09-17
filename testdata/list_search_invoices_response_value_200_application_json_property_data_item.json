@@ -1,0 +1,108 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "payment": {
+        "fee": {
+          "base": "test_base",
+          "currency": "test_currency",
+          "units": 1,
+          "vat": 1,
+          "total": {
+            "exclusive": "test_exclusive",
+            "inclusive": "test_inclusive"
+          }
+        },
+        "gateway": {
+          "data": {},
+          "type": "test_type"
+        },
+        "subtotal": {
+          "base": "test_base",
+          "currency": "test_currency",
+          "units": 1,
+          "vat": 1,
+          "total": {
+            "exclusive": "test_exclusive",
+            "inclusive": "test_inclusive"
+          }
+        },
+        "expires_at": "2023-01-01T00:00:00.000Z",
+        "full_price": {
+          "base": "test_base",
+          "currency": "test_currency",
+          "units": 1,
+          "vat": 1,
+          "total": {
+            "exclusive": "test_exclusive",
+            "inclusive": "test_inclusive"
+          }
+        },
+        "original_amount": {
+          "base": "test_base",
+          "currency": "test_currency",
+          "units": 1,
+          "vat": 1,
+          "total": {
+            "exclusive": "test_exclusive",
+            "inclusive": "test_inclusive"
+          }
+        }
+      },
+      "status": {
+        "history": [
+          {
+            "setAt": "2023-01-01T00:00:00.000Z",
+            "status": "test_status",
+            "updatedAt": "2023-01-01T00:00:00.000Z"
+          }
+        ],
+        "status": {
+          "setAt": "2023-01-01T00:00:00.000Z",
+          "status": "test_status",
+          "updatedAt": "2023-01-01T00:00:00.000Z"
+        }
+      },
+      "webhooks": [
+        {
+          "url": "https://example.com",
+          "attempts": 1,
+          "response": "test_response",
+          "queried_at": "2023-01-01T00:00:00.000Z"
+        }
+      ],
+      "feedback": "test_feedback",
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z",
+      "store_id": 1,
+      "coupon_id": 1,
+      "subscription_id": 1,
+      "customer_information": {
+        "id": 1,
+        "email": "test@example.com",
+        "country": "test_country",
+        "location": "test_location",
+        "ip": "test_ip",
+        "proxied": true,
+        "browser_agent": "test_browser_agent",
+        "vat": {
+          "amount": "test_amount",
+          "country": "test_country"
+        },
+        "discord_data": {},
+        "billing_details": {}
+      },
+      "product_variants": [
+        {
+          "id": 1,
+          "product_id": 1,
+          "title": "test_title"
+        }
+      ]
+    }
+  ],
+  "list_metadata": {
+    "before": null,
+    "after": null
+  }
+}

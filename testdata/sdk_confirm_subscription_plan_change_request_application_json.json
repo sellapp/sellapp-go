@@ -1,0 +1,8 @@
+{
+  "idempotency_key": "idempotency_key_01234",
+  "target_variant_id": 1,
+  "preview_token": "test_preview_token",
+  "effective_timing": "immediate",
+  "proration_behavior": "invoice_now",
+  "metadata": {}
+}

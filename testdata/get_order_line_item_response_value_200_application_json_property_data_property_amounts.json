@@ -1,0 +1,13 @@
+{
+  "unit_price": "test_unit_price",
+  "subtotal_cents": 1,
+  "credit_cents": 1,
+  "total_exclusive_cents": 1,
+  "total_exclusive_usd_cents": 1,
+  "total_cents": 1,
+  "total_usd_cents": 1,
+  "revenue_cents": 1,
+  "revenue_usd_cents": 1,
+  "fee_cents": 1,
+  "fee_rate": 1
+}

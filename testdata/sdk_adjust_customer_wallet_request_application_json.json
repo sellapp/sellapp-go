@@ -1,0 +1,5 @@
+{
+  "amount_cents": 1,
+  "idempotency_key": "idempotency_key_01234",
+  "note": "test_note"
+}

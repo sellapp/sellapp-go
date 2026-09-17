@@ -1,0 +1,5 @@
+{
+  "address": "test_address",
+  "private_view_key": "test_private_view_key",
+  "min_withdraw_amount": 1
+}

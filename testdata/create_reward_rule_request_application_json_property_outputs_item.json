@@ -1,0 +1,7 @@
+{
+  "type": "WALLET_CREDIT",
+  "amount_cents": 1,
+  "reward_coupon_template_id": 1,
+  "label": "test_label",
+  "color": "zinc"
+}

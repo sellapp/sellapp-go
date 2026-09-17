@@ -1,0 +1,25 @@
+{
+  "id": 410,
+  "store_id": 12,
+  "title": "Customer support",
+  "slug": "customer-support",
+  "description": "Priority support for launches scheduled suspiciously close to Friday.",
+  "visibility": "PUBLIC",
+  "type": "addon",
+  "is_draft": true,
+  "is_discoverable": false,
+  "parent_product_ids": [
+    120,
+    121
+  ],
+  "variants": [
+    {
+      "id": 8801,
+      "title": "Default",
+      "is_draft": false
+    }
+  ],
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z",
+  "deleted_at": "2023-01-01T00:00:00.000Z"
+}

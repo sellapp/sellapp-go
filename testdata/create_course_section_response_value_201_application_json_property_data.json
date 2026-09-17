@@ -1,0 +1,80 @@
+{
+  "id": 1,
+  "title": "test_title",
+  "description": "test_description",
+  "sort_order": 1,
+  "lessons": [
+    {
+      "id": 1,
+      "section_id": 1,
+      "title": "test_title",
+      "content": "test_content",
+      "type": "lecture",
+      "is_preview": true,
+      "is_published": true,
+      "sort_order": 1,
+      "video": {
+        "source": "mux",
+        "external_url": "https://example.com",
+        "mux_playback_id": "mux_playback_id_01234",
+        "mux_status": "test_mux_status",
+        "duration_seconds": 1
+      },
+      "attachments": [
+        {
+          "id": 1,
+          "title": "test_title",
+          "mime_type": "test_mime_type",
+          "size_bytes": 1,
+          "sort_order": 1
+        }
+      ],
+      "assignment": {
+        "estimated_duration_minutes": 1,
+        "instructions": "test_instructions",
+        "questions": [
+          {
+            "id": 1,
+            "prompt": "test_prompt",
+            "question_type": "text",
+            "solution": "test_solution",
+            "sort_order": 1,
+            "answers": [
+              {
+                "id": 1,
+                "answer": "test_answer",
+                "is_correct": true,
+                "sort_order": 1
+              }
+            ],
+            "created_at": "2023-01-01T00:00:00.000Z",
+            "updated_at": "2023-01-01T00:00:00.000Z"
+          }
+        ]
+      },
+      "questions": [
+        {
+          "id": 1,
+          "prompt": "test_prompt",
+          "question_type": "text",
+          "solution": "test_solution",
+          "sort_order": 1,
+          "answers": [
+            {
+              "id": 1,
+              "answer": "test_answer",
+              "is_correct": true,
+              "sort_order": 1
+            }
+          ],
+          "created_at": "2023-01-01T00:00:00.000Z",
+          "updated_at": "2023-01-01T00:00:00.000Z"
+        }
+      ],
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+  ],
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}

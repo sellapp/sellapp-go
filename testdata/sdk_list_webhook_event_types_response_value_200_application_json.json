@@ -1,0 +1,9 @@
+{
+  "data": [
+    {
+      "type": "test_type",
+      "version": 1,
+      "description": "test_description"
+    }
+  ]
+}

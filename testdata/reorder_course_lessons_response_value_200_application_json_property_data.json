@@ -1,0 +1,60 @@
+{
+  "id": 1,
+  "title": "test_title",
+  "slug": "test_slug",
+  "description": "test_description",
+  "visibility": "PUBLIC",
+  "is_draft": true,
+  "delivery_text": "test_delivery_text",
+  "category": "development",
+  "level": "all_levels",
+  "language": "test_language",
+  "subtitle": "test_subtitle",
+  "author": "test_author",
+  "subcategory": "test_subcategory",
+  "what_you_learn": [
+    "test_what_you_learn"
+  ],
+  "requirements": [
+    "test_requirements"
+  ],
+  "certificate_enabled": true,
+  "access_type": "lifetime",
+  "access_duration_days": 1,
+  "enrollment_limit": 1,
+  "promo_video": {
+    "mux_playback_id": "mux_playback_id_01234",
+    "mux_status": "test_mux_status",
+    "duration_seconds": 1
+  },
+  "sections": [
+    {
+      "id": 1,
+      "title": "Getting started",
+      "description": null,
+      "sort_order": 1,
+      "lessons": [
+        {
+          "id": 1,
+          "section_id": 1,
+          "title": "Welcome to the reading room",
+          "content": "Read the first founder memo.",
+          "type": "lecture",
+          "is_preview": false,
+          "is_published": false,
+          "sort_order": 1,
+          "video": null,
+          "attachments": [],
+          "assignment": null,
+          "questions": [],
+          "created_at": "2026-08-30T12:00:01.000000Z",
+          "updated_at": "2026-08-30T12:00:01.000000Z"
+        }
+      ],
+      "created_at": "2026-08-30T12:00:01.000000Z",
+      "updated_at": "2026-08-30T12:00:01.000000Z"
+    }
+  ],
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}

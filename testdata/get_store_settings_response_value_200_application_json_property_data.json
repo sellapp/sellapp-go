@@ -1,0 +1,25 @@
+{
+  "id": 1,
+  "name": "Test",
+  "slug": "test_slug",
+  "visibility": "PUBLIC",
+  "timezone": "test_timezone",
+  "currency": "tes",
+  "dark_mode": "light",
+  "status": {
+    "accessible": true,
+    "verified": true,
+    "locked": true
+  },
+  "analytics": {
+    "ga4_measurement_id": "ga4_measurement_id_01234",
+    "meta_pixel_id": "meta_pixel_id_01234",
+    "tiktok_pixel_id": "tiktok_pixel_id_01234",
+    "ga4_api_secret_configured": true,
+    "meta_access_token_configured": true,
+    "tiktok_access_token_configured": true
+  },
+  "marketing": {
+    "abandoned_cart": {}
+  }
+}

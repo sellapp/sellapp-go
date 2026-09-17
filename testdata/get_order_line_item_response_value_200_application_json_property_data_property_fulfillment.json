@@ -1,0 +1,16 @@
+{
+  "deliveries_count": 1,
+  "delivered_quantity": 1,
+  "types": [
+    "DOWNLOADABLE",
+    "TEXT",
+    "DYNAMIC",
+    "MANUAL",
+    "LICENSE_KEY",
+    "BUNDLE",
+    "BOOKING",
+    "CREDITS"
+  ],
+  "first_delivered_at": "2023-01-01T00:00:00.000Z",
+  "last_delivered_at": "2023-01-01T00:00:00.000Z"
+}

@@ -1,0 +1,8 @@
+{
+  "charge_id": 1,
+  "amount_cents": 1,
+  "currency": "USD",
+  "checkout_url": "https://example.com",
+  "payment_method": "AUTHNET",
+  "custom_payment_method_id": "00000000000000000000000000"
+}

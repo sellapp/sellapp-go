@@ -1,0 +1,15 @@
+{
+  "abandoned_cart": {
+    "enabled": true,
+    "min_total_cents": 1,
+    "max_total_cents": 1,
+    "reminders": [
+      {
+        "after_hours": 1
+      }
+    ],
+    "incentive_mode": "none",
+    "coupon_id": 1,
+    "send_incentive_on_step": 1
+  }
+}

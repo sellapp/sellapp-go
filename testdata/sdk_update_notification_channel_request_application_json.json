@@ -1,0 +1,11 @@
+{
+  "channel": {
+    "type": "email",
+    "email": "test@example.com",
+    "channel": "test_channel",
+    "webhook": "test_webhook",
+    "allowed_notifications": [
+      "test_allowed_notifications"
+    ]
+  }
+}

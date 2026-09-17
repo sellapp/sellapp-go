@@ -1,0 +1,11 @@
+{
+  "data": {
+    "removeDuplicate": true,
+    "parsingMode": "test_parsingMode",
+    "stock": 1,
+    "comment": "test_comment"
+  },
+  "types": [
+    "test_types"
+  ]
+}

@@ -1,0 +1,373 @@
+[
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createCharge",
+    "mountTarget": "Charges",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ChargesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"sofia.rivera@example.com\\\",\\\"return_url\\\":\\\"https://example.com/launch-complete\\\",\\\"reference\\\":\\\"One more thing launch\\\",\\\"currency\\\":\\\"USD\\\",\\\"total\\\":10000,\\\"payment_method\\\":\\\"PAYPAL\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Charges().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "default",
+    "summary": "default",
+    "mediaType": "application/json",
+    "request": {
+      "email": "sofia.rivera@example.com",
+      "return_url": "https://example.com/launch-complete",
+      "currency": "USD",
+      "total": 10000,
+      "payment_method": "PAYPAL",
+      "reference": "One more thing launch"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createCharge",
+    "mountTarget": "Charges",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ChargesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"maya.chen@example.com\\\",\\\"return_url\\\":\\\"https://example.com/payment-return\\\",\\\"currency\\\":\\\"USD\\\",\\\"total\\\":1999,\\\"payment_method\\\":\\\"CUSTOM_PAYMENT_METHOD\\\",\\\"custom_payment_method_id\\\":\\\"01J00000000000000000000001\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Charges().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "customPreselected",
+    "summary": "Preselect an enabled custom method in this store",
+    "mediaType": "application/json",
+    "request": {
+      "email": "maya.chen@example.com",
+      "return_url": "https://example.com/payment-return",
+      "currency": "USD",
+      "total": 1999,
+      "payment_method": "CUSTOM_PAYMENT_METHOD",
+      "custom_payment_method_id": "01J00000000000000000000001"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createCharge",
+    "mountTarget": "Charges",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ChargesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"maya.chen@example.com\\\",\\\"return_url\\\":\\\"https://example.com/payment-return\\\",\\\"currency\\\":\\\"USD\\\",\\\"total\\\":1999,\\\"payment_methods\\\":[\\\"CUSTOM_PAYMENT_METHOD\\\"],\\\"custom_payment_method_ids\\\":[\\\"01J00000000000000000000001\\\"]}\"), params); err != nil { panic(err) }\n    result, err := client.Charges().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "customChoices",
+    "summary": "Offer a specific custom method for customer selection",
+    "mediaType": "application/json",
+    "request": {
+      "email": "maya.chen@example.com",
+      "return_url": "https://example.com/payment-return",
+      "currency": "USD",
+      "total": 1999,
+      "payment_methods": [
+        "CUSTOM_PAYMENT_METHOD"
+      ],
+      "custom_payment_method_ids": [
+        "01J00000000000000000000001"
+      ]
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createGroup",
+    "mountTarget": "Groups",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.GroupsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Design kit\\\",\\\"unlisted\\\":true}\"), params); err != nil { panic(err) }\n    result, err := client.Groups().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "minimal",
+    "summary": "Minimal valid request",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Design kit",
+      "unlisted": true
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createGroup",
+    "mountTarget": "Groups",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.GroupsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Design kit\\\",\\\"unlisted\\\":true,\\\"order\\\":1}\"), params); err != nil { panic(err) }\n    result, err := client.Groups().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "realistic",
+    "summary": "With optional fields",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Design kit",
+      "unlisted": true,
+      "order": 1
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "validateLicenseKey",
+    "mountTarget": "Licenses",
+    "methodName": "validate",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.LicensesValidateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"license_key\\\":\\\"01965f1d-f038-7116-b57f-9e7ecb4e7b8f\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Licenses().Validate(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "minimal",
+    "summary": "Minimal valid request",
+    "mediaType": "application/json",
+    "request": {
+      "license_key": "01965f1d-f038-7116-b57f-9e7ecb4e7b8f"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "validateLicenseKey",
+    "mountTarget": "Licenses",
+    "methodName": "validate",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.LicensesValidateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"license_key\\\":\\\"01965f1d-f038-7116-b57f-9e7ecb4e7b8f\\\",\\\"instance_id\\\":\\\"9ebd3be0-de72-4da7-805e-bc99d1ac1186\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Licenses().Validate(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "realistic",
+    "summary": "With optional fields",
+    "mediaType": "application/json",
+    "request": {
+      "license_key": "01965f1d-f038-7116-b57f-9e7ecb4e7b8f",
+      "instance_id": "9ebd3be0-de72-4da7-805e-bc99d1ac1186"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createProduct",
+    "mountTarget": "Products",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Design kit\\\",\\\"description\\\":\\\"Templates for your next project.\\\",\\\"visibility\\\":\\\"HIDDEN\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Products().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "minimal",
+    "summary": "Minimal hidden product",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Design kit",
+      "description": "Templates for your next project.",
+      "visibility": "HIDDEN"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createProduct",
+    "mountTarget": "Products",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Design kit\\\",\\\"description\\\":\\\"Templates for your next project.\\\",\\\"visibility\\\":\\\"HIDDEN\\\",\\\"slug\\\":\\\"design-kit-launch\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Products().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "realistic",
+    "summary": "Product with a custom URL slug",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Design kit",
+      "description": "Templates for your next project.",
+      "visibility": "HIDDEN",
+      "slug": "design-kit-launch"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createProduct",
+    "mountTarget": "Products",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Design kit\\\",\\\"description\\\":\\\"Reusable templates for your next launch\\\",\\\"visibility\\\":\\\"PUBLIC\\\",\\\"variants\\\":[{\\\"title\\\":\\\"Standard\\\",\\\"description\\\":\\\"The complete design kit\\\",\\\"pricing\\\":{\\\"price\\\":{\\\"price\\\":1999,\\\"currency\\\":\\\"USD\\\"},\\\"humble\\\":false},\\\"deliverable\\\":{\\\"types\\\":[\\\"MANUAL\\\"],\\\"data\\\":{\\\"comment\\\":\\\"Your kit will be delivered shortly.\\\"}},\\\"minimum_purchase_quantity\\\":1,\\\"maximum_purchase_quantity\\\":10,\\\"payment_methods\\\":[\\\"PAYPAL\\\"]}]}\"), params); err != nil { panic(err) }\n    result, err := client.Products().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "withVariants",
+    "summary": "Create a product and its first variant",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Design kit",
+      "description": "Reusable templates for your next launch",
+      "visibility": "PUBLIC",
+      "variants": [
+        {
+          "title": "Standard",
+          "description": "The complete design kit",
+          "pricing": {
+            "price": {
+              "price": 1999,
+              "currency": "USD"
+            },
+            "humble": false
+          },
+          "deliverable": {
+            "types": [
+              "MANUAL"
+            ],
+            "data": {
+              "comment": "Your kit will be delivered shortly."
+            }
+          },
+          "minimum_purchase_quantity": 1,
+          "maximum_purchase_quantity": 10,
+          "payment_methods": [
+            "PAYPAL"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createProduct",
+    "mountTarget": "Products",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Launch bundle\\\",\\\"description\\\":\\\"Two design kits in one purchase\\\",\\\"visibility\\\":\\\"PUBLIC\\\",\\\"type\\\":\\\"bundle\\\",\\\"variants\\\":[{\\\"title\\\":\\\"Standard\\\",\\\"description\\\":\\\"The complete design kit\\\",\\\"pricing\\\":{\\\"price\\\":{\\\"price\\\":1999,\\\"currency\\\":\\\"USD\\\"},\\\"humble\\\":false},\\\"deliverable\\\":{\\\"types\\\":[\\\"BUNDLE\\\"],\\\"data\\\":{}},\\\"minimum_purchase_quantity\\\":1,\\\"maximum_purchase_quantity\\\":10,\\\"payment_methods\\\":[\\\"PAYPAL\\\"]}],\\\"bundle_items\\\":[{\\\"product_variant_id\\\":4321,\\\"quantity\\\":2}]}\"), params); err != nil { panic(err) }\n    result, err := client.Products().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "completeBundle",
+    "summary": "Create a complete bundle",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Launch bundle",
+      "description": "Two design kits in one purchase",
+      "visibility": "PUBLIC",
+      "type": "bundle",
+      "variants": [
+        {
+          "title": "Standard",
+          "description": "The complete design kit",
+          "pricing": {
+            "price": {
+              "price": 1999,
+              "currency": "USD"
+            },
+            "humble": false
+          },
+          "deliverable": {
+            "types": [
+              "BUNDLE"
+            ],
+            "data": {}
+          },
+          "minimum_purchase_quantity": 1,
+          "maximum_purchase_quantity": 10,
+          "payment_methods": [
+            "PAYPAL"
+          ]
+        }
+      ],
+      "bundle_items": [
+        {
+          "product_variant_id": 4321,
+          "quantity": 2
+        }
+      ]
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "cancelSubscriptionImmediately",
+    "mountTarget": "Subscriptions",
+    "methodName": "cancel_immediately",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsCancelImmediatelyParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer request\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Subscriptions().CancelImmediately(context.Background(), 55, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "minimal",
+    "summary": "Cancel without requesting a refund",
+    "mediaType": "application/json",
+    "request": {
+      "reason": "Customer request"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "cancelSubscriptionImmediately",
+    "mountTarget": "Subscriptions",
+    "methodName": "cancel_immediately",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsCancelImmediatelyParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer request\\\",\\\"refund_last_payment\\\":true,\\\"pro_rated_refund\\\":true}\"), params); err != nil { panic(err) }\n    result, err := client.Subscriptions().CancelImmediately(context.Background(), 55, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "with_refund",
+    "summary": "Requests a real prorated refund; cancellation success does not prove refund success",
+    "mediaType": "application/json",
+    "request": {
+      "reason": "Customer request",
+      "refund_last_payment": true,
+      "pro_rated_refund": true
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createAddOnDraft",
+    "mountTarget": "AddOns",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.AddOnsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Customer support\\\",\\\"description\\\":\\\"Priority support for launches scheduled suspiciously close to Friday.\\\",\\\"visibility\\\":\\\"PUBLIC\\\",\\\"parent_product_ids\\\":[120,121]}\"), params); err != nil { panic(err) }\n    result, err := client.AddOns().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "draft",
+    "summary": "Create a draft add-on",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Customer support",
+      "description": "Priority support for launches scheduled suspiciously close to Friday.",
+      "visibility": "PUBLIC",
+      "parent_product_ids": [
+        120,
+        121
+      ]
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createAddOnDraft",
+    "mountTarget": "AddOns",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.AddOnsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Priority support\\\",\\\"description\\\":\\\"Personal help with your design kit\\\",\\\"visibility\\\":\\\"PUBLIC\\\",\\\"is_draft\\\":false,\\\"parent_product_ids\\\":[120],\\\"variant\\\":{\\\"title\\\":\\\"Standard\\\",\\\"description\\\":\\\"The complete design kit\\\",\\\"pricing\\\":{\\\"price\\\":{\\\"price\\\":1999,\\\"currency\\\":\\\"USD\\\"},\\\"humble\\\":false},\\\"deliverable\\\":{\\\"types\\\":[\\\"MANUAL\\\"],\\\"data\\\":{\\\"comment\\\":\\\"Your kit will be delivered shortly.\\\"}},\\\"minimum_purchase_quantity\\\":1,\\\"maximum_purchase_quantity\\\":10,\\\"payment_methods\\\":[\\\"PAYPAL\\\"]}}\"), params); err != nil { panic(err) }\n    result, err := client.AddOns().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "published",
+    "summary": "Create and publish an add-on with a variant",
+    "mediaType": "application/json",
+    "request": {
+      "title": "Priority support",
+      "description": "Personal help with your design kit",
+      "visibility": "PUBLIC",
+      "is_draft": false,
+      "parent_product_ids": [
+        120
+      ],
+      "variant": {
+        "title": "Standard",
+        "description": "The complete design kit",
+        "pricing": {
+          "price": {
+            "price": 1999,
+            "currency": "USD"
+          },
+          "humble": false
+        },
+        "deliverable": {
+          "types": [
+            "MANUAL"
+          ],
+          "data": {
+            "comment": "Your kit will be delivered shortly."
+          }
+        },
+        "minimum_purchase_quantity": 1,
+        "maximum_purchase_quantity": 10,
+        "payment_methods": [
+          "PAYPAL"
+        ]
+      }
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "exchangeOAuthToken",
+    "mountTarget": "Oauth",
+    "methodName": "exchange_oauth_token",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OAuthExchangeTokenParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"client_id\\\":\\\"01992a65-e064-71ba-b38f-902b7966a6be\\\",\\\"grant_type\\\":\\\"authorization_code\\\",\\\"code\\\":\\\"AUTHORIZATION_CODE\\\",\\\"redirect_uri\\\":\\\"http://127.0.0.1:49152/callback\\\",\\\"code_verifier\\\":\\\"dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk\\\"}\"), &params.Body); err != nil { panic(err) }\n    result, err := client.OAuth().ExchangeToken(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "authorizationCode",
+    "summary": "authorizationCode",
+    "mediaType": "application/x-www-form-urlencoded",
+    "request": {
+      "client_id": "01992a65-e064-71ba-b38f-902b7966a6be",
+      "grant_type": "authorization_code",
+      "code": "AUTHORIZATION_CODE",
+      "redirect_uri": "http://127.0.0.1:49152/callback",
+      "code_verifier": "dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk"
+    }
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "exchangeOAuthToken",
+    "mountTarget": "Oauth",
+    "methodName": "exchange_oauth_token",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OAuthExchangeTokenParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"client_id\\\":\\\"01992a65-e064-71ba-b38f-902b7966a6be\\\",\\\"grant_type\\\":\\\"refresh_token\\\",\\\"refresh_token\\\":\\\"REFRESH_TOKEN\\\"}\"), &params.Body); err != nil { panic(err) }\n    result, err := client.OAuth().ExchangeToken(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n",
+    "exampleId": "refresh",
+    "summary": "refresh",
+    "mediaType": "application/x-www-form-urlencoded",
+    "request": {
+      "client_id": "01992a65-e064-71ba-b38f-902b7966a6be",
+      "grant_type": "refresh_token",
+      "refresh_token": "REFRESH_TOKEN"
+    }
+  }
+]

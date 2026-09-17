@@ -1,0 +1,9 @@
+{
+  "path": "test_path",
+  "metadata": {
+    "size": 1,
+    "filename": "Test",
+    "extension": "test_extension",
+    "mime_type": "test_mime_type"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "orders_count": 3,
+  "line_items_count": 4,
+  "completed_line_items_count": 3,
+  "pending_line_items_count": 1,
+  "voided_line_items_count": 0,
+  "subscriptions_count": 1,
+  "revenue_usd_cents": 10900,
+  "first_purchase_at": "2023-01-01T00:00:00.000Z",
+  "last_purchase_at": "2023-01-01T00:00:00.000Z",
+  "favorite_payment_method": "STRIPE"
+}

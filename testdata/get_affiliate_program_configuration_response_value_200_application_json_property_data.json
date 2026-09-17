@@ -1,0 +1,53 @@
+{
+  "id": 1,
+  "enabled": true,
+  "settings": {
+    "auto_approve_affiliates": true,
+    "minimum_payout": "25",
+    "commission": {
+      "type": "percentage",
+      "amount": "20"
+    },
+    "referrer_type": "first_referrer",
+    "tracking_length": 1,
+    "subscription_commission": true,
+    "enabled_specific_products": true,
+    "payout_methods": [
+      "PAYPAL",
+      "CASHAPP",
+      "VENMO",
+      "WISE",
+      "BTC",
+      "LTC",
+      "ETH",
+      "XMR",
+      "SOL",
+      "ADA",
+      "BNB",
+      "TRX",
+      "MATIC",
+      "ETH_USDT",
+      "ETH_USDC",
+      "ETH_UNI",
+      "ETH_SHIB",
+      "ETH_DAI"
+    ],
+    "enable_hub": true
+  },
+  "products": [
+    {
+      "id": 1,
+      "product_id": 1,
+      "product_title": "test_product_title",
+      "variant_title": "test_variant_title",
+      "enabled": true,
+      "commission": {
+        "type": "percentage",
+        "percentage": "test_percentage",
+        "amount_usd_cents": 1
+      }
+    }
+  ],
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}

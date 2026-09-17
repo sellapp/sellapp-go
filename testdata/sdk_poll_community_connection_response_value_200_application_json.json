@@ -1,0 +1,30 @@
+{
+  "data": {
+    "platform": "telegram",
+    "status": "pending",
+    "expires_at": "2023-01-01T00:00:00.000Z",
+    "qr_code": "test_qr_code",
+    "server": {
+      "id": "01234",
+      "name": "Test",
+      "type": "test_type",
+      "health_status": "test_health_status",
+      "health_checked_at": "2023-01-01T00:00:00.000Z",
+      "roles": [
+        {
+          "id": "01234",
+          "name": "Test",
+          "color": "test_color"
+        }
+      ]
+    },
+    "groups_loaded": true,
+    "available_servers": [
+      {
+        "id": "01234",
+        "name": "Test",
+        "type": "group"
+      }
+    ]
+  }
+}

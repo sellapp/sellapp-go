@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "status": "test_status",
+      "subscription_id": "subscription_id_01234",
+      "customer_id": "customer_id_01234",
+      "provider_subscription_id": "provider_subscription_id_01234",
+      "provider_customer_id": "provider_customer_id_01234",
+      "customer": {
+        "id": 1,
+        "email": "test@example.com",
+        "external_id": "external_id_01234",
+        "name": "Test",
+        "locale": "en",
+        "metadata": {}
+      },
+      "product_variant_id": 1
+    }
+  ],
+  "list_metadata": {
+    "before": null,
+    "after": null
+  }
+}

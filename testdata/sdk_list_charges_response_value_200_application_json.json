@@ -1,0 +1,32 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "url": "https://example.com",
+      "status": "test_status",
+      "custom_payment_method_id": "custom_payment_method_id_01234"
+    }
+  ],
+  "links": {
+    "first": "https://sell.app/api/v1/blacklists?page=1",
+    "last": "https://sell.app/api/v1/blacklists?page=4",
+    "prev": null,
+    "next": "https://sell.app/api/v1/blacklists?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 4,
+    "links": [
+      {
+        "url": "https://example.com",
+        "label": "test_label",
+        "active": true
+      }
+    ],
+    "path": "https://sell.app/api/v1/blacklists",
+    "per_page": 15,
+    "to": 15,
+    "total": 57
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "comment": "test_comment",
+  "webhook": "https://delivery.example.com/fulfill",
+  "licenseLength": 1,
+  "licenseLengthUnit": "day",
+  "isLicenseLengthUnlimited": true,
+  "licenseLimit": 1,
+  "isLicenseLimitUnlimited": true,
+  "licensePrefix": "test_licensePrefix"
+}

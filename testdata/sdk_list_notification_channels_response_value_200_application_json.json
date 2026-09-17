@@ -1,0 +1,14 @@
+{
+  "data": [
+    {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "type": "email",
+      "email": "test@example.com",
+      "channel": "test_channel",
+      "webhook_configured": true,
+      "allowed_notifications": [
+        "test_allowed_notifications"
+      ]
+    }
+  ]
+}

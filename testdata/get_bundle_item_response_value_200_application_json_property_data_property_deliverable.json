@@ -1,0 +1,14 @@
+{
+  "data": {
+    "removeDuplicate": true,
+    "parsingMode": "test_parsingMode",
+    "stock": 1,
+    "comment": "test_comment",
+    "serials": [
+      "test_serials"
+    ]
+  },
+  "types": [
+    "test_types"
+  ]
+}

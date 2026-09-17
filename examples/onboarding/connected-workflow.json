@@ -1,0 +1,196 @@
+{
+  "product": {
+    "data": {
+      "id": 1,
+      "title": "test_title",
+      "slug": "test_slug",
+      "description": "test_description",
+      "images": [
+        {
+          "path": "test_path",
+          "metadata": {
+            "size": 1,
+            "filename": "Test",
+            "extension": "test_extension",
+            "mime_type": "test_mime_type"
+          }
+        }
+      ],
+      "order": 1,
+      "visibility": "test_visibility",
+      "delivery_text": "test_delivery_text",
+      "additional_information": [
+        {
+          "required": true,
+          "key": "test_key",
+          "type": "test_type",
+          "label": "test_label"
+        }
+      ],
+      "other_settings": {
+        "faq": [
+          {
+            "question": "test_question",
+            "answer": "test_answer"
+          }
+        ],
+        "video_url": "video_url_01234",
+        "redirect_url": "https://example.com",
+        "product_title": "test_product_title",
+        "product_description": "test_product_description"
+      },
+      "deleted_at": "2023-01-01T00:00:00.000Z",
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z",
+      "store_id": 1,
+      "section_id": 1,
+      "section_order": 1,
+      "is_discoverable": true,
+      "variants": [
+        {
+          "id": 1,
+          "title": "test_title"
+        }
+      ],
+      "url": "https://example.com"
+    }
+  },
+  "variant": {
+    "data": {
+      "id": 1,
+      "product_id": 1,
+      "title": "test_title",
+      "description": "test_description",
+      "deliverable": {
+        "data": {
+          "removeDuplicate": true,
+          "parsingMode": "test_parsingMode",
+          "stock": 1,
+          "comment": "test_comment",
+          "serials": [
+            "test_serials"
+          ]
+        },
+        "types": [
+          "test_types"
+        ]
+      },
+      "pricing": {
+        "humble": true,
+        "frequency": {
+          "value": 1,
+          "interval": "test_interval"
+        },
+        "type": "test_type",
+        "price": {
+          "price": "test_price",
+          "currency": "test_currency"
+        }
+      },
+      "minimum_purchase_quantity": 1,
+      "maximum_purchase_quantity": 1,
+      "bulk_discount": [
+        {
+          "discount_percentage": 1,
+          "minimum_purchase_amount": 1
+        }
+      ],
+      "payment_methods": [
+        "test_payment_methods"
+      ],
+      "other_settings": {
+        "quantity_increments": 1,
+        "discord_data_required": true
+      },
+      "order": 1,
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z",
+      "deleted_at": "2023-01-01T00:00:00.000Z",
+      "product": {
+        "additional_information": [
+          {
+            "required": true,
+            "key": "test_key",
+            "type": "test_type",
+            "label": "test_label"
+          }
+        ]
+      }
+    }
+  },
+  "order": {
+    "data": {
+      "id": 1,
+      "status": "PENDING",
+      "timeline": [
+        {
+          "status": "PENDING",
+          "set_at": "2023-01-01T00:00:00.000Z"
+        }
+      ],
+      "customer": {
+        "id": 1,
+        "email": "test@example.com",
+        "country": "test_country",
+        "location": "test_location",
+        "proxied": true
+      },
+      "payment": {
+        "method": "AUTHNET",
+        "transaction_id": "transaction_id_01234",
+        "payment_id": "payment_id_01234",
+        "payment_capture_id": "payment_capture_id_01234",
+        "blockchain_txid": "blockchain_txid_01234",
+        "settlement_gateway": "test_settlement_gateway",
+        "has_checkout_url": true,
+        "checkout_url": "https://example.com"
+      },
+      "totals": {
+        "currency": "test_cur",
+        "subtotal_cents": 1,
+        "total_exclusive_cents": 1,
+        "total_cents": 1,
+        "total_exclusive_usd_cents": 1,
+        "total_usd_cents": 1
+      },
+      "coupon_id": 1,
+      "line_items": [
+        {
+          "id": 1,
+          "product_id": 1,
+          "product_variant_id": 1,
+          "product_title": "test_product_title",
+          "variant_title": "test_variant_title",
+          "quantity": 1,
+          "status": "PENDING",
+          "currency": "test_cur",
+          "subtotal_cents": 1,
+          "total_exclusive_cents": 1,
+          "total_cents": 1,
+          "subscription_id": 1,
+          "created_at": "2023-01-01T00:00:00.000Z"
+        }
+      ],
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+  },
+  "upload": {
+    "data": {
+      "id": 1,
+      "custom_name": "Test",
+      "filename": "Test",
+      "extension": "test_extension",
+      "mime_type": "test_mime_type",
+      "size": 1,
+      "watermark": true,
+      "max_downloads": 1,
+      "limit_to_purchase_ip": true,
+      "folder_id": 1,
+      "variant_id": 1,
+      "product_id": 1,
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z"
+    }
+  }
+}

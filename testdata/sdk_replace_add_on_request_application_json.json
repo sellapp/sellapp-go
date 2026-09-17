@@ -1,0 +1,10 @@
+{
+  "title": "test_title",
+  "slug": "00000000000000000000000000",
+  "description": "test_description",
+  "visibility": "PUBLIC",
+  "is_draft": true,
+  "parent_product_ids": [
+    1
+  ]
+}

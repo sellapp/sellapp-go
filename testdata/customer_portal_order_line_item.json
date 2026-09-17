@@ -1,0 +1,9 @@
+{
+  "id": 1,
+  "product_id": 1,
+  "product_variant_id": 1,
+  "product_title": "test_product_title",
+  "variant_title": "test_variant_title",
+  "quantity": 1,
+  "status": "test_status"
+}

@@ -1,0 +1,19 @@
+{
+  "id": 1,
+  "price_cents": 1,
+  "currency": "test_currency",
+  "minimum_purchase_quantity": 1,
+  "maximum_purchase_quantity": 1,
+  "quantity_increment": 1,
+  "stock": 1,
+  "payment_methods": [
+    "test_payment_methods"
+  ],
+  "rate_tiers": [
+    {
+      "min_quantity": 100,
+      "max_quantity": 999,
+      "unit_price": "0.5000"
+    }
+  ]
+}

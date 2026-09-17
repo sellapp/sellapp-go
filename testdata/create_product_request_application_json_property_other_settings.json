@@ -1,0 +1,12 @@
+{
+  "redirect_url": "https://example.com",
+  "video_url": "video_url_01234",
+  "product_title": "test_product_title",
+  "product_description": "test_product_description",
+  "faq": [
+    {
+      "question": "test_question",
+      "answer": "test_answer"
+    }
+  ]
+}

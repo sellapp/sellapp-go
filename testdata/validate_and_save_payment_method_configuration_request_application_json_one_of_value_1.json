@@ -1,0 +1,8 @@
+{
+  "merchant_secure_key": "test_merchant_secure_key",
+  "merchant_tokenization_key": "test_merchant_tokenization_key",
+  "signing_key": "test_signing_key",
+  "currencies": [
+    "test_currencies"
+  ]
+}

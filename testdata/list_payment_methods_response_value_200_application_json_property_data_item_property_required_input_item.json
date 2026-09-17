@@ -1,0 +1,6 @@
+{
+  "name": "key_secret",
+  "type": "string",
+  "required": true,
+  "secret": true
+}

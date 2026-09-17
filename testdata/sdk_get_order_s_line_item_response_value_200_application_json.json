@@ -1,0 +1,101 @@
+{
+  "data": {
+    "id": 1,
+    "order": {
+      "id": 1,
+      "status": "PENDING",
+      "payment_method": "AUTHNET",
+      "customer_id": 1,
+      "created_at": "2023-01-01T00:00:00.000Z",
+      "updated_at": "2023-01-01T00:00:00.000Z"
+    },
+    "status": "PENDING",
+    "product": {
+      "id": 1,
+      "title": "test_title"
+    },
+    "variant": {
+      "id": 1,
+      "title": "test_title"
+    },
+    "customer_id": 1,
+    "quantity": 1,
+    "currency": "tes",
+    "currency_rate": "test_currency_rate",
+    "payment_method": "AUTHNET",
+    "amounts": {
+      "unit_price": "test_unit_price",
+      "subtotal_cents": 1,
+      "credit_cents": 1,
+      "total_exclusive_cents": 1,
+      "total_exclusive_usd_cents": 1,
+      "total_cents": 1,
+      "total_usd_cents": 1,
+      "revenue_cents": 1,
+      "revenue_usd_cents": 1,
+      "fee_cents": 1,
+      "fee_rate": 1
+    },
+    "discounts": {
+      "coupon": {
+        "id": 1,
+        "code": "test_code"
+      },
+      "modifiers": [
+        {
+          "type": "test_type",
+          "key": "test_key",
+          "amount_cents": 1,
+          "attributes": {
+            "label": "test_label",
+            "code": "test_code"
+          }
+        }
+      ]
+    },
+    "tax": {
+      "id": "01234",
+      "rate": "test_rate",
+      "amount_cents": 1,
+      "country": "test_country"
+    },
+    "promotion": {
+      "phase_id": 1,
+      "promotion_id": 1,
+      "name": "Test",
+      "discount_type": "test_discount_type",
+      "discount_value": "test_discount_value"
+    },
+    "referral": {
+      "id": 1,
+      "status": "test_status",
+      "amount_usd_cents": 1
+    },
+    "subscription": {
+      "id": 1,
+      "provider": "provider_01234",
+      "status": "test_status",
+      "current_period_start": "2023-01-01T00:00:00.000Z",
+      "current_period_end": "2023-01-01T00:00:00.000Z",
+      "cancel_at_period_end": true
+    },
+    "fulfillment": {
+      "deliveries_count": 1,
+      "delivered_quantity": 1,
+      "types": [
+        "DOWNLOADABLE",
+        "TEXT",
+        "DYNAMIC",
+        "MANUAL",
+        "LICENSE_KEY",
+        "BUNDLE",
+        "BOOKING",
+        "CREDITS"
+      ],
+      "first_delivered_at": "2023-01-01T00:00:00.000Z",
+      "last_delivered_at": "2023-01-01T00:00:00.000Z"
+    },
+    "created_at": "2023-01-01T00:00:00.000Z",
+    "updated_at": "2023-01-01T00:00:00.000Z"
+  }
+}

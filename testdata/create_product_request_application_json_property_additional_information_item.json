@@ -1,0 +1,13 @@
+{
+  "type": "text",
+  "required": true,
+  "label": "test_label",
+  "key": "test_key",
+  "options": [
+    "test_options"
+  ],
+  "placeholder": "test_placeholder",
+  "description": "test_description",
+  "variant": "test_variant",
+  "date_options": {}
+}

@@ -1,0 +1,11 @@
+{
+  "data": {
+    "id": "01234",
+    "client_id": "00000000-0000-0000-0000-000000000000",
+    "grant_model": "account",
+    "scopes": [
+      "test_scopes"
+    ],
+    "created_at": "2023-01-01T00:00:00.000Z"
+  }
+}

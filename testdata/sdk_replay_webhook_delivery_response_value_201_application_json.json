@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": "00000000-0000-0000-0000-000000000000",
+    "event_id": "evt_00000000000000000000000000",
+    "event_type": "test_event_type",
+    "status": "pending",
+    "destination_origin": "test_destination_origin",
+    "attempts": 1,
+    "response_status": 1,
+    "response_body": "test_response_body"
+  }
+}

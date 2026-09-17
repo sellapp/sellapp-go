@@ -1,0 +1,15 @@
+{
+  "customer_email": "test@example.com",
+  "customer_ip": "test_customer_ip",
+  "payment_method": "AUTHNET",
+  "coupon": "test_coupon",
+  "vat_id": "vat_id_01234",
+  "country": "test_country",
+  "affiliate": "test_affiliate",
+  "extra": {
+    "amount": 1,
+    "currency": "test_currency"
+  },
+  "product_variants": {},
+  "custom_payment_method_id": "custom_payment_method_id_01234"
+}

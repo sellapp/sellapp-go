@@ -1,0 +1,13 @@
+{
+  "id": 1,
+  "product_subscription_id": 55,
+  "subscription_id": "subscription_id_01234",
+  "action": "shift_billing_date",
+  "status": "pending",
+  "provider": "provider_01234",
+  "customer_message": "test_customer_message",
+  "confirmed_at": "2023-01-01T00:00:00.000Z",
+  "failed_at": "2023-01-01T00:00:00.000Z",
+  "created_at": "2023-01-01T00:00:00.000Z",
+  "updated_at": "2023-01-01T00:00:00.000Z"
+}

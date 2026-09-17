@@ -1,0 +1,6 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "token": "test_token",
+  "redemption_url": "https://example.com",
+  "expires_at": "2023-01-01T00:00:00.000Z"
+}

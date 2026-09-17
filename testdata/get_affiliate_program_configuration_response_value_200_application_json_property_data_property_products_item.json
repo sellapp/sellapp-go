@@ -1,0 +1,12 @@
+{
+  "id": 1,
+  "product_id": 1,
+  "product_title": "test_product_title",
+  "variant_title": "test_variant_title",
+  "enabled": true,
+  "commission": {
+    "type": "percentage",
+    "percentage": "test_percentage",
+    "amount_usd_cents": 1
+  }
+}

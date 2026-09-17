@@ -1,0 +1,11 @@
+{
+  "prompt": "test_prompt",
+  "question_type": "text",
+  "solution": "test_solution",
+  "answers": [
+    {
+      "answer": "test_answer",
+      "is_correct": true
+    }
+  ]
+}

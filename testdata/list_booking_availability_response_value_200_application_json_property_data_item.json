@@ -1,0 +1,7 @@
+{
+  "start": "2023-01-01T00:00:00.000Z",
+  "end": "2023-01-01T00:00:00.000Z",
+  "label": "test_label",
+  "timezone": "test_timezone",
+  "available_capacity": 1
+}

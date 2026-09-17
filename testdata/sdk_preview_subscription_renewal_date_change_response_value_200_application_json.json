@@ -1,0 +1,11 @@
+{
+  "data": {
+    "preview_token": "subprev_founder_memo_55",
+    "expires_at": "2023-01-01T00:00:00.000Z",
+    "preview_payload": {},
+    "request_payload": {},
+    "customer_message": "test_customer_message",
+    "seller_message": "test_seller_message"
+  },
+  "message": "test_message"
+}

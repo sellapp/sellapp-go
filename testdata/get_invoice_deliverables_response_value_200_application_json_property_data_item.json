@@ -1,0 +1,39 @@
+{
+  "invoice_id": 1,
+  "product_variant_id": 1,
+  "deliverable": {
+    "types": [
+      "DOWNLOADABLE",
+      "TEXT",
+      "DYNAMIC",
+      "MANUAL",
+      "LICENSE_KEY",
+      "BUNDLE",
+      "BOOKING",
+      "CREDITS"
+    ],
+    "data": {
+      "serials": [
+        "test_serials"
+      ],
+      "delivered_files": [
+        "test_delivered_files"
+      ],
+      "dynamic": "test_dynamic",
+      "manual": "test_manual",
+      "license_keys": [
+        "test_license_keys"
+      ],
+      "credits_granted": 1
+    }
+  },
+  "quantity": 1,
+  "additional_information": [
+    {
+      "key": "test_key",
+      "type": "test_type",
+      "label": "test_label",
+      "value": {}
+    }
+  ]
+}

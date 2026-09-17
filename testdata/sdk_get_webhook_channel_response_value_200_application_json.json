@@ -1,0 +1,12 @@
+{
+  "data": {
+    "id": "0f33d01f-f9f8-45e8-80c8-7734d057196d",
+    "name": "Ship It webhook",
+    "url": "https://example.com/sellapp/webhooks",
+    "allowed_notifications": [
+      "order.created",
+      "order.paid"
+    ],
+    "signing_secret_configured": true
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "base": "test_base",
+  "currency": "test_currency",
+  "units": 1,
+  "vat": 1,
+  "total": {
+    "exclusive": "test_exclusive",
+    "inclusive": "test_inclusive"
+  }
+}

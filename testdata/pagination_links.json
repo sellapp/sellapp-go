@@ -1,0 +1,6 @@
+{
+  "first": "https://sell.app/api/v1/blacklists?page=1",
+  "last": "https://sell.app/api/v1/blacklists?page=4",
+  "prev": null,
+  "next": "https://sell.app/api/v1/blacklists?page=2"
+}

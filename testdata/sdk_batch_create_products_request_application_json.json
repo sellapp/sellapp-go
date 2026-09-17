@@ -1,0 +1,39 @@
+{
+  "resources": [
+    {
+      "title": "test_title",
+      "description": "test_description",
+      "visibility": "PUBLIC",
+      "slug": "test_slug",
+      "type": "product",
+      "section": 1,
+      "additional_information": [
+        {
+          "type": "text",
+          "required": true,
+          "label": "test_label",
+          "key": "test_key",
+          "options": [
+            "test_options"
+          ],
+          "placeholder": "test_placeholder",
+          "description": "test_description",
+          "variant": "test_variant",
+          "date_options": {}
+        }
+      ],
+      "other_settings": {
+        "redirect_url": "https://example.com",
+        "video_url": "video_url_01234",
+        "product_title": "test_product_title",
+        "product_description": "test_product_description",
+        "faq": [
+          {
+            "question": "test_question",
+            "answer": "test_answer"
+          }
+        ]
+      }
+    }
+  ]
+}

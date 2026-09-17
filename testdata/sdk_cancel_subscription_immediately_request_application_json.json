@@ -1,0 +1,6 @@
+{
+  "idempotency_key": "idempotency_key_01234",
+  "reason": "test_reason",
+  "refund_last_payment": true,
+  "pro_rated_refund": true
+}

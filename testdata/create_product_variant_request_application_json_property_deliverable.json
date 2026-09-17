@@ -1,0 +1,93 @@
+{
+  "types": [
+    "DOWNLOADABLE",
+    "TEXT",
+    "DYNAMIC",
+    "MANUAL",
+    "LICENSE_KEY",
+    "BUNDLE",
+    "BOOKING",
+    "CREDITS"
+  ],
+  "data": {
+    "stock": 1,
+    "serials": [
+      "test_serials"
+    ],
+    "removeDuplicate": true,
+    "parsingMode": "COMMA",
+    "comment": "test_comment",
+    "webhook": "test_webhook",
+    "booking": {
+      "mode": "native",
+      "conflict_scope": "product",
+      "timezone": "America/New_York",
+      "duration_minutes": 30,
+      "capacity_per_slot": 1,
+      "min_notice_minutes": 1,
+      "max_advance_days": 1,
+      "buffer_before_minutes": 30,
+      "buffer_after_minutes": 30,
+      "availability": [
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        },
+        {
+          "day": 1,
+          "enabled": true,
+          "start": "09:00",
+          "end": "17:00"
+        }
+      ],
+      "provider_connection_ids": [
+        1
+      ],
+      "video_provider": "none",
+      "video_provider_connection_id": 1,
+      "reminders_enabled": true,
+      "reminder_offset_value": 1,
+      "reminder_offset_unit": "minutes",
+      "meta": {}
+    },
+    "credit_rate_tiers": [
+      {
+        "min_quantity": 1,
+        "max_quantity": 1,
+        "unit_price": "0.75"
+      }
+    ]
+  }
+}

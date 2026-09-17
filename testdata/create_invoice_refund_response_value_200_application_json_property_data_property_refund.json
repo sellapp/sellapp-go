@@ -1,0 +1,7 @@
+{
+  "status": "pending",
+  "provider": "provider_01234",
+  "provider_refund_id": "provider_refund_id_01234",
+  "amount_cents": 1250,
+  "currency": "USD"
+}

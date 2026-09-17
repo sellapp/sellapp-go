@@ -1,0 +1,5 @@
+{
+  "next_cursor": "test_next_cursor",
+  "has_more": true,
+  "retention_days": 30
+}

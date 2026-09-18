@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "language": "go",
   "repository": "sellapp/sellapp-go",
-  "sourceSha": "8d8876b1921e931e18baf6f31ed48f79c5282f73",
+  "sourceSha": "e4051383c6618a31c201c050d55d7bdacd157f0c",
   "specSha256": "02043ebfc36589e78743f00a0f4a2f3ac9ac14914b9cf2910f04fc34ad2d0924",
   "runId": "0",
   "runAttempt": "1",
-  "treeDigest": "d43ee026bdc0f38de545277585d1f3a5059934853b5de0efbbe4351af640f6c0",
-  "contentDigest": "c12aa31bb5d1e722a2d43643bd5c15b918655902e1c92923751f261ac9ac131d",
+  "treeDigest": "d0498bc6b38b99a3ce81bbd497a12b96cfdcbacc4e4d369e18774af24c6bd917",
+  "contentDigest": "1039e469a2823b49550dcbe00fefc3a5fbe1349af93d21ef1d63f4456c8d31af",
   "files": [
     {
       "path": ".github/scripts/native-ci.mjs",
@@ -47,7 +47,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "sha256": "4a31c0a2b80d74e293e147b67b48c802eb910a42859aafaf634a374f6067ca0c"
+      "sha256": "9e1ad939dc27596e7f3647b0462ac86bb93a691dd8a53ace00f71bca6747be99"
     },
     {
       "path": "account.go",
@@ -807,7 +807,7 @@
     {
       "path": "generation-manifest.json",
       "mode": "100644",
-      "sha256": "2e1a28df88b05019610a8c01915d11d379a9867013bcda8d3af4bede8f0fbf87"
+      "sha256": "fbe40d0a6567935713f3b56aabe546edc5cda08f1a6fd0a84238ee16403776f9"
     },
     {
       "path": "go.mod",
@@ -1107,7 +1107,7 @@
     {
       "path": "runtime.go",
       "mode": "100644",
-      "sha256": "f85dd4946ebeebce5be7ca31595b295ceac08d587a275510db4d24a81798020d"
+      "sha256": "c88ab00f6526cb25d7a931673878227057d9965b532a4c1858e8dd54330f759b"
     },
     {
       "path": "runtime_contract_test.go",

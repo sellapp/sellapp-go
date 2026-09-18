@@ -169,7 +169,7 @@ Keep the request ID when reporting an API failure. Never include credentials.
 
 ## Support and releases
 
-This source candidate is not a verified registry release. Use the source installation above.
-[Report an SDK issue](https://github.com/sellapp/sellapp-go/issues) if you have repository access.
+Find available packages and installation instructions in the [SDK guide](https://sell.app/docs/api/sdks).
+[Report an SDK issue](https://github.com/sellapp/sellapp-go/issues).
 Include the SDK version, runtime version, and a redacted reproduction.
 Licensed under [MIT](https://github.com/sellapp/sellapp-go/blob/main/LICENSE.txt); see [third-party notices](https://github.com/sellapp/sellapp-go/blob/main/NOTICE.txt).

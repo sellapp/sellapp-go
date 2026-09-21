@@ -6,27 +6,24 @@ Start by printing one product's name. No checkout to build, no order to place: j
 
 Already know your way around? Jump to [configuration](https://github.com/sellapp/sellapp-go/blob/main/docs/usage.md#client-configuration), [usage details](https://github.com/sellapp/sellapp-go/blob/main/docs/usage.md), or the [method index](https://github.com/sellapp/sellapp-go/blob/main/docs/methods.md).
 
-## Install from source
+## Install
 
-**Use the source checkout for now.** This SDK is pre-release, and a published version of `github.com/sellapp/sellapp-go` has not yet been verified. The repository is private, so you need access before cloning.
-
-You'll need Go 1.23 or newer, as declared by the module. The full suite has not been independently verified on every supported Go release. Clone the SDK and check that it builds and passes its tests:
+You need Go 1.23 or newer. In your application's module directory, install the SDK:
 
 ```sh
-git clone https://github.com/sellapp/sellapp-go.git
-cd sellapp-go
-go test ./...
+go get github.com/sellapp/sellapp-go@v0.1.1
 ```
 
-Already have an application? Run these commands in its module directory. The replacement tells Go to use your local SDK checkout; adjust the sibling path if you cloned it elsewhere:
+For a new application, create its directory and module first:
 
 ```sh
-go mod edit -require=github.com/sellapp/sellapp-go@v0.0.0
-go mod edit -replace=github.com/sellapp/sellapp-go=../sellapp-go
+mkdir sellapp-example
+cd sellapp-example
+go mod init example.com/sellapp-example
+go get github.com/sellapp/sellapp-go@v0.1.1
 ```
 
-After adding the example code to your application, run `go mod tidy` to retain and resolve its SDK import.
-
+Go downloads the versioned module and records it in `go.mod` and `go.sum`. You can browse the [Go package reference](https://pkg.go.dev/github.com/sellapp/sellapp-go) or the [source repository](https://github.com/sellapp/sellapp-go).
 
 ## Your first request
 
@@ -34,7 +31,7 @@ Your request needs two things: an API key to identify you, and a store slug to s
 
 Put them in `SELLAPP_API_KEY` and `SELLAPP_STORE`. These environment variables are settings your terminal passes to the program, so the key can stay out of your source files and Git history. Use the [authentication guide](https://sell.app/docs/api/authentication) to get your credentials ready.
 
-The complete [onboarding program](https://github.com/sellapp/sellapp-go/blob/main/examples/onboarding/main.go) asks for one product, then prints its ID and title. No products yet? The empty-store message still means the connection worked. Start with `firstRequest`; the other functions show how to fetch more products and report a failed request.
+Save the complete program below as `main.go` in your application directory. It asks for one product, then prints its ID and title. No products yet? The empty-store message still means the connection worked. Start with `firstRequest`; the other functions show how to fetch more products and report a failed request.
 
 ```go
 package main
@@ -111,14 +108,14 @@ func main() {
 }
 ```
 
-From the SDK checkout, replace the example key and slug with your own and run these commands in a Bash-compatible shell:
+From your application directory, replace the example key and slug with your own and run these commands in a Bash-compatible shell:
 
 ```sh
 export SELLAPP_API_KEY=sk_example_replace_me
 export SELLAPP_STORE=example-store
 export SELLAPP_API_BASE_URL=https://sell.app/api
-go run ./examples/onboarding
-SELLAPP_EXAMPLE_MODE=pagination go run ./examples/onboarding
+go run .
+SELLAPP_EXAMPLE_MODE=pagination go run .
 ```
 
 The first command reads one product; the second reads at most 30. Both leave your store unchanged. The URL points at your real store's API, so the example asks you to choose it explicitly. `SELLAPP_API_BASE_URL` is an example setting, not an SDK environment setting.

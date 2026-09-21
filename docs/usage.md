@@ -58,7 +58,7 @@ func paginate(ctx context.Context, client *sellapp.Client, out io.Writer) error 
 
 Keep configuration in the environment, or pass it directly to `NewClient(apiKey, store, options...)`. Each empty string falls back to its corresponding environment variable; nonempty explicit values win. The SDK selects credentials for each operation. API-key v2 operations can omit the store; legacy operations require it. OAuth store operations require `X-STORE`.
 
-Use `NewClient("", store, WithAccessToken(token))` for OAuth. The option replaces any API key read from the environment. Use `WithCustomerSession(token)` for a customer-portal client, or `WithRequestCustomerSession(token)` on one call. Anonymous operations send no credentials. Customer-session requests and OAuth protocol requests are never replayed automatically.
+Ordinary SDK integrations use API keys. The retained OAuth interfaces support official CLI infrastructure; SellApp does not offer general-purpose OAuth application registration. Internally, `NewClient("", store, WithAccessToken(token))` selects an OAuth token. The option replaces any API key read from the environment. Use `WithCustomerSession(token)` for a customer-portal client, or `WithRequestCustomerSession(token)` on one call. Anonymous operations send no credentials. Customer-session requests and OAuth protocol requests are never replayed automatically.
 
 OAuth protocol operations use `https://sell.app`; a custom `WithBaseURL` supplies the protocol origin as well. Token requests use URL-encoded forms. Redirects are returned without following them; inspect status and `Location` through the raw-response method before making a separate credential-free download request.
 

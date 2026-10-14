@@ -25,7 +25,7 @@ func TestCoupons_List(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"applies_to\":\"one_time\",\"subscription_payments\":1,\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -70,7 +70,7 @@ func TestCoupons_Create(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().Create(context.Background(), decodeTestParams[sellapp.CouponsCreateParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}"))
+	result, err := client.Coupons().Create(context.Background(), decodeTestParams[sellapp.CouponsCreateParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -113,7 +113,7 @@ func TestCoupons_Replace(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().Replace(context.Background(), 1, decodeTestParams[sellapp.CouponsReplaceParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}"))
+	result, err := client.Coupons().Replace(context.Background(), 1, decodeTestParams[sellapp.CouponsReplaceParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -136,7 +136,7 @@ func TestCoupons_Update(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().Update(context.Background(), 1, decodeTestParams[sellapp.CouponsUpdateParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}"))
+	result, err := client.Coupons().Update(context.Background(), 1, decodeTestParams[sellapp.CouponsUpdateParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -160,7 +160,7 @@ func TestCoupons_Search(t *testing.T) {
 		require.Equal(t, "/v1/coupons/search", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"applies_to\":\"one_time\",\"subscription_payments\":1,\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -205,7 +205,7 @@ func TestCoupons_BatchCreate(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().BatchCreate(context.Background(), decodeTestParams[sellapp.CouponsBatchCreateParams](t, "{\"resources\":[{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}]}"))
+	result, err := client.Coupons().BatchCreate(context.Background(), decodeTestParams[sellapp.CouponsBatchCreateParams](t, "{\"resources\":[{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -253,7 +253,7 @@ func TestCoupons_V2ListCoupons(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"applies_to\":\"one_time\",\"subscription_payments\":1,\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -298,7 +298,7 @@ func TestCoupons_V2CreateCoupon(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2CreateCoupon(context.Background(), decodeTestParams[sellapp.CouponsV2CreateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}"))
+	result, err := client.Coupons().V2CreateCoupon(context.Background(), decodeTestParams[sellapp.CouponsV2CreateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -309,7 +309,7 @@ func TestCoupons_V2SearchCoupons(t *testing.T) {
 		require.Equal(t, "/v2/coupons/search", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"applies_to\":\"one_time\",\"subscription_payments\":1,\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -374,7 +374,7 @@ func TestCoupons_V2ReplaceCoupon(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2ReplaceCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2ReplaceCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}"))
+	result, err := client.Coupons().V2ReplaceCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2ReplaceCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -397,7 +397,7 @@ func TestCoupons_V2UpdateCoupon(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2UpdateCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2UpdateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}"))
+	result, err := client.Coupons().V2UpdateCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2UpdateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -433,7 +433,7 @@ func TestCoupons_V2BatchCreateCoupons(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2BatchCreateCoupons(context.Background(), decodeTestParams[sellapp.CouponsV2BatchCreateCouponsParams](t, "{\"resources\":[{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1}]}"))
+	result, err := client.Coupons().V2BatchCreateCoupons(context.Background(), decodeTestParams[sellapp.CouponsV2BatchCreateCouponsParams](t, "{\"resources\":[{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

@@ -26,6 +26,17 @@
         "price": {
           "price": "test_price",
           "currency": "test_currency"
+        },
+        "trial": {
+          "kind": "free",
+          "length": {
+            "value": 1,
+            "interval": "DAY"
+          },
+          "price": {
+            "price": "test_price",
+            "currency": "test_currency"
+          }
         }
       },
       "minimum_purchase_quantity": 1,

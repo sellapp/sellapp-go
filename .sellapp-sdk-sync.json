@@ -2,17 +2,17 @@
   "schemaVersion": 1,
   "language": "go",
   "repository": "sellapp/sellapp-go",
-  "sourceSha": "617c71170f5c326d2d707c0f3e01caf9a948d2fc",
-  "specSha256": "02043ebfc36589e78743f00a0f4a2f3ac9ac14914b9cf2910f04fc34ad2d0924",
+  "sourceSha": "2a8fd1a82c3091e60f332257fe4460785b0c6e9a",
+  "specSha256": "aea767326d7193deffe5004a5751f7e8f59e40b037636c8fc29b936699dfff2e",
   "runId": "0",
   "runAttempt": "1",
-  "treeDigest": "2f3651e68ad6cdc69057d2f2cae65e4c92531c49812fbbaa023cdb638cfd1325",
-  "contentDigest": "497624c51424c5f21357727284a4d80c2e987cb97cad2eb342cde55745829196",
+  "treeDigest": "9b66bae196d46c8b1be80b3ea5cda4013cba9b2b0708e7d3a7a01af1ae29ba6b",
+  "contentDigest": "214bdb88e6d2f3bd316681544e49f9a71e45bda4a1ad40a3fd143519af5979cd",
   "files": [
     {
       "path": ".github/scripts/native-ci.mjs",
       "mode": "100644",
-      "sha256": "9c9162d6e6885c0dcd482448207bdbcb01dc5490dbbef9b318e8b6ed0f7a8398"
+      "sha256": "55dcff3878d863fe8deac53cc3d351f18cd33b512af1416ea6a0effe9e6017f0"
     },
     {
       "path": ".github/scripts/validate-go-operation-snippets.mjs",
@@ -32,7 +32,7 @@
     {
       "path": ".oagen-manifest.json",
       "mode": "100644",
-      "sha256": "82c50e86887f8c70bcbdefc08b14c668fea69ad3527b4e3f39aa165811c862be"
+      "sha256": "4e0ab0d1c31f9b6b4a936669a811371a4fdc1a0b0be55f309d15a6bb4ba383c2"
     },
     {
       "path": "LICENSE.txt",
@@ -47,7 +47,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "sha256": "db426a36ff50bbdea8b3819ba759fbdb614dea6059aaf77445d094ed0b2e8815"
+      "sha256": "74b40e8fff312eb7764cf268d7b8cb6ad0ec63e14ac8b0259ef2eb33c3a99319"
     },
     {
       "path": "account.go",
@@ -62,7 +62,7 @@
     {
       "path": "add_ons.go",
       "mode": "100644",
-      "sha256": "5ef5bc5bead235c5f535c8b9be18396d2e84ef6f5dc5938285648dfa87b38925"
+      "sha256": "fe4c69f162ab596ec51eb4564435bf9fadc8fdfc0a91574948977edea73a268b"
     },
     {
       "path": "add_ons_parent_products.go",
@@ -77,7 +77,7 @@
     {
       "path": "add_ons_test.go",
       "mode": "100644",
-      "sha256": "f1c67a738afed14521b4446b5146a70cc4b5d08de937967459743eb6587ac404"
+      "sha256": "63fa21ffe7f7e0300a28d9a15ae7dd25860a43711a2dd88a6c29853d1d0045d9"
     },
     {
       "path": "affiliate_payouts.go",
@@ -167,7 +167,7 @@
     {
       "path": "bundle_items_test.go",
       "mode": "100644",
-      "sha256": "dc83b5c386ff25435c25055bfe613e65d36edc1ddb96532288f1c9af4e5ed758"
+      "sha256": "bdb49c035598e7aa245d8f24b2c2ecda040915ca58ba6767bf98088d5090b280"
     },
     {
       "path": "cashback_rules.go",
@@ -182,7 +182,7 @@
     {
       "path": "charges.go",
       "mode": "100644",
-      "sha256": "03c70f75dbd29372c87c30ae95160c262aedaebadf17a6181ade6759bcf9dcc8"
+      "sha256": "ce863b04c688662adae0f7d2e6f2cfc7ef7f1d9ee143b2fa66bf96d35e82f6bf"
     },
     {
       "path": "charges_test.go",
@@ -202,12 +202,12 @@
     {
       "path": "coupons.go",
       "mode": "100644",
-      "sha256": "1e71f04c2459f19e44b255b7b6f4b6140e3224ba49845adfc710b3d536f7967b"
+      "sha256": "625b6cad84860f10c339ea3c12c566a8b01a4ca027599a7381a1a6f5050e84e9"
     },
     {
       "path": "coupons_test.go",
       "mode": "100644",
-      "sha256": "44f50f0cfab4c5be0eced5c45468778de6069681014dc150643fcc3773494f77"
+      "sha256": "2a2760480a484ff888162010e34065765acbecb2141608039d54a4ac8d516acb"
     },
     {
       "path": "courses.go",
@@ -282,12 +282,12 @@
     {
       "path": "customer_portal.go",
       "mode": "100644",
-      "sha256": "0ad59f2e48e2594f3327c6147cbcdd517284f327725f7b5fc635792fa19cbb53"
+      "sha256": "07de8c4638d8a122498203fdb257c0de42b3b7f37b227ee9404d44e50c5701ee"
     },
     {
       "path": "customer_portal_test.go",
       "mode": "100644",
-      "sha256": "b3c5eeb7378a9fe8cbb5e72dcbdc996432c33287b744b263b2bce18b5db86bd6"
+      "sha256": "d4ad580dfa424c4c6d71843b4255e7ac6957a61b5d563b0973cdebdb8dc9e675"
     },
     {
       "path": "customer_sessions.go",
@@ -322,22 +322,22 @@
     {
       "path": "docs/methods.md",
       "mode": "100644",
-      "sha256": "5d999a2922cf6d093f1964b8d1cae51dd57f309323b014af61127d0375a73172"
+      "sha256": "2b2be7b5c068efb59316ae1ae9c9e28c7e0e4f6fb50f556824e5671df36e1736"
     },
     {
       "path": "docs/migration.md",
       "mode": "100644",
-      "sha256": "81237c3238b531d3128763739e4cbcead99d288d524ba9bebc5e665ad8f22861"
+      "sha256": "d2152af699fb26ebea01160423ee170c0d2516d1100b8188a4e583956b20528d"
     },
     {
       "path": "docs/operation-examples.json",
       "mode": "100644",
-      "sha256": "9913f8c14175cbca93a0773349b1e6c48bd0592e3c129d831e1e755a3767a1f1"
+      "sha256": "e80ff3933296e0858aa5863052e7b19a77bbb5dc32d7954de94f80fc78f5eedb"
     },
     {
       "path": "docs/operation-variants.json",
       "mode": "100644",
-      "sha256": "ba595325c9342e82fdd5026e5779613f11dac6b918a5d5853e0d5460e3ab3386"
+      "sha256": "54adbf24bb29a234632bf60577b973e8f2258c22ef21e048c0a0695b3ee9e890"
     },
     {
       "path": "docs/resources/account.md",
@@ -457,7 +457,7 @@
     {
       "path": "docs/resources/customer_portal.md",
       "mode": "100644",
-      "sha256": "c4d6abf76bf3e9d3fe52a5866b21867ef05b25c4abd4d58fb54e5a7a18f96187"
+      "sha256": "21592577350cec232aadd8e7c55ff2d7a5c0c0659ebf99760156e7796793156c"
     },
     {
       "path": "docs/resources/customer_sessions.md",
@@ -572,7 +572,7 @@
     {
       "path": "docs/resources/product_variants.md",
       "mode": "100644",
-      "sha256": "27f71c273bce47ce1256039bbf2fee5f07ee760fdaf0e41fec980017da454b7f"
+      "sha256": "8bff45684f64e1c29ed39bea81abde55c4de856262f534356a89c69caf250fcf"
     },
     {
       "path": "docs/resources/product_variants_booking.md",
@@ -647,7 +647,12 @@
     {
       "path": "docs/resources/subscriptions.md",
       "mode": "100644",
-      "sha256": "ca83104bb15470510ffc71c2e5e629ca0063a7582e4ecf5ae60c06b631423906"
+      "sha256": "fc91283da37be8811ec79e4c33a03514b5ba018d66e8afc356603ee27ce09858"
+    },
+    {
+      "path": "docs/resources/subscriptions_actions.md",
+      "mode": "100644",
+      "sha256": "32cded80dbfc760dc63a504b2f10e39c854bd80017c7a8e361ce19b184da666f"
     },
     {
       "path": "docs/resources/tickets.md",
@@ -722,7 +727,7 @@
     {
       "path": "docs/signatures.json",
       "mode": "100644",
-      "sha256": "42600c5895ee0b18f34701c748107e653988db5daf67adf2e63917eec6706783"
+      "sha256": "02563837f137877cd281bebd04c3d64faa40fecf9d06e520a891b509514363fc"
     },
     {
       "path": "docs/usage.md",
@@ -742,7 +747,7 @@
     {
       "path": "enums.go",
       "mode": "100644",
-      "sha256": "f932ba25c6629e942138ad69caa8e16637fc47736ba887e02bb2d735756e08fa"
+      "sha256": "f3ee9ddbb86f681a6ea2febb2be61720340b1ca005a3303e61e9e61aba7c8913"
     },
     {
       "path": "errors.go",
@@ -767,7 +772,7 @@
     {
       "path": "examples/onboarding/connected-workflow.json",
       "mode": "100644",
-      "sha256": "3bd7893c761321cbe40ccc31e7cdc2e0e2690a9db3e292ecc549518a51fa86bb"
+      "sha256": "5eb41bd653c1dc0a88155c8ce9e9eecabea4c3b98de1dbb4f4b8569bb1fca779"
     },
     {
       "path": "examples/onboarding/connected_test.go",
@@ -787,7 +792,7 @@
     {
       "path": "exports.go",
       "mode": "100644",
-      "sha256": "7a36f8dc2662633ee63855b23a08d4bfe47aadbfbd349533788674ecfd514288"
+      "sha256": "2b3e7870d38897ee4add8b949c96e8917f36b751e9b95a71f4830ea190ba2b88"
     },
     {
       "path": "exports_test.go",
@@ -807,7 +812,7 @@
     {
       "path": "generation-manifest.json",
       "mode": "100644",
-      "sha256": "cabbd5a14ba4980cf7115ee67cee68bf3b39496a0a7a7a19e5d14990bec99928"
+      "sha256": "f033d2e1596f3b84b70c7aa08e6b73f3ffb0996ac0891ff3dc40c49cc4a9c863"
     },
     {
       "path": "go.mod",
@@ -862,7 +867,7 @@
     {
       "path": "invoices.go",
       "mode": "100644",
-      "sha256": "3fee235ec73da3fa3bce4e96e6876bd473bd116c375b372c3cad00978c361f9d"
+      "sha256": "8c7c0f8785d8e7f709d611f91c8c8bbf5e8c26f870a511a4bc609f7d18f45b95"
     },
     {
       "path": "invoices_test.go",
@@ -912,7 +917,7 @@
     {
       "path": "models.go",
       "mode": "100644",
-      "sha256": "c9c6a650ba674b8ec3c752a2f9961080fcc4390e904ed63bf6633a39d30b5d1f"
+      "sha256": "6179391bc0fe5149491370a2a8bcfbc586f55939d55af6a9682b4b2fc7abde52"
     },
     {
       "path": "oauth.go",
@@ -947,7 +952,7 @@
     {
       "path": "orders.go",
       "mode": "100644",
-      "sha256": "2e9c558a6a646feb3a0e53a88a7e24b4e1fbf82912b06ad58ecc2cd32e29b0f2"
+      "sha256": "44322c5c93c34545487a04648156a972833ab867bd1f081069349f1aa0320a47"
     },
     {
       "path": "orders_line_items.go",
@@ -992,12 +997,12 @@
     {
       "path": "pkg/events/events.go",
       "mode": "100644",
-      "sha256": "a19016b352946d183dc3d91f02dec0a1cc9f5fab11663dd426572036441b5cb3"
+      "sha256": "b99969c634f9b2f504565d3dceccb528f961067ef3d9d69a17fcb15d5f0c279c"
     },
     {
       "path": "product_variants.go",
       "mode": "100644",
-      "sha256": "c38c6084405480259dce4f51343a05011bb25db86cd4c263f3354c35a8142e3c"
+      "sha256": "173e027db253c1ed2a6a0972ef0c638ee538e8343eaecffab0f0f3740d42a847"
     },
     {
       "path": "product_variants_booking.go",
@@ -1012,22 +1017,22 @@
     {
       "path": "product_variants_pricing.go",
       "mode": "100644",
-      "sha256": "671ab65c592fbc8928b54007cde03258f1ffdbaf5fc453d15b870bfaa73e4465"
+      "sha256": "87949fdd76e74fe66200e17fdbd1c0d299c0c422fbb4d34867a546d829d862fe"
     },
     {
       "path": "product_variants_pricing_test.go",
       "mode": "100644",
-      "sha256": "f2828a0e3df1980e4f0794c16d441fd47b22241b020297754e8bdabd62f7d488"
+      "sha256": "8fa8a5ae3ede1d663713acb966a214fa0228b291ee3d00f47d127ae67d7bb35b"
     },
     {
       "path": "product_variants_test.go",
       "mode": "100644",
-      "sha256": "2df837373cfc8a256a6e2fc51c9efcd84740afb75b8a9c0fc716fa638244010a"
+      "sha256": "8c9d39296d1ac0494f8855c365345321cfd8ccc769c189d3d85165ae73f885c6"
     },
     {
       "path": "products.go",
       "mode": "100644",
-      "sha256": "4858d6d67f9c4adce1999f1368cc24002a93485c11028ca04da867514de89b02"
+      "sha256": "83e9a6f944ac74e77072687102a32c5f0489493121f574d2ca23d398d1aeeedf"
     },
     {
       "path": "products_addons.go",
@@ -1042,12 +1047,12 @@
     {
       "path": "products_test.go",
       "mode": "100644",
-      "sha256": "1084e77117e73e64ad3cf5847652f9e560294d27da0a14420c0478caef629564"
+      "sha256": "7dcc86bdb8cbda357a86a0176f7623a6e9ab7dde9c63de62d1c4ae28417f6ff3"
     },
     {
       "path": "promotions.go",
       "mode": "100644",
-      "sha256": "69a44005b5672d0edae90f5d1f3704211f7e489ff1db6697681c6e145765461b"
+      "sha256": "69bdae436da991c0c7d8d7ac8aceda12b91162c870bb5234eb15ad997dad205e"
     },
     {
       "path": "promotions_phases.go",
@@ -1062,7 +1067,7 @@
     {
       "path": "promotions_test.go",
       "mode": "100644",
-      "sha256": "cef260c4413dde9e7ab62f9c2cba3e955998781826e26062925c147fdd7a98c2"
+      "sha256": "0d8b57f2a2d5302489c2b4de17033b9292605355d5328f0640b69f1f93b61d42"
     },
     {
       "path": "refunds.go",
@@ -1107,7 +1112,7 @@
     {
       "path": "runtime.go",
       "mode": "100644",
-      "sha256": "c88ab00f6526cb25d7a931673878227057d9965b532a4c1858e8dd54330f759b"
+      "sha256": "ea9de2e0e2bc087f97d25324210a9023d1ca52e1ebf824fc040f0aa462d2290c"
     },
     {
       "path": "runtime_contract_test.go",
@@ -1127,7 +1132,7 @@
     {
       "path": "sellapp.go",
       "mode": "100644",
-      "sha256": "dbbea01aac41bf0cc680729097c712f9a238cb835c8f58162853ec07ddda8ed0"
+      "sha256": "79ed930fd0fbf1125d977105c7269f66bcb8213b7ae7c5a9170e4e872a603616"
     },
     {
       "path": "store_custom_domains.go",
@@ -1162,12 +1167,22 @@
     {
       "path": "subscriptions.go",
       "mode": "100644",
-      "sha256": "4da610ceec588a1379c436bd4e4cea63dc155f5095e1f7e56e917f0c39a40b35"
+      "sha256": "119c6a73e3c9b63b16c635c037bba3c46ba4a565420f1afe8f82be3bc7477b77"
+    },
+    {
+      "path": "subscriptions_actions.go",
+      "mode": "100644",
+      "sha256": "702e0aaf1bd88143a7548894cbca6c101e0389a5d112a2c4e77f71f813115861"
+    },
+    {
+      "path": "subscriptions_actions_test.go",
+      "mode": "100644",
+      "sha256": "3b8a787b40dc9e9f9d0dd6ed649e124efdece28add5407a3b06bf90fdfb3b40d"
     },
     {
       "path": "subscriptions_test.go",
       "mode": "100644",
-      "sha256": "adcd68f81b90cfa579284ba81ee05e82a3ca20b71bd0d4508313834780f21594"
+      "sha256": "83a09a994d4a3f1ff79b09d413fc1fa17b07d22b5e3a48b528757ef957a14966"
     },
     {
       "path": "testdata/activate_license_key_response_value_200_application_json_property_data.json",
@@ -1227,7 +1242,12 @@
     {
       "path": "testdata/cancel_subscription_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "a948a4853a2ca1bc7cbc7c6555b481b764555662f17a63b1c1d37bf15b442fb2"
+      "sha256": "9267476f6f97ca76822f56e51957ae56e24d68a0e25cb2f68978f85822006a2a"
+    },
+    {
+      "path": "testdata/cancel_subscription_response_value_200_application_json_property_data_property_customer.json",
+      "mode": "100644",
+      "sha256": "95a75470b7207ee1b246bc89dc13b3f6794ae69af499de76674ff0de001841d7"
     },
     {
       "path": "testdata/complete_community_connection_response_value_200_application_json_property_data.json",
@@ -1242,7 +1262,7 @@
     {
       "path": "testdata/confirm_subscription_renewal_date_change_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "5609d342efdab36382f0f2d573badf4d4afe2e44e33c9fe03ecfe4d47934250e"
+      "sha256": "caf059d603133b2e99d692274ad81502736802cf4ba30aa867272989530d558f"
     },
     {
       "path": "testdata/create_booking_hold_response_value_201_application_json_property_data.json",
@@ -1255,29 +1275,14 @@
       "sha256": "a40e2fd5835cf6003a6451c70f8637a0baafeb8d735eee18b86b3ef2f7b9c23b"
     },
     {
-      "path": "testdata/create_checkout_session_response_value_200_application_json_property_invoice.json",
-      "mode": "100644",
-      "sha256": "7754171aefb6e9f8760fb778ac6a38c247f00c865b3430b81b4204b45ead8f1e"
-    },
-    {
-      "path": "testdata/create_checkout_session_response_value_200_application_json_property_invoice_property_status.json",
-      "mode": "100644",
-      "sha256": "2c5eb61990b479d492cdd4c719b4fdaa4620e40a1f42cf442fd202802a5ec776"
-    },
-    {
       "path": "testdata/create_checkout_session_response_value_201_application_json_property_invoice.json",
       "mode": "100644",
-      "sha256": "2d4a88f211948d68aad778af515e7cd2a27e17b01b9c5c33a62405e3272cc223"
+      "sha256": "1fd2b767ed1171de54a12334a11a6e1c7a08db79bb2aadc92ca916531a7b653e"
     },
     {
       "path": "testdata/create_checkout_session_response_value_201_application_json_property_invoice_property_customer_information.json",
       "mode": "100644",
       "sha256": "88103473be08d098584227c88dfa4517ea2f62b4314ae6319160f67dfcc60872"
-    },
-    {
-      "path": "testdata/create_checkout_session_response_value_201_application_json_property_invoice_property_status.json",
-      "mode": "100644",
-      "sha256": "2c5eb61990b479d492cdd4c719b4fdaa4620e40a1f42cf442fd202802a5ec776"
     },
     {
       "path": "testdata/create_course_lesson_request_application_json_property_assignment.json",
@@ -1555,6 +1560,16 @@
       "sha256": "3d5794adf6e70ef6c3c84d2ea4df77d5d6fc440fa89a35fdc5d9e39127013b43"
     },
     {
+      "path": "testdata/customer_portal_subscription.json",
+      "mode": "100644",
+      "sha256": "dd59738bbc73ca88b52990b490868a76e0ab4519a1fea04471fbc6041cf3c054"
+    },
+    {
+      "path": "testdata/customer_portal_subscription_plan.json",
+      "mode": "100644",
+      "sha256": "bb0447a2bce724cdbc8910971bfb6f178c42e532b3973e87a8bfced0872d3398"
+    },
+    {
       "path": "testdata/deactivate_license_response_value_200_application_json_property_data.json",
       "mode": "100644",
       "sha256": "819bf1805e8294bb097f4940662b496340b28b39b299916a4d19c408833c282c"
@@ -1657,7 +1672,7 @@
     {
       "path": "testdata/get_bundle_item_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "20298ff39b43d40028692470c5afeb6e541306630faccfca127bde6eeb781210"
+      "sha256": "87a93c51bba1a2f88b40dd0cea099d8ad3ec02af2cfc567b19e2c3f24b7bbb50"
     },
     {
       "path": "testdata/get_bundle_item_response_value_200_application_json_property_data_property_bulk_discount_item.json",
@@ -1682,7 +1697,7 @@
     {
       "path": "testdata/get_bundle_item_response_value_200_application_json_property_data_property_pricing.json",
       "mode": "100644",
-      "sha256": "635003e391c45e1913aff1904b5f4989dc99a295bb8fa75da3ab4f3a4ccd5601"
+      "sha256": "78c6b02b3def28229e68e30a92564853aee5abb74f008c6edb5911dff6435944"
     },
     {
       "path": "testdata/get_bundle_item_response_value_200_application_json_property_data_property_pricing_property_frequency.json",
@@ -1693,6 +1708,11 @@
       "path": "testdata/get_bundle_item_response_value_200_application_json_property_data_property_pricing_property_price.json",
       "mode": "100644",
       "sha256": "a1b0eccc92863423054fbb0368130148fa1b03a7916a4ef7a55d4188a175370b"
+    },
+    {
+      "path": "testdata/get_bundle_item_response_value_200_application_json_property_data_property_pricing_property_trial.json",
+      "mode": "100644",
+      "sha256": "125e7bd1fc9e1c9fb825dc975a0223c88a630bbadf390feccb7629fa15856118"
     },
     {
       "path": "testdata/get_bundle_item_response_value_200_application_json_property_data_property_product.json",
@@ -1707,7 +1727,7 @@
     {
       "path": "testdata/get_coupon_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "ab4923ebcc021f6d352823d0b3042592239750e4ed98276972e7711f4c25402a"
+      "sha256": "e56161184c56bc9ba29b64c8e92d5ea3902fe4d495cc4036ec3d97f08d74bf74"
     },
     {
       "path": "testdata/get_course_response_value_200_application_json_property_data.json",
@@ -1757,12 +1777,12 @@
     {
       "path": "testdata/get_customer_portal_subscription_capabilities_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "775b3d5acc4042f4f389b6ddb33413abc375fb497ad7ce2e529236fe779cf450"
+      "sha256": "a0981c352db43b85183845971da0adc0cee01dc06f153f986e830ca3b0c14095"
     },
     {
       "path": "testdata/get_customer_portal_subscription_capabilities_response_value_200_application_json_property_data_property_capabilities_map_value.json",
       "mode": "100644",
-      "sha256": "935873cff8a230c6474ffa5c72b507abaf8c4711f5a300321d7b71560438124b"
+      "sha256": "4712e8ec4101e06855e4f85fd7ab8351319dcf1f030da810e9324d25b1df6381"
     },
     {
       "path": "testdata/get_customer_response_value_200_application_json_property_data.json",
@@ -1992,7 +2012,7 @@
     {
       "path": "testdata/get_promotion_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "a12e22364f5fe2ea4c2d542ab886bf2af721171b9921eb74fe031ae8feeff06d"
+      "sha256": "71452fef2b4c1b5e480fb2f8a86ee5f5bb03421d17eb5299e19a8df1325d3443"
     },
     {
       "path": "testdata/get_refund_response_value_200_application_json_property_data.json",
@@ -2072,7 +2092,12 @@
     {
       "path": "testdata/get_subscription_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "5d472b1c7d128a51fe6bdb9770f941f1fe4af8f19a4d4da328849dab550cb69e"
+      "sha256": "9267476f6f97ca76822f56e51957ae56e24d68a0e25cb2f68978f85822006a2a"
+    },
+    {
+      "path": "testdata/get_subscription_response_value_200_application_json_property_data_property_customer.json",
+      "mode": "100644",
+      "sha256": "95a75470b7207ee1b246bc89dc13b3f6794ae69af499de76674ff0de001841d7"
     },
     {
       "path": "testdata/get_ticket_response_value_200_application_json_property_data.json",
@@ -2125,6 +2150,11 @@
       "sha256": "067d939c0d3437fc6d39a172dc937e18aacc0ffa0a2d99789ac696d2dee1d16f"
     },
     {
+      "path": "testdata/keep_subscription_response_value_200_application_json_property_data.json",
+      "mode": "100644",
+      "sha256": "c8d4e513a672ee0430380f0b0852028a637999bfca37aaea30539887068c9875"
+    },
+    {
       "path": "testdata/list_affiliate_referral_sessions_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
       "sha256": "59822093c19fde4b3508fd13c391e4f51b29819f822cde61d0df7d1107595f4b"
@@ -2175,6 +2205,11 @@
       "sha256": "7461ce9ecc3cebfc05b5e5091ef06c2c6a321fcb4cc85e8109f14deba3ec0095"
     },
     {
+      "path": "testdata/list_customer_portal_subscription.json",
+      "mode": "100644",
+      "sha256": "cc42dd496f2e95c8c1a1137c013725f98e8465b8a1475f6ca09f61f72908b40e"
+    },
+    {
       "path": "testdata/list_disputes_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
       "sha256": "71c3b4db61c8e8c4303888dae3ac7504def67cff3251f30489150826ccce0012"
@@ -2222,7 +2257,7 @@
     {
       "path": "testdata/list_list_bundle_items_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "4bbb6f2447b881a5898e106107528c6450649e42f2155c251e2f142818fe68b9"
+      "sha256": "5495ee93347f7f012916b1438e877248e90f7607ea3a1c491cd52c404b7edcfd"
     },
     {
       "path": "testdata/list_list_charges_response_value_200_application_json_property_data_item.json",
@@ -2232,7 +2267,7 @@
     {
       "path": "testdata/list_list_coupons_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "38041ed8f818dea570d0eecdcf750333479121cf091d945df1addcccf5e3cc58"
+      "sha256": "a1b021b7cd4c60e28eccc58891a8531aeb5f698ab24f6d9d06cdb6f711e40508"
     },
     {
       "path": "testdata/list_list_credit_balance_transactions_response_value_200_application_json_property_data_item.json",
@@ -2307,7 +2342,7 @@
     {
       "path": "testdata/list_list_product_variants_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "74c86c30f5dd5db5742b0d9410eb207c9708e3db7227724c98a310c00a8539b2"
+      "sha256": "6a646efd09bb85687b1e45978e62bb1a41d356cb9d6ef7e23d025b2da78173bf"
     },
     {
       "path": "testdata/list_list_products_response_value_200_application_json_property_data_item.json",
@@ -2328,11 +2363,6 @@
       "path": "testdata/list_list_sections_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
       "sha256": "109925213e14f81672cb4e0a79df9e5a9df92ea07d2ed389f63495527910d815"
-    },
-    {
-      "path": "testdata/list_list_subscriptions_response_value_200_application_json_property_data_item.json",
-      "mode": "100644",
-      "sha256": "7efce530d07e080c2927e086317cf290fa4b1214aed67b093afc1c22a0bd025e"
     },
     {
       "path": "testdata/list_list_ticket_messages_response_value_200_application_json_property_data_item.json",
@@ -2412,7 +2442,7 @@
     {
       "path": "testdata/list_product_variants_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "e35dc0df4be19c8d43abee7842ae8eb6180abb1d49a8052f49db1e1d6511a7b6"
+      "sha256": "219f8f88f106b346042dff838bad8145f9f8bd7d2ae4f77c42ed4336c6f1ed6d"
     },
     {
       "path": "testdata/list_product_variants_response_value_200_application_json_property_data_item_property_deliverable.json",
@@ -2467,7 +2497,7 @@
     {
       "path": "testdata/list_search_product_variants_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "74c86c30f5dd5db5742b0d9410eb207c9708e3db7227724c98a310c00a8539b2"
+      "sha256": "6a646efd09bb85687b1e45978e62bb1a41d356cb9d6ef7e23d025b2da78173bf"
     },
     {
       "path": "testdata/list_search_products_response_value_200_application_json_property_data_item.json",
@@ -2478,11 +2508,6 @@
       "path": "testdata/list_search_products_within_group_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
       "sha256": "609532a6024986afddfa34e6e02922005065f349714070815cde7336dbe9d542"
-    },
-    {
-      "path": "testdata/list_search_subscriptions_response_value_200_application_json_property_data_item.json",
-      "mode": "100644",
-      "sha256": "7efce530d07e080c2927e086317cf290fa4b1214aed67b093afc1c22a0bd025e"
     },
     {
       "path": "testdata/list_search_tickets_response_value_200_application_json_property_data_item.json",
@@ -2545,9 +2570,9 @@
       "sha256": "d78765dc65faa84ea58055fb7d7ca8ec8a7dfde8ff40d8183dfd7b2074355580"
     },
     {
-      "path": "testdata/pause_subscription_response_value_200_application_json_property_data.json",
+      "path": "testdata/pause_customer_subscription_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "5e90f39655df4d97daff6f5f50db2919be14527e4eef78e11ebceae4d58c6833"
+      "sha256": "adb80c5d3912a561e87576ade7b973323dc365ada06eb17eb0ba33f98a5237ea"
     },
     {
       "path": "testdata/poll_community_connection_response_value_200_application_json_property_data.json",
@@ -2563,6 +2588,21 @@
       "path": "testdata/poll_community_connection_response_value_200_application_json_property_data_property_server.json",
       "mode": "100644",
       "sha256": "17aa9d0319c02900f270112f3f8dc96765d154db360b9ad6f9f3ab176592f5ea"
+    },
+    {
+      "path": "testdata/preview_customer_subscription_plan_change_response_value_200_application_json_property_data.json",
+      "mode": "100644",
+      "sha256": "1fb55c97d98320619d1cba49f3f43b9566536eddb12c7f2639dc9617653aec10"
+    },
+    {
+      "path": "testdata/preview_customer_subscription_renewal_date_change_response_value_200_application_json_property_data.json",
+      "mode": "100644",
+      "sha256": "6e6f328369c55e9360dc59ae3fcc7f13dcea360a916b9650beaac8bcff402444"
+    },
+    {
+      "path": "testdata/preview_subscription_plan_change_response_value_200_application_json_property_data.json",
+      "mode": "100644",
+      "sha256": "56b30757a9b21fb180f5516c520d491c55be14e92f9d356d1e72f493aa397e35"
     },
     {
       "path": "testdata/preview_subscription_renewal_date_change_response_value_200_application_json_property_data.json",
@@ -2657,12 +2697,12 @@
     {
       "path": "testdata/replace_product_variant_pricing_request_application_json_property_pricing.json",
       "mode": "100644",
-      "sha256": "c9949628fc2ec322c08b6bef67ef2cde8770e9c8c8739a8fc68bb556ad3d2d36"
+      "sha256": "f3702eb930243c4c87a1fe0d14ff896aab6d6289f984dd6a47917d1ba8107048"
     },
     {
-      "path": "testdata/replace_product_variant_pricing_request_application_json_property_pricing_property_frequency.json",
+      "path": "testdata/replace_product_variant_pricing_request_application_json_property_pricing_property_trial.json",
       "mode": "100644",
-      "sha256": "2a20bbf199ba167dd60f98bf9d4c37f0683f9544087025774091110dbb32ba6c"
+      "sha256": "36be50d6e7953d0e4c56450692b7e64febade32bf0554ef7bfefbbeaa11665f8"
     },
     {
       "path": "testdata/replace_variant_deliverable_configuration_request_application_json_property_data.json",
@@ -2767,22 +2807,22 @@
     {
       "path": "testdata/sdk_batch_create_coupons_request_application_json.json",
       "mode": "100644",
-      "sha256": "b1f8e3bcad2c7a4e370dd72eb97213af638092bab7ce8c32e6cc14b95b16c790"
+      "sha256": "af510dbb25d33c5e838198224f8e098178ee1a0a2ea3d5d600428c36d742e377"
     },
     {
       "path": "testdata/sdk_batch_create_coupons_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "15c63af319d51edbdce8c54e8c6265c1f69ec7e285ce517acdeeeac18c070d95"
+      "sha256": "1d09b1edbe1ae90a72deff4c0897bfd57e1904861cde5d68a284e8146c9f0378"
     },
     {
       "path": "testdata/sdk_batch_create_product_variants_request_application_json.json",
       "mode": "100644",
-      "sha256": "1535e49266600ea23b14d94418c9937c5f367998816b602e5d4b49442212b837"
+      "sha256": "c9c0c52ac5d67f281c49b0b6b43776654e23170276b93dcfe610937e7c39b6b5"
     },
     {
       "path": "testdata/sdk_batch_create_product_variants_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "8d1d2bd691cef7042ba3e4d0d1b4dbc272085c75c308c5fdd8af14920048930a"
+      "sha256": "f4d2f5b79bb2f561c664dbd7c00be884b3acda96fec5772e2a3dca0f578dd5c4"
     },
     {
       "path": "testdata/sdk_batch_create_products_request_application_json.json",
@@ -2805,6 +2845,16 @@
       "sha256": "e2fadd01129f825aa4d40ee90fab8b1e2b2c2eb547570088b1a7505a1d6942ef"
     },
     {
+      "path": "testdata/sdk_cancel_customer_subscription_at_period_end_request_application_json.json",
+      "mode": "100644",
+      "sha256": "9b488b19a3f5f2033dfaba987cbdb6f87d671ce2d9ecf8af1076e969989f60ca"
+    },
+    {
+      "path": "testdata/sdk_cancel_customer_subscription_immediately_request_application_json.json",
+      "mode": "100644",
+      "sha256": "9b488b19a3f5f2033dfaba987cbdb6f87d671ce2d9ecf8af1076e969989f60ca"
+    },
+    {
       "path": "testdata/sdk_cancel_subscription_at_period_end_request_application_json.json",
       "mode": "100644",
       "sha256": "3f210cc602c33f82df1ac2033ab12bc57c1e2b71b23a8f170e74702956d141c1"
@@ -2822,7 +2872,7 @@
     {
       "path": "testdata/sdk_cancel_subscription_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "a5f194b3ec6ed339002e7481d0f76ed72a10f4de0649228e58d57ad2ae3c4326"
+      "sha256": "1c72bc5fbda1c4fde80eb3d6bf67ef109f0a42fdbe947e959474152f0ded3cb8"
     },
     {
       "path": "testdata/sdk_complete_community_connection_request_application_json.json",
@@ -2835,9 +2885,24 @@
       "sha256": "1e3fe9c061e82958d50867c8854bd1eafc614fa1cce4138d576d39004a2bfdad"
     },
     {
+      "path": "testdata/sdk_confirm_customer_subscription_plan_change_request_application_json.json",
+      "mode": "100644",
+      "sha256": "cc1ec0d0e1292f8e3cad90db5bb65442cf2e0dcd0383403d8e31cd5f964e7c18"
+    },
+    {
+      "path": "testdata/sdk_confirm_customer_subscription_renewal_date_change_request_application_json.json",
+      "mode": "100644",
+      "sha256": "0c4e7d8e87b28b4a409289cf451ad38e63d824d189059db7e8164222fccd2db4"
+    },
+    {
       "path": "testdata/sdk_confirm_subscription_plan_change_request_application_json.json",
       "mode": "100644",
       "sha256": "7dea4d49b3720ea66a266e469bbe1989a356cead385f92b272436aa81edc8bfa"
+    },
+    {
+      "path": "testdata/sdk_confirm_subscription_plan_change_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "6f0fea4649f88ff798d50775efb6310baf141cd832abc94e1071772cb300fc0f"
     },
     {
       "path": "testdata/sdk_confirm_subscription_renewal_date_change_request_application_json.json",
@@ -2847,7 +2912,7 @@
     {
       "path": "testdata/sdk_confirm_subscription_renewal_date_change_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "776392e58190922342b0d04e94d3afea17604cb0e2f11217159ed37ee5a9a0ae"
+      "sha256": "8a0f5f169be6563782c25914abf4ae160ce58891f6df97f73a38c62423ee9d2c"
     },
     {
       "path": "testdata/sdk_connect_custom_domain_request_application_json.json",
@@ -2857,7 +2922,7 @@
     {
       "path": "testdata/sdk_create_add_on_draft_request_application_json.json",
       "mode": "100644",
-      "sha256": "ca1f9c56d3f4ef834921e9ed99216aedd110e40e44f05f9dc22cd34a2c79f64a"
+      "sha256": "885fbeb7a68137959d20076e099b58fd6954d898ba86e666a7bf4a00abb2a333"
     },
     {
       "path": "testdata/sdk_create_booking_hold_request_application_json.json",
@@ -2892,17 +2957,17 @@
     {
       "path": "testdata/sdk_create_checkout_session_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "00308f51a3776d17a351088be56c5a515e041ec1618ef8aac945ad5975ae725d"
+      "sha256": "01fe9a64087fd537737bbe4aa843b5f6f3425d2e426172e860bd8af5af297b33"
     },
     {
       "path": "testdata/sdk_create_checkout_session_response_value_201_application_json.json",
       "mode": "100644",
-      "sha256": "0f9a0c71e15b6603f0149526a0364db4ec5bf5c069a859d7f28e36669dba5090"
+      "sha256": "048609bdabe72c56f989a4f0417b486b50a04aebdc6f30d3553d921e8a4fb65e"
     },
     {
       "path": "testdata/sdk_create_coupon_request_application_json.json",
       "mode": "100644",
-      "sha256": "12334dac959402c81a06e224744f32428697e856462bd3697b021db26d45a345"
+      "sha256": "fd4cbb099c5a51079b905bf9ce6da72ef6e94c4bfb1c1fbb4d0d334d6739ea25"
     },
     {
       "path": "testdata/sdk_create_course_lesson_request_application_json.json",
@@ -3067,17 +3132,17 @@
     {
       "path": "testdata/sdk_create_product_request_application_json.json",
       "mode": "100644",
-      "sha256": "fbbb76168800ff897ebd08a2b5b836a4392eaf72f49ba45c99730767364a4878"
+      "sha256": "b97ca3992827f20701c0f30610f75f17b0cbbdb5e776bc86f64ad69ea65f9fd2"
     },
     {
       "path": "testdata/sdk_create_product_variant_request_application_json.json",
       "mode": "100644",
-      "sha256": "c582a2cc38934fa21734608b6d0dfe920875a5aa0ac62e49916da697fd4860bc"
+      "sha256": "9e4a19d6178249c828c3de1b9cd9cd9ca7ca5257e95922f62de4f9be7139e957"
     },
     {
       "path": "testdata/sdk_create_promotion_request_application_json.json",
       "mode": "100644",
-      "sha256": "93a12fa1ac9387d3efee6baf614afb6b66f56905d9b0989ac849e4eec4d1b544"
+      "sha256": "c383cb0e6564aa8484444435615bc3542c0b2fe07598af96a08ed4a7e8561352"
     },
     {
       "path": "testdata/sdk_create_reward_coupon_template_request_application_json.json",
@@ -3147,7 +3212,7 @@
     {
       "path": "testdata/sdk_create_webhook_channel_request_application_json.json",
       "mode": "100644",
-      "sha256": "cbadcb40c4adae4622deaeffc988838334f0e621c9f8b1052486bda7b779213b"
+      "sha256": "58f2e21c50f3c999f1d8ccf21822cd7b154d358f60082a7e68cf38521f531c3c"
     },
     {
       "path": "testdata/sdk_deactivate_license_request_application_json.json",
@@ -3158,11 +3223,6 @@
       "path": "testdata/sdk_deactivate_license_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "8fae43ee089d9c70c3abfb710d3922783e7739b45a1558927a2ab055ce5c4d4e"
-    },
-    {
-      "path": "testdata/sdk_delete_credits_product_request_application_json.json",
-      "mode": "100644",
-      "sha256": "7b43816fa52f87c44be7263d46ddf846ca679abc7fc2dab268812a468e67ce40"
     },
     {
       "path": "testdata/sdk_delete_product_request_application_json.json",
@@ -3188,6 +3248,11 @@
       "path": "testdata/sdk_disconnect_community_platform_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "e5501864beebab27467be52dd5a54c43bb64b7f37172b5ad8d485977256e4fc3"
+    },
+    {
+      "path": "testdata/sdk_dismiss_subscription_action_request_application_json.json",
+      "mode": "100644",
+      "sha256": "ba8654382d29dc9290106f85b0a74a0b172219728f22e07dddd0289df52944ec"
     },
     {
       "path": "testdata/sdk_enable_or_disable_payment_method_request_application_json.json",
@@ -3247,7 +3312,7 @@
     {
       "path": "testdata/sdk_get_bundle_item_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "6daf24bc33ef84252e6cf4252de0128e9d64f207c7ae24836874df4e8f15b0a0"
+      "sha256": "df45c3d0af9be06182eb3dc703965d2214ab50acb198b2827802f10cfcfab2d8"
     },
     {
       "path": "testdata/sdk_get_charge_response_value_200_application_json.json",
@@ -3257,7 +3322,7 @@
     {
       "path": "testdata/sdk_get_coupon_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "1be253ecb9eb202311c2fb5644301b0d60325f0ba9ce29b5c879b652f9b10a78"
+      "sha256": "1b4a2f74a4d24708c4303d52f89018b897a59dbd96f34564607aaa5b587a1bfa"
     },
     {
       "path": "testdata/sdk_get_course_response_value_200_application_json.json",
@@ -3297,7 +3362,12 @@
     {
       "path": "testdata/sdk_get_customer_portal_subscription_capabilities_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "e71da2702b2b427a1f8e31148ae6d038c6275331fc6ce87533faaf8403dc7a87"
+      "sha256": "3b6aa84835f494480e5c5c80310a9237bb56f57ca0b58363b89f7fdec420c2df"
+    },
+    {
+      "path": "testdata/sdk_get_customer_portal_subscription_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "92c4d97f17cf25dfd823c855110126a471878595dedb44fe05da688f915861ce"
     },
     {
       "path": "testdata/sdk_get_customer_response_value_200_application_json.json",
@@ -3412,7 +3482,7 @@
     {
       "path": "testdata/sdk_get_promotion_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "7174c571d809772b66dccdc159fd49353fe5aeac5de3ad0acaaa489a361c7a0d"
+      "sha256": "45e642c3092aaeec4a1ae15fdca932611448c10e01094db63eee616a4e797a48"
     },
     {
       "path": "testdata/sdk_get_refund_response_value_200_application_json.json",
@@ -3455,6 +3525,11 @@
       "sha256": "63349d79cb8ff46011c21670b0e46bbd9cb3080d0a8799d06f6624a0e100c8f2"
     },
     {
+      "path": "testdata/sdk_get_subscription_action_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "b5aba42630bb1236d929e6d0fcc09683d0ebca499bf6402cff1876715004d873"
+    },
+    {
       "path": "testdata/sdk_get_subscription_capabilities_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "217b54ba7d6f0a1ab51c5bcc1134e9cec99d7eae0cc9f7c7a90edf530e8bf588"
@@ -3462,7 +3537,7 @@
     {
       "path": "testdata/sdk_get_subscription_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "5740e2edd3cd059996e544dba5cba837bdf9e80b224675e77d080f86b82beb05"
+      "sha256": "54bde4a89233fe8c9a8f9e0dd451049d0f4dc161c269fbfe59ec2b3a281ae37e"
     },
     {
       "path": "testdata/sdk_get_ticket_response_value_200_application_json.json",
@@ -3525,6 +3600,16 @@
       "sha256": "6d40bacbbfd86717ca60b7db479c7426738cda331431e876aa0d572c18112692"
     },
     {
+      "path": "testdata/sdk_keep_subscription_request_application_json.json",
+      "mode": "100644",
+      "sha256": "5545973ac1b1b6a5d3a26920f690383422446dda4edd573016c8f60a7a505fb3"
+    },
+    {
+      "path": "testdata/sdk_keep_subscription_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "17d8228e2a9c2026238905ffaa6f1e2d66dbfd180f20cb2148e67f152a16f124"
+    },
+    {
       "path": "testdata/sdk_list_affiliate_payouts_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "cd654457c5ff42a423d8f60b97b8dcdca4551f12e283b31d130d8e0105d2d0f6"
@@ -3552,7 +3637,7 @@
     {
       "path": "testdata/sdk_list_bundle_items_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "e879aed9fbac9c03133aefa97fa122f4557e493fd709f4db37605c26787d4770"
+      "sha256": "ddd41c44a916192fc2c0db689d13396c9bf68399ed750c0721c67b3b7b305e25"
     },
     {
       "path": "testdata/sdk_list_cashback_rules_response_value_200_application_json.json",
@@ -3572,7 +3657,7 @@
     {
       "path": "testdata/sdk_list_coupons_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "d94374317b5d9191c31115696954f2f42a92dd5b8678d1d5716b9e65d78be17b"
+      "sha256": "042a9c6ba97e0509b7a09605e677f5cf6eb44fca2d6fa1cde8fb30b0df84f7d6"
     },
     {
       "path": "testdata/sdk_list_credit_balance_transactions_response_value_200_application_json.json",
@@ -3607,7 +3692,7 @@
     {
       "path": "testdata/sdk_list_customer_portal_subscriptions_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "b363e53194f88264808890d1ba51430c0af172981bc22b65be6096b6542eefd9"
+      "sha256": "2a0ef6a6390b355d4cd893f89bce228ba30e7d411688bff8cbe7d7e5ece61a88"
     },
     {
       "path": "testdata/sdk_list_customer_wallets_response_value_200_application_json.json",
@@ -3702,7 +3787,7 @@
     {
       "path": "testdata/sdk_list_product_variants_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "5cf389b739e8a117054c165b8b440f6205222ea1716bb9001ac81cf7af1150db"
+      "sha256": "8ef02e9623f738d7b67e37aba14296fb8d4d443a56d385199892795af32e1e12"
     },
     {
       "path": "testdata/sdk_list_products_response_value_200_application_json.json",
@@ -3733,11 +3818,6 @@
       "path": "testdata/sdk_list_stores_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "f65813cf5a63b8afc8af088bcab2f8f40e2266dd36cd37ce2fa4db5c2dc17f02"
-    },
-    {
-      "path": "testdata/sdk_list_subscriptions_response_value_200_application_json.json",
-      "mode": "100644",
-      "sha256": "03abbcd2fefa35182d2acf8d25a5ec20f8f0f98ebe28e7ffec671080b04a7247"
     },
     {
       "path": "testdata/sdk_list_ticket_messages_response_value_200_application_json.json",
@@ -3802,7 +3882,12 @@
     {
       "path": "testdata/sdk_pause_customer_subscription_request_application_json.json",
       "mode": "100644",
-      "sha256": "46f29f2abb21dfd31e03e31bcadf0029613510bdedd80e63f9174d422daceb4c"
+      "sha256": "0e397212c8c475acdb5d2be8c6bde6793462236e940fa8947ed1727c4291e711"
+    },
+    {
+      "path": "testdata/sdk_pause_customer_subscription_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "5d89297e03a9cafd7c08d4ccae4528c53eebe91ee88783cfaa787378c9ecd457"
     },
     {
       "path": "testdata/sdk_pause_subscription_request_application_json.json",
@@ -3810,19 +3895,39 @@
       "sha256": "31ac1ffa35da9badc19f923a3b15980e82a95b1aa5d384b85e34a36ea451bfaf"
     },
     {
-      "path": "testdata/sdk_pause_subscription_response_value_200_application_json.json",
-      "mode": "100644",
-      "sha256": "23d829c25ab1f39ae63cba27994e2e589017b3511f3a11be489d3ebbea58cf1a"
-    },
-    {
       "path": "testdata/sdk_poll_community_connection_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "de1c11b3741d81c04eabd1031932dfaaa6c09262d214d651cad8ecacae4d2939"
     },
     {
+      "path": "testdata/sdk_preview_customer_subscription_plan_change_request_application_json.json",
+      "mode": "100644",
+      "sha256": "62f5be9ee2aa8c0298d80aae0a386b2452f8205366429d9d1e338d5bcfd9dd18"
+    },
+    {
+      "path": "testdata/sdk_preview_customer_subscription_plan_change_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "3b9af8258f2aa169ed3f288e105bbd19323f7f87dbdadb04a541a5a573efde96"
+    },
+    {
+      "path": "testdata/sdk_preview_customer_subscription_renewal_date_change_request_application_json.json",
+      "mode": "100644",
+      "sha256": "2179e7165d88cbff055a304400d39f8e5fc094aabf47bf64d7258c4b1e26d34f"
+    },
+    {
+      "path": "testdata/sdk_preview_customer_subscription_renewal_date_change_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "cc90e18c6bc46503e93c541ae184ea5c8c4ab7d0d8d26a1aca4bbbc2193199ec"
+    },
+    {
       "path": "testdata/sdk_preview_subscription_plan_change_request_application_json.json",
       "mode": "100644",
       "sha256": "c18c5a580521211e2e8baa3d27da8e046c3aab8b9a48119e5dc153072be406e1"
+    },
+    {
+      "path": "testdata/sdk_preview_subscription_plan_change_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "a5d08f7802a9c0476eca7b7402dd5858aa10691c1cd5ef663995577b502b3c5b"
     },
     {
       "path": "testdata/sdk_preview_subscription_renewal_date_change_request_application_json.json",
@@ -3967,7 +4072,7 @@
     {
       "path": "testdata/sdk_replace_product_variant_pricing_request_application_json.json",
       "mode": "100644",
-      "sha256": "846bd5d5fd5026590fe5d5ad4820428db437ef3b2e9cf56132fbea24234ce3f6"
+      "sha256": "3d39a3460cc54418698d88b4a243bee4537b06a063b30208f9ea8d016a9adbb0"
     },
     {
       "path": "testdata/sdk_replace_promotion_phases_request_application_json.json",
@@ -4132,7 +4237,7 @@
     {
       "path": "testdata/sdk_search_product_variants_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "5cf389b739e8a117054c165b8b440f6205222ea1716bb9001ac81cf7af1150db"
+      "sha256": "8ef02e9623f738d7b67e37aba14296fb8d4d443a56d385199892795af32e1e12"
     },
     {
       "path": "testdata/sdk_search_products_response_value_200_application_json.json",
@@ -4143,16 +4248,6 @@
       "path": "testdata/sdk_search_products_within_group_response_value_200_application_json.json",
       "mode": "100644",
       "sha256": "a98a003c886ba668de5dc496dcd29f73fa4b2b24e931d6f70f307739a2635878"
-    },
-    {
-      "path": "testdata/sdk_search_subscriptions_request_application_json.json",
-      "mode": "100644",
-      "sha256": "ea6429ef5f39ff38b84564254cb5bc1bf4adc1fcd7a702e8614e834da5a591ba"
-    },
-    {
-      "path": "testdata/sdk_search_subscriptions_response_value_200_application_json.json",
-      "mode": "100644",
-      "sha256": "03abbcd2fefa35182d2acf8d25a5ec20f8f0f98ebe28e7ffec671080b04a7247"
     },
     {
       "path": "testdata/sdk_search_tickets_response_value_200_application_json.json",
@@ -4270,6 +4365,11 @@
       "sha256": "9682c6f4fdbf93acf19cacd401f1ffb7413212131f89d2a8d292cbd3e4ed6e49"
     },
     {
+      "path": "testdata/sdk_update_customer_subscription_payment_method_request_application_json.json",
+      "mode": "100644",
+      "sha256": "29a15d2f2ee74b9f1f3c641050010501214ffbbcd2bee8454508a587b1d54ac6"
+    },
+    {
       "path": "testdata/sdk_update_customer_wallet_status_request_application_json.json",
       "mode": "100644",
       "sha256": "01b8f429695e131ec3ef771f5c514d4e6f0013db861ad5b10fff85c27a45f334"
@@ -4337,7 +4437,12 @@
     {
       "path": "testdata/sdk_update_product_variant_pricing_request_application_json.json",
       "mode": "100644",
-      "sha256": "846bd5d5fd5026590fe5d5ad4820428db437ef3b2e9cf56132fbea24234ce3f6"
+      "sha256": "3d39a3460cc54418698d88b4a243bee4537b06a063b30208f9ea8d016a9adbb0"
+    },
+    {
+      "path": "testdata/sdk_update_product_variant_request_application_json.json",
+      "mode": "100644",
+      "sha256": "9043c7108ac3b78e5b7ebb3b97361c16d0fc51586c238241c33900e76d2d9c12"
     },
     {
       "path": "testdata/sdk_update_referral_status_request_application_json.json",
@@ -4352,7 +4457,12 @@
     {
       "path": "testdata/sdk_update_subscription_payment_method_request_application_json.json",
       "mode": "100644",
-      "sha256": "5545973ac1b1b6a5d3a26920f690383422446dda4edd573016c8f60a7a505fb3"
+      "sha256": "b5e2fd145a8d7f71040a81631c067aaec4503b801934a4ff4c1dc6cecaa3b1e4"
+    },
+    {
+      "path": "testdata/sdk_update_subscription_payment_method_response_value_200_application_json.json",
+      "mode": "100644",
+      "sha256": "4550ca4013bed2f0b731335dc7a35bc0505e497ec33db5b8184634f2c8f2b873"
     },
     {
       "path": "testdata/sdk_update_ticket_request_application_json.json",
@@ -4382,7 +4492,7 @@
     {
       "path": "testdata/sdk_v_2_batch_create_coupons_request_application_json.json",
       "mode": "100644",
-      "sha256": "b1f8e3bcad2c7a4e370dd72eb97213af638092bab7ce8c32e6cc14b95b16c790"
+      "sha256": "af510dbb25d33c5e838198224f8e098178ee1a0a2ea3d5d600428c36d742e377"
     },
     {
       "path": "testdata/sdk_v_2_batch_create_sections_request_application_json.json",
@@ -4502,7 +4612,7 @@
     {
       "path": "testdata/search_product_variants_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "e35dc0df4be19c8d43abee7842ae8eb6180abb1d49a8052f49db1e1d6511a7b6"
+      "sha256": "219f8f88f106b346042dff838bad8145f9f8bd7d2ae4f77c42ed4336c6f1ed6d"
     },
     {
       "path": "testdata/search_product_variants_response_value_200_application_json_property_data_item_property_deliverable.json",
@@ -4550,9 +4660,19 @@
       "sha256": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356"
     },
     {
+      "path": "testdata/subscription_plan_change_preview_payload.json",
+      "mode": "100644",
+      "sha256": "0f891b0963c195c30f36416de9bf833787cb67e414cced8be2cfce6558a6c75c"
+    },
+    {
       "path": "testdata/update_booking_configuration_request_application_json_property_availability_item.json",
       "mode": "100644",
       "sha256": "f8dff8e98bf9fe02a86161b6d2928f1cd3b11e7b22faa2ed1c3e4565d49d97b3"
+    },
+    {
+      "path": "testdata/update_customer_portal_profile_response_value_200_application_json_property_data.json",
+      "mode": "100644",
+      "sha256": "ad421979a71572d6b777b01c9e36fd3c3a8b3d282d064c36d6cb2224780063fb"
     },
     {
       "path": "testdata/update_invoice_status_response_value_200_application_json_property_customer_information.json",
@@ -4627,7 +4747,7 @@
     {
       "path": "testdata/update_product_variant_pricing_request_application_json_property_pricing.json",
       "mode": "100644",
-      "sha256": "c9949628fc2ec322c08b6bef67ef2cde8770e9c8c8739a8fc68bb556ad3d2d36"
+      "sha256": "f3702eb930243c4c87a1fe0d14ff896aab6d6289f984dd6a47917d1ba8107048"
     },
     {
       "path": "testdata/update_product_variant_pricing_request_application_json_property_pricing_property_frequency.json",
@@ -4638,6 +4758,11 @@
       "path": "testdata/update_product_variant_pricing_request_application_json_property_pricing_property_price.json",
       "mode": "100644",
       "sha256": "3e5911c25adc596b28c3f2cbcea41a547871e5fa33a90618c605c0ce4d3aa9c2"
+    },
+    {
+      "path": "testdata/update_product_variant_pricing_request_application_json_property_pricing_property_trial.json",
+      "mode": "100644",
+      "sha256": "36be50d6e7953d0e4c56450692b7e64febade32bf0554ef7bfefbbeaa11665f8"
     },
     {
       "path": "testdata/update_ticket_response_value_200_application_json_property_data.json",
@@ -4827,17 +4952,17 @@
     {
       "path": "webhook_channels.go",
       "mode": "100644",
-      "sha256": "282e76daef3dc41d5c0bee1f89728b45e3d2ecbdc9ea15200a3e2b3047bd51ca"
+      "sha256": "de387469b2abbdcabd72fdfba3d39e3dd6123ecfacd17e5019b13d4657d37e57"
     },
     {
       "path": "webhook_channels_test.go",
       "mode": "100644",
-      "sha256": "d13997fb02441ea2df8daf492e6b7f2d26c5c74d8b123b3fe7ac7755a1cac8f4"
+      "sha256": "859a3f2cd6d0adc308d93ce1a07f69b9733682756ce0e53285027522cac5b56d"
     },
     {
       "path": "webhook_platform.go",
       "mode": "100644",
-      "sha256": "3ac64368e7d374afdf57909b573380c5e22740f88f247cd788cd0a3a479973f9"
+      "sha256": "c5cc1d2e67da69d9b17f71934cfe825887e4aacfce2fc7fb14e1ef9298a5e2d3"
     },
     {
       "path": "webhook_platform_test.go",

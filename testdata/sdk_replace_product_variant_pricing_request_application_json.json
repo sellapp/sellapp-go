@@ -13,6 +13,17 @@
     "frequency": {
       "value": 1,
       "interval": "DAY"
+    },
+    "trial": {
+      "kind": "free",
+      "length": {
+        "value": 1,
+        "interval": "DAY"
+      },
+      "price": {
+        "price": 1,
+        "currency": "AUD"
+      }
     }
   },
   "payment_methods": [

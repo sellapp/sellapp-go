@@ -214,14 +214,14 @@ List customer subscriptions
 [API reference](https://sell.app/docs/api/customer-portal) · Effect: **read**
 
 ```go
-func (s *CustomerPortalService) ListSubscriptions(ctx context.Context, opts ...RequestOption) (*SdkListCustomerPortalSubscriptionsResponseValue200ApplicationJSON, error)
+func (s *CustomerPortalService) ListSubscriptions(ctx context.Context, opts ...RequestOption) *Iterator[CustomerPortalSubscription]
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
 | opts | `RequestOption` | Yes |
 
-Returns: `*SdkListCustomerPortalSubscriptionsResponseValue200ApplicationJSON`.
+Returns: `*Iterator[CustomerPortalSubscription]`.
 
 ```go
 package main
@@ -235,9 +235,9 @@ import (
 
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
-    result, err := client.CustomerPortal().ListSubscriptions(context.Background())
-    if err != nil { panic(err) }
-    fmt.Println(result)
+    page := client.CustomerPortal().ListSubscriptions(context.Background())
+    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
+    if err := page.Err(); err != nil { panic(err) }
 }
 ```
 
@@ -441,8 +441,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalCancelSubscriptionAtPeriodEndParams{}
-    if err := json.Unmarshal([]byte("{\"reason\":\"Customer requested this change\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().CancelSubscriptionAtPeriodEnd(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"reason\":\"Taking a break over the summer.\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().CancelSubscriptionAtPeriodEnd(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -496,8 +496,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalCancelSubscriptionImmediatelyParams{}
-    if err := json.Unmarshal([]byte("{\"reason\":\"Customer requested this change\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().CancelSubscriptionImmediately(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"reason\":\"No longer needed.\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().CancelSubscriptionImmediately(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -551,8 +551,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalPauseSubscriptionParams{}
-    if err := json.Unmarshal([]byte("{\"reason\":\"Customer requested this change\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().PauseSubscription(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"resume_at\":\"2026-11-01T00:00:00Z\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().PauseSubscription(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -581,13 +581,12 @@ Resume a subscription
 [API reference](https://sell.app/docs/api/customer-portal) · Effect: **consequential**
 
 ```go
-func (s *CustomerPortalService) ResumeSubscription(ctx context.Context, productSubscription int, params *CustomerPortalResumeSubscriptionParams, opts ...RequestOption) (*SdkResumeCustomerSubscriptionResponseValue200ApplicationJSON, error)
+func (s *CustomerPortalService) ResumeSubscription(ctx context.Context, productSubscription int, opts ...RequestOption) (*SdkResumeCustomerSubscriptionResponseValue200ApplicationJSON, error)
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
 | productSubscription | `int` | Yes |
-| params | `*CustomerPortalResumeSubscriptionParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `*SdkResumeCustomerSubscriptionResponseValue200ApplicationJSON`.
@@ -599,15 +598,12 @@ import (
     "context"
     "fmt"
     "os"
-    "encoding/json"
     "github.com/sellapp/sellapp-go"
 )
 
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
-    params := &sellapp.CustomerPortalResumeSubscriptionParams{}
-    if err := json.Unmarshal([]byte("{\"reason\":\"Customer requested this change\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().ResumeSubscription(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    result, err := client.CustomerPortal().ResumeSubscription(context.Background(), 42)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -661,8 +657,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalUpdateSubscriptionPaymentMethodParams{}
-    if err := json.Unmarshal([]byte("{\"reason\":\"Customer requested this change\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().UpdateSubscriptionPaymentMethod(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"return_url\":\"https://acme.sell.app/customer-portal/subscriptions/991\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().UpdateSubscriptionPaymentMethod(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -716,8 +712,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalPreviewSubscriptionPlanChangeParams{}
-    if err := json.Unmarshal([]byte("{\"product_variant_id\":84}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().PreviewSubscriptionPlanChange(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"target_variant_id\":97}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().PreviewSubscriptionPlanChange(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -771,8 +767,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalConfirmSubscriptionPlanChangeParams{}
-    if err := json.Unmarshal([]byte("{\"preview_id\":\"preview_01K4\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().ConfirmSubscriptionPlanChange(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"target_variant_id\":97,\"preview_token\":\"subprev_portal_991\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().ConfirmSubscriptionPlanChange(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -826,8 +822,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalPreviewSubscriptionRenewalDateChangeParams{}
-    if err := json.Unmarshal([]byte("{\"renewal_date\":\"2026-10-15\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().PreviewSubscriptionRenewalDateChange(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"renewal_date\":\"2026-10-15T00:00:00Z\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().PreviewSubscriptionRenewalDateChange(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }
@@ -881,8 +877,8 @@ import (
 func main() {
     client := sellapp.NewClient("", "", sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")), sellapp.WithCustomerSession(os.Getenv("SELLAPP_CUSTOMER_SESSION")))
     params := &sellapp.CustomerPortalConfirmSubscriptionRenewalDateChangeParams{}
-    if err := json.Unmarshal([]byte("{\"preview_id\":\"preview_01K4\"}"), params); err != nil { panic(err) }
-    result, err := client.CustomerPortal().ConfirmSubscriptionRenewalDateChange(context.Background(), 42, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err := json.Unmarshal([]byte("{\"renewal_date\":\"2026-10-15T00:00:00Z\",\"preview_token\":\"subprev_portal_renewal_991\"}"), params); err != nil { panic(err) }
+    result, err := client.CustomerPortal().ConfirmSubscriptionRenewalDateChange(context.Background(), 42, params)
     if err != nil { panic(err) }
     fmt.Println(result)
 }

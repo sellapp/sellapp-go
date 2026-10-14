@@ -52,7 +52,11 @@
     },
     "status": {
       "history": [
-        "test_history"
+        {
+          "setAt": "2023-01-01T00:00:00.000Z",
+          "status": "test_status",
+          "updatedAt": "2023-01-01T00:00:00.000Z"
+        }
       ],
       "status": {
         "setAt": "2023-01-01T00:00:00.000Z",

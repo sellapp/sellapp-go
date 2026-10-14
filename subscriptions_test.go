@@ -42,6 +42,94 @@ func TestSubscriptions_Cancel(t *testing.T) {
 	require.Equal(t, "test_message", result.Message)
 }
 
+func TestSubscriptions_List(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/subscriptions", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("{\"data\":[{}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	iter := client.Subscriptions().List(context.Background(), &sellapp.SubscriptionsListParams{Limit: ptrInt(10)})
+	require.NotNil(t, iter)
+	require.True(t, iter.Next())
+	require.NoError(t, iter.Err())
+	item := iter.Current()
+	require.NotNil(t, item)
+}
+
+func TestSubscriptions_List_Empty(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(`{"data":[],"list_metadata":{"before":null,"after":null}}`))
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	iter := client.Subscriptions().List(context.Background(), &sellapp.SubscriptionsListParams{Limit: ptrInt(10)})
+	require.False(t, iter.Next())
+	require.NoError(t, iter.Err())
+}
+
+func TestSubscriptions_Search(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/subscriptions/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("{\"data\":[{}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	iter := client.Subscriptions().Search(context.Background(), &sellapp.SubscriptionsSearchParams{Limit: ptrInt(10)})
+	require.NotNil(t, iter)
+	require.True(t, iter.Next())
+	require.NoError(t, iter.Err())
+	item := iter.Current()
+	require.NotNil(t, item)
+}
+
+func TestSubscriptions_Search_Empty(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(`{"data":[],"list_metadata":{"before":null,"after":null}}`))
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	iter := client.Subscriptions().Search(context.Background(), &sellapp.SubscriptionsSearchParams{Limit: ptrInt(10)})
+	require.False(t, iter.Next())
+	require.NoError(t, iter.Err())
+}
+
+func TestSubscriptions_Get(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/subscriptions/1", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Subscriptions().Get(context.Background(), 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestSubscriptions_GetCapabilities(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "GET", r.Method)
@@ -71,7 +159,7 @@ func TestSubscriptions_CancelAtPeriodEnd(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_pause_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_keep_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -95,7 +183,7 @@ func TestSubscriptions_CancelImmediately(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_pause_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_keep_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -110,6 +198,30 @@ func TestSubscriptions_CancelImmediately(t *testing.T) {
 	require.Equal(t, "test_message", result.Message)
 }
 
+func TestSubscriptions_Keep(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/subscriptions/1/actions/keep", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_keep_subscription_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Subscriptions().Keep(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsKeepParams](t, "{\"idempotency_key\":\"idempotency_key_01234\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	require.Equal(t, "test_message", result.Message)
+}
+
 func TestSubscriptions_Pause(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
@@ -119,7 +231,7 @@ func TestSubscriptions_Pause(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_pause_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_keep_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -143,7 +255,7 @@ func TestSubscriptions_Resume(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_pause_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_keep_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -162,39 +274,72 @@ func TestSubscriptions_UpdatePaymentMethod(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/subscriptions/1/actions/update-payment-method", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_update_subscription_payment_method_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
 	}))
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	err := client.Subscriptions().UpdatePaymentMethod(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsUpdatePaymentMethodParams](t, "{\"idempotency_key\":\"idempotency_key_01234\"}"))
+	result, err := client.Subscriptions().UpdatePaymentMethod(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsUpdatePaymentMethodParams](t, "{\"idempotency_key\":\"idempotency_key_01234\",\"return_url\":\"https://example.com\"}"))
 	require.NoError(t, err)
+	require.NotNil(t, result)
+	require.Equal(t, "test_message", result.Message)
 }
 
 func TestSubscriptions_PreviewPlanChange(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/subscriptions/1/actions/change-plan/preview", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_preview_subscription_plan_change_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
 	}))
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	err := client.Subscriptions().PreviewPlanChange(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsPreviewPlanChangeParams](t, "{\"idempotency_key\":\"idempotency_key_01234\",\"target_variant_id\":1,\"effective_timing\":\"immediate\",\"proration_behavior\":\"invoice_now\",\"metadata\":{}}"))
+	result, err := client.Subscriptions().PreviewPlanChange(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsPreviewPlanChangeParams](t, "{\"idempotency_key\":\"idempotency_key_01234\",\"target_variant_id\":1,\"effective_timing\":\"immediate\",\"proration_behavior\":\"invoice_now\",\"metadata\":{}}"))
 	require.NoError(t, err)
+	require.NotNil(t, result)
+	require.Equal(t, "test_message", result.Message)
 }
 
 func TestSubscriptions_ConfirmPlanChange(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/subscriptions/1/actions/change-plan/confirm", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_confirm_subscription_plan_change_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
 	}))
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	err := client.Subscriptions().ConfirmPlanChange(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsConfirmPlanChangeParams](t, "{\"idempotency_key\":\"idempotency_key_01234\",\"target_variant_id\":1,\"preview_token\":\"test_preview_token\",\"effective_timing\":\"immediate\",\"proration_behavior\":\"invoice_now\",\"metadata\":{}}"))
+	result, err := client.Subscriptions().ConfirmPlanChange(context.Background(), 1, decodeTestParams[sellapp.SubscriptionsConfirmPlanChangeParams](t, "{\"idempotency_key\":\"idempotency_key_01234\",\"target_variant_id\":1,\"preview_token\":\"test_preview_token\",\"effective_timing\":\"immediate\",\"proration_behavior\":\"invoice_now\",\"metadata\":{}}"))
 	require.NoError(t, err)
+	require.NotNil(t, result)
+	require.Equal(t, "test_message", result.Message)
 }
 
 func TestSubscriptions_PreviewRenewalDate(t *testing.T) {
@@ -243,92 +388,6 @@ func TestSubscriptions_ConfirmRenewalDate(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, result)
 	require.Equal(t, "test_message", result.Message)
-}
-
-func TestSubscriptions_List(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		require.Equal(t, "GET", r.Method)
-		require.Equal(t, "/v2/subscriptions", r.URL.Path)
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"test_status\",\"subscription_id\":\"subscription_id_01234\",\"customer_id\":\"customer_id_01234\",\"provider_subscription_id\":\"provider_subscription_id_01234\",\"provider_customer_id\":\"provider_customer_id_01234\",\"customer\":{\"id\":1,\"email\":\"test@example.com\",\"external_id\":\"external_id_01234\",\"name\":\"Test\",\"locale\":\"en\",\"metadata\":{}},\"product_variant_id\":1}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
-	}))
-	defer server.Close()
-
-	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Subscriptions().List(context.Background())
-	require.NotNil(t, iter)
-	require.True(t, iter.Next())
-	require.NoError(t, iter.Err())
-	item := iter.Current()
-	require.NotNil(t, item)
-}
-
-func TestSubscriptions_List_Empty(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{"data":[],"list_metadata":{"before":null,"after":null}}`))
-	}))
-	defer server.Close()
-
-	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Subscriptions().List(context.Background())
-	require.False(t, iter.Next())
-	require.NoError(t, iter.Err())
-}
-
-func TestSubscriptions_Search(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		require.Equal(t, "POST", r.Method)
-		require.Equal(t, "/v2/subscriptions/search", r.URL.Path)
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"test_status\",\"subscription_id\":\"subscription_id_01234\",\"customer_id\":\"customer_id_01234\",\"provider_subscription_id\":\"provider_subscription_id_01234\",\"provider_customer_id\":\"provider_customer_id_01234\",\"customer\":{\"id\":1,\"email\":\"test@example.com\",\"external_id\":\"external_id_01234\",\"name\":\"Test\",\"locale\":\"en\",\"metadata\":{}},\"product_variant_id\":1}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
-	}))
-	defer server.Close()
-
-	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Subscriptions().Search(context.Background(), &sellapp.SubscriptionsSearchParams{})
-	require.NotNil(t, iter)
-	require.True(t, iter.Next())
-	require.NoError(t, iter.Err())
-	item := iter.Current()
-	require.NotNil(t, item)
-}
-
-func TestSubscriptions_Search_Empty(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(`{"data":[],"list_metadata":{"before":null,"after":null}}`))
-	}))
-	defer server.Close()
-
-	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Subscriptions().Search(context.Background(), &sellapp.SubscriptionsSearchParams{})
-	require.False(t, iter.Next())
-	require.NoError(t, iter.Err())
-}
-
-func TestSubscriptions_Get(t *testing.T) {
-	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		require.Equal(t, "GET", r.Method)
-		require.Equal(t, "/v2/subscriptions/1", r.URL.Path)
-		w.Header().Set("Content-Type", "application/json")
-		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
-		if err != nil {
-			t.Fatalf("failed to read fixture: %v", err)
-		}
-		w.Write(fixture)
-	}))
-	defer server.Close()
-
-	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Subscriptions().Get(context.Background(), 1)
-	require.NoError(t, err)
-	require.NotNil(t, result)
 }
 
 func TestSubscriptions_Error401(t *testing.T) {

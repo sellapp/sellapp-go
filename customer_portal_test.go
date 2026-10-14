@@ -120,18 +120,31 @@ func TestCustomerPortal_ListSubscriptions(t *testing.T) {
 		require.Equal(t, "/v2/customer-portal/subscriptions", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_list_customer_portal_subscriptions_response_value_200_application_json.json")
-		if err != nil {
-			t.Fatalf("failed to read fixture: %v", err)
-		}
-		w.Write(fixture)
+		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"ACTIVE\",\"cancel_at_period_end\":true,\"current_period_start\":\"2023-01-01T00:00:00.000Z\",\"current_period_end\":\"2023-01-01T00:00:00.000Z\",\"trial_ends_at\":\"2023-01-01T00:00:00.000Z\",\"paused_at\":\"2023-01-01T00:00:00.000Z\",\"pause_resumes_at\":\"2023-01-01T00:00:00.000Z\",\"plan\":{\"product_id\":1,\"product_variant_id\":1,\"product_title\":\"test_product_title\",\"variant_title\":\"test_variant_title\"},\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().ListSubscriptions(context.Background())
-	require.NoError(t, err)
-	require.NotNil(t, result)
+	iter := client.CustomerPortal().ListSubscriptions(context.Background())
+	require.NotNil(t, iter)
+	require.True(t, iter.Next())
+	require.NoError(t, iter.Err())
+	item := iter.Current()
+	require.NotNil(t, item)
+}
+
+func TestCustomerPortal_ListSubscriptions_Empty(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte(`{"data":[],"list_metadata":{"before":null,"after":null}}`))
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
+	iter := client.CustomerPortal().ListSubscriptions(context.Background())
+	require.False(t, iter.Next())
+	require.NoError(t, iter.Err())
 }
 
 func TestCustomerPortal_GetSubscription(t *testing.T) {
@@ -140,7 +153,7 @@ func TestCustomerPortal_GetSubscription(t *testing.T) {
 		require.Equal(t, "/v2/customer-portal/subscriptions/1", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_customer_portal_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -203,7 +216,7 @@ func TestCustomerPortal_CancelSubscriptionAtPeriodEnd(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -212,7 +225,7 @@ func TestCustomerPortal_CancelSubscriptionAtPeriodEnd(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().CancelSubscriptionAtPeriodEnd(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalCancelSubscriptionAtPeriodEndParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().CancelSubscriptionAtPeriodEnd(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalCancelSubscriptionAtPeriodEndParams](t, "{\"reason\":\"test_reason\"}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -226,7 +239,7 @@ func TestCustomerPortal_CancelSubscriptionImmediately(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -235,7 +248,7 @@ func TestCustomerPortal_CancelSubscriptionImmediately(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().CancelSubscriptionImmediately(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalCancelSubscriptionImmediatelyParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().CancelSubscriptionImmediately(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalCancelSubscriptionImmediatelyParams](t, "{\"reason\":\"test_reason\"}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -249,7 +262,7 @@ func TestCustomerPortal_PauseSubscription(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -258,7 +271,7 @@ func TestCustomerPortal_PauseSubscription(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().PauseSubscription(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalPauseSubscriptionParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().PauseSubscription(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalPauseSubscriptionParams](t, "{\"resume_at\":\"2023-01-01T00:00:00.000Z\",\"reason\":\"test_reason\"}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -267,12 +280,9 @@ func TestCustomerPortal_ResumeSubscription(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/customer-portal/subscriptions/1/actions/resume", r.URL.Path)
-		body, _ := io.ReadAll(r.Body)
-		var bodyMap map[string]interface{}
-		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -281,7 +291,7 @@ func TestCustomerPortal_ResumeSubscription(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().ResumeSubscription(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalResumeSubscriptionParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().ResumeSubscription(context.Background(), 1)
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -295,7 +305,7 @@ func TestCustomerPortal_UpdateSubscriptionPaymentMethod(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -304,7 +314,7 @@ func TestCustomerPortal_UpdateSubscriptionPaymentMethod(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().UpdateSubscriptionPaymentMethod(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalUpdateSubscriptionPaymentMethodParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().UpdateSubscriptionPaymentMethod(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalUpdateSubscriptionPaymentMethodParams](t, "{\"return_url\":\"https://example.com\"}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -318,7 +328,7 @@ func TestCustomerPortal_PreviewSubscriptionPlanChange(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_preview_customer_subscription_plan_change_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -327,7 +337,7 @@ func TestCustomerPortal_PreviewSubscriptionPlanChange(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().PreviewSubscriptionPlanChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalPreviewSubscriptionPlanChangeParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().PreviewSubscriptionPlanChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalPreviewSubscriptionPlanChangeParams](t, "{\"target_variant_id\":1,\"effective_timing\":\"immediate\",\"proration_behavior\":\"invoice_now\",\"metadata\":{}}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -341,7 +351,7 @@ func TestCustomerPortal_ConfirmSubscriptionPlanChange(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -350,7 +360,7 @@ func TestCustomerPortal_ConfirmSubscriptionPlanChange(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().ConfirmSubscriptionPlanChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalConfirmSubscriptionPlanChangeParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().ConfirmSubscriptionPlanChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalConfirmSubscriptionPlanChangeParams](t, "{\"target_variant_id\":1,\"preview_token\":\"test_preview_token\",\"effective_timing\":\"immediate\",\"proration_behavior\":\"invoice_now\",\"metadata\":{}}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -364,7 +374,7 @@ func TestCustomerPortal_PreviewSubscriptionRenewalDateChange(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_preview_customer_subscription_renewal_date_change_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -373,7 +383,7 @@ func TestCustomerPortal_PreviewSubscriptionRenewalDateChange(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().PreviewSubscriptionRenewalDateChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalPreviewSubscriptionRenewalDateChangeParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().PreviewSubscriptionRenewalDateChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalPreviewSubscriptionRenewalDateChangeParams](t, "{\"renewal_date\":\"2023-01-01T00:00:00.000Z\",\"reason\":\"test_reason\",\"metadata\":{}}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -387,7 +397,7 @@ func TestCustomerPortal_ConfirmSubscriptionRenewalDateChange(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_subscription_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_pause_customer_subscription_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -396,7 +406,7 @@ func TestCustomerPortal_ConfirmSubscriptionRenewalDateChange(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL), sellapp.WithCustomerSession("customer_test"))
-	result, err := client.CustomerPortal().ConfirmSubscriptionRenewalDateChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalConfirmSubscriptionRenewalDateChangeParams](t, "{\"preview_id\":\"preview_id_01234\",\"product_variant_id\":1,\"renewal_date\":\"2023-01-01\",\"return_url\":\"https://example.com\",\"reason\":\"test_reason\"}"))
+	result, err := client.CustomerPortal().ConfirmSubscriptionRenewalDateChange(context.Background(), 1, decodeTestParams[sellapp.CustomerPortalConfirmSubscriptionRenewalDateChangeParams](t, "{\"renewal_date\":\"2023-01-01T00:00:00.000Z\",\"preview_token\":\"test_preview_token\",\"reason\":\"test_reason\",\"metadata\":{}}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

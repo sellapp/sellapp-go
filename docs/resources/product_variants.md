@@ -313,13 +313,14 @@ Delete a product variant
 [API reference](https://sell.app/docs/api/product-variants/delete-a-product-variant) · Effect: **consequential**
 
 ```go
-func (s *ProductVariantService) Delete(ctx context.Context, product int, variant int, opts ...RequestOption) error
+func (s *ProductVariantService) Delete(ctx context.Context, product int, variant int, params *ProductVariantsDeleteParams, opts ...RequestOption) error
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
 | product | `int` | Yes |
 | variant | `int` | Yes |
+| params | `*ProductVariantsDeleteParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `error`.
@@ -331,12 +332,15 @@ import (
     "context"
     "fmt"
     "os"
+    "encoding/json"
     "github.com/sellapp/sellapp-go"
 )
 
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    if err := client.ProductVariants().Delete(context.Background(), 1, 2); err != nil { panic(err) }
+    params := &sellapp.ProductVariantsDeleteParams{}
+    if err := json.Unmarshal([]byte("{}"), params); err != nil { panic(err) }
+    if err := client.ProductVariants().Delete(context.Background(), 1, 2, params); err != nil { panic(err) }
     fmt.Println("Request completed.")
 }
 ```

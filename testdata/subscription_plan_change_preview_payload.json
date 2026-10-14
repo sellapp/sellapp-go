@@ -1,0 +1,7 @@
+{
+  "provider": "provider_01234",
+  "payment_required": true,
+  "renewal_date": "2023-01-01T00:00:00.000Z",
+  "amount_due": 1,
+  "discount_warning": "test_discount_warning"
+}

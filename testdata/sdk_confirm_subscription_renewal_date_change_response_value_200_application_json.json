@@ -6,6 +6,8 @@
     "action": "shift_billing_date",
     "status": "pending",
     "provider": "provider_01234",
+    "proration_order_id": 1,
+    "error": "test_error",
     "customer_message": "test_customer_message",
     "confirmed_at": "2023-01-01T00:00:00.000Z",
     "failed_at": "2023-01-01T00:00:00.000Z",

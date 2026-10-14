@@ -13,7 +13,9 @@
       ],
       "limit": 1,
       "expires_at": "2023-01-01T00:00:00.000Z",
-      "minimum_amount": 1
+      "minimum_amount": 1,
+      "applies_to": "one_time",
+      "subscription_payments": 1
     }
   ]
 }

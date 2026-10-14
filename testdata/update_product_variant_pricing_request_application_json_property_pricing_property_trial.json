@@ -1,0 +1,11 @@
+{
+  "kind": "free",
+  "length": {
+    "value": 1,
+    "interval": "DAY"
+  },
+  "price": {
+    "price": 1,
+    "currency": "AUD"
+  }
+}

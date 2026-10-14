@@ -63,6 +63,181 @@ Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API r
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
+## List
+
+List subscriptions
+
+[API reference](https://sell.app/docs/api/subscriptions/read-subscriptions) · Effect: **read**
+
+```go
+func (s *SubscriptionService) List(ctx context.Context, params *SubscriptionsListParams, opts ...RequestOption) *Iterator[SdkListSubscriptionsResponseValue200ApplicationJSON]
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| params | `*SubscriptionsListParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*Iterator[SdkListSubscriptionsResponseValue200ApplicationJSON]`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.SubscriptionsListParams{}
+    page := client.Subscriptions().List(context.Background(), params)
+    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
+    if err := page.Err(); err != nil { panic(err) }
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## Search
+
+Search subscriptions
+
+[API reference](https://sell.app/docs/api/subscriptions/read-subscriptions) · Effect: **read**
+
+```go
+func (s *SubscriptionService) Search(ctx context.Context, params *SubscriptionsSearchParams, opts ...RequestOption) *Iterator[SdkSearchSubscriptionsResponseValue200ApplicationJSON]
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| params | `*SubscriptionsSearchParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*Iterator[SdkSearchSubscriptionsResponseValue200ApplicationJSON]`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.SubscriptionsSearchParams{}
+    if err := json.Unmarshal([]byte("{\"filters\":[{\"field\":\"status\",\"operator\":\"=\",\"value\":\"ACTIVE\"}],\"search\":{\"value\":\"maya.chen@example.com\"}}"), params); err != nil { panic(err) }
+    page := client.Subscriptions().Search(context.Background(), params)
+    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
+    if err := page.Err(); err != nil { panic(err) }
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## Get
+
+Retrieve a subscription
+
+[API reference](https://sell.app/docs/api/subscriptions/read-subscriptions) · Effect: **read**
+
+```go
+func (s *SubscriptionService) Get(ctx context.Context, productSubscription int, opts ...RequestOption) (*SdkGetSubscriptionResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| productSubscription | `int` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkGetSubscriptionResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    result, err := client.Subscriptions().Get(context.Background(), 123)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
 ## GetCapabilities
 
 View subscription capabilities
@@ -242,6 +417,67 @@ Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API r
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
+## Keep
+
+Keep a subscription
+
+[API reference](https://sell.app/docs/api/subscriptions/keep-a-subscription) · Effect: **consequential**
+
+```go
+func (s *SubscriptionService) Keep(ctx context.Context, productSubscription int, params *SubscriptionsKeepParams, opts ...RequestOption) (*SdkKeepSubscriptionResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| productSubscription | `int` | Yes |
+| params | `*SubscriptionsKeepParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkKeepSubscriptionResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.SubscriptionsKeepParams{}
+    if err := json.Unmarshal([]byte("{}"), params); err != nil { panic(err) }
+    result, err := client.Subscriptions().Keep(context.Background(), 55, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
 ## Pause
 
 Pause a subscription
@@ -371,7 +607,7 @@ Update a subscription payment method
 [API reference](https://sell.app/docs/api/subscriptions/update-payment-method) · Effect: **consequential**
 
 ```go
-func (s *SubscriptionService) UpdatePaymentMethod(ctx context.Context, productSubscription int, params *SubscriptionsUpdatePaymentMethodParams, opts ...RequestOption) error
+func (s *SubscriptionService) UpdatePaymentMethod(ctx context.Context, productSubscription int, params *SubscriptionsUpdatePaymentMethodParams, opts ...RequestOption) (*SdkUpdateSubscriptionPaymentMethodResponseValue200ApplicationJSON, error)
 ```
 
 | Argument | Native type | Required |
@@ -380,7 +616,7 @@ func (s *SubscriptionService) UpdatePaymentMethod(ctx context.Context, productSu
 | params | `*SubscriptionsUpdatePaymentMethodParams` | Yes |
 | opts | `RequestOption` | Yes |
 
-Returns: `error`.
+Returns: `*SdkUpdateSubscriptionPaymentMethodResponseValue200ApplicationJSON`.
 
 ```go
 package main
@@ -396,9 +632,10 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.SubscriptionsUpdatePaymentMethodParams{}
-    if err := json.Unmarshal([]byte("{}"), params); err != nil { panic(err) }
-    if err := client.Subscriptions().UpdatePaymentMethod(context.Background(), 1, params); err != nil { panic(err) }
-    fmt.Println("Request completed.")
+    if err := json.Unmarshal([]byte("{\"return_url\":\"https://store.example.com/billing/updated\"}"), params); err != nil { panic(err) }
+    result, err := client.Subscriptions().UpdatePaymentMethod(context.Background(), 55, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
 }
 ```
 
@@ -420,7 +657,7 @@ Supported credential alternatives (each object is one alternative):
 ]
 ```
 
-Documented HTTP responses: 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
@@ -431,7 +668,7 @@ Preview a subscription plan change
 [API reference](https://sell.app/docs/api/subscriptions/preview-plan-change) · Effect: **consequential**
 
 ```go
-func (s *SubscriptionService) PreviewPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsPreviewPlanChangeParams, opts ...RequestOption) error
+func (s *SubscriptionService) PreviewPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsPreviewPlanChangeParams, opts ...RequestOption) (*SdkPreviewSubscriptionPlanChangeResponseValue200ApplicationJSON, error)
 ```
 
 | Argument | Native type | Required |
@@ -440,7 +677,7 @@ func (s *SubscriptionService) PreviewPlanChange(ctx context.Context, productSubs
 | params | `*SubscriptionsPreviewPlanChangeParams` | Yes |
 | opts | `RequestOption` | Yes |
 
-Returns: `error`.
+Returns: `*SdkPreviewSubscriptionPlanChangeResponseValue200ApplicationJSON`.
 
 ```go
 package main
@@ -457,8 +694,9 @@ func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.SubscriptionsPreviewPlanChangeParams{}
     if err := json.Unmarshal([]byte("{\"target_variant_id\":4321,\"effective_timing\":\"immediate\",\"proration_behavior\":\"provider_default\"}"), params); err != nil { panic(err) }
-    if err := client.Subscriptions().PreviewPlanChange(context.Background(), 1, params); err != nil { panic(err) }
-    fmt.Println("Request completed.")
+    result, err := client.Subscriptions().PreviewPlanChange(context.Background(), 1, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
 }
 ```
 
@@ -480,7 +718,7 @@ Supported credential alternatives (each object is one alternative):
 ]
 ```
 
-Documented HTTP responses: 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
@@ -491,7 +729,7 @@ Confirm a subscription plan change
 [API reference](https://sell.app/docs/api/subscriptions/confirm-plan-change) · Effect: **consequential**
 
 ```go
-func (s *SubscriptionService) ConfirmPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsConfirmPlanChangeParams, opts ...RequestOption) error
+func (s *SubscriptionService) ConfirmPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsConfirmPlanChangeParams, opts ...RequestOption) (*SdkConfirmSubscriptionPlanChangeResponseValue200ApplicationJSON, error)
 ```
 
 | Argument | Native type | Required |
@@ -500,7 +738,7 @@ func (s *SubscriptionService) ConfirmPlanChange(ctx context.Context, productSubs
 | params | `*SubscriptionsConfirmPlanChangeParams` | Yes |
 | opts | `RequestOption` | Yes |
 
-Returns: `error`.
+Returns: `*SdkConfirmSubscriptionPlanChangeResponseValue200ApplicationJSON`.
 
 ```go
 package main
@@ -517,8 +755,9 @@ func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.SubscriptionsConfirmPlanChangeParams{}
     if err := json.Unmarshal([]byte("{\"target_variant_id\":4321,\"preview_token\":\"subprev_9c4b2f\"}"), params); err != nil { panic(err) }
-    if err := client.Subscriptions().ConfirmPlanChange(context.Background(), 1, params); err != nil { panic(err) }
-    fmt.Println("Request completed.")
+    result, err := client.Subscriptions().ConfirmPlanChange(context.Background(), 55, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
 }
 ```
 
@@ -540,7 +779,7 @@ Supported credential alternatives (each object is one alternative):
 ]
 ```
 
-Documented HTTP responses: 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
@@ -663,179 +902,6 @@ Supported credential alternatives (each object is one alternative):
 ```
 
 Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
-
-[Response access, transport controls, pagination, and typed errors](../usage.md)
-
-## List
-
-List subscriptions
-
-[API reference](https://sell.app/docs/api/subscriptions/read-subscriptions) · Effect: **read**
-
-```go
-func (s *SubscriptionService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]
-```
-
-| Argument | Native type | Required |
-| --- | --- | --- |
-| opts | `RequestOption` | Yes |
-
-Returns: `*Iterator[ListSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]`.
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    "github.com/sellapp/sellapp-go"
-)
-
-func main() {
-    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    page := client.Subscriptions().List(context.Background())
-    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
-    if err := page.Err(); err != nil { panic(err) }
-}
-```
-
-### Authentication and errors
-
-Supported credential alternatives (each object is one alternative):
-
-```json
-[
-  {
-    "bearerAuth": []
-  },
-  {
-    "oauthAccessToken": [
-      "admin"
-    ],
-    "storeAuth": []
-  }
-]
-```
-
-Documented HTTP responses: 200, 400, 401, 403, 404, 409, 410, 422, 429, 500. See the API reference for field-level validation and consequences.
-
-[Response access, transport controls, pagination, and typed errors](../usage.md)
-
-## Search
-
-Search subscriptions
-
-[API reference](https://sell.app/docs/api/subscriptions/read-subscriptions) · Effect: **read**
-
-```go
-func (s *SubscriptionService) Search(ctx context.Context, params *SubscriptionsSearchParams, opts ...RequestOption) *Iterator[SearchSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]
-```
-
-| Argument | Native type | Required |
-| --- | --- | --- |
-| params | `*SubscriptionsSearchParams` | Yes |
-| opts | `RequestOption` | Yes |
-
-Returns: `*Iterator[SearchSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]`.
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    "encoding/json"
-    "github.com/sellapp/sellapp-go"
-)
-
-func main() {
-    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    params := &sellapp.SubscriptionsSearchParams{}
-    if err := json.Unmarshal([]byte("{\"search\":\"maya.chen@example.com\",\"status\":\"active\"}"), params); err != nil { panic(err) }
-    page := client.Subscriptions().Search(context.Background(), params)
-    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
-    if err := page.Err(); err != nil { panic(err) }
-}
-```
-
-### Authentication and errors
-
-Supported credential alternatives (each object is one alternative):
-
-```json
-[
-  {
-    "bearerAuth": []
-  },
-  {
-    "oauthAccessToken": [
-      "admin"
-    ],
-    "storeAuth": []
-  }
-]
-```
-
-Documented HTTP responses: 200, 400, 401, 403, 404, 409, 410, 422, 429, 500. See the API reference for field-level validation and consequences.
-
-[Response access, transport controls, pagination, and typed errors](../usage.md)
-
-## Get
-
-Retrieve a subscription
-
-[API reference](https://sell.app/docs/api/subscriptions/read-subscriptions) · Effect: **read**
-
-```go
-func (s *SubscriptionService) Get(ctx context.Context, productSubscription int, opts ...RequestOption) (*SdkGetSubscriptionResponseValue200ApplicationJSON, error)
-```
-
-| Argument | Native type | Required |
-| --- | --- | --- |
-| productSubscription | `int` | Yes |
-| opts | `RequestOption` | Yes |
-
-Returns: `*SdkGetSubscriptionResponseValue200ApplicationJSON`.
-
-```go
-package main
-
-import (
-    "context"
-    "fmt"
-    "os"
-    "github.com/sellapp/sellapp-go"
-)
-
-func main() {
-    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    result, err := client.Subscriptions().Get(context.Background(), 991)
-    if err != nil { panic(err) }
-    fmt.Println(result)
-}
-```
-
-### Authentication and errors
-
-Supported credential alternatives (each object is one alternative):
-
-```json
-[
-  {
-    "bearerAuth": []
-  },
-  {
-    "oauthAccessToken": [
-      "admin"
-    ],
-    "storeAuth": []
-  }
-]
-```
-
-Documented HTTP responses: 200, 400, 401, 403, 404, 409, 410, 422, 429, 500. See the API reference for field-level validation and consequences.
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 

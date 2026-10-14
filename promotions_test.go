@@ -70,7 +70,7 @@ func TestPromotions_Create(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Promotions().Create(context.Background(), decodeTestParams[sellapp.PromotionsCreateParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
+	result, err := client.Promotions().Create(context.Background(), decodeTestParams[sellapp.PromotionsCreateParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -147,7 +147,7 @@ func TestPromotions_Replace(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Promotions().Replace(context.Background(), 1, decodeTestParams[sellapp.PromotionsReplaceParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
+	result, err := client.Promotions().Replace(context.Background(), 1, decodeTestParams[sellapp.PromotionsReplaceParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -170,7 +170,7 @@ func TestPromotions_Update(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Promotions().Update(context.Background(), 1, decodeTestParams[sellapp.PromotionsUpdateParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
+	result, err := client.Promotions().Update(context.Background(), 1, decodeTestParams[sellapp.PromotionsUpdateParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -206,7 +206,7 @@ func TestPromotions_Restore(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Promotions().Restore(context.Background(), 1, decodeTestParams[sellapp.PromotionsRestoreParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
+	result, err := client.Promotions().Restore(context.Background(), 1, decodeTestParams[sellapp.PromotionsRestoreParams](t, "{\"name\":\"Test\",\"status\":\"active\",\"starts_at\":\"2023-01-01T00:00:00.000Z\",\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"priority\":1,\"is_stackable\":true,\"max_redemptions\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"phases\":[{\"discount_type\":\"percentage\",\"discount_value\":1,\"ends_at\":\"2023-01-01T00:00:00.000Z\",\"max_redemptions\":1,\"minimum_amount\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

@@ -445,7 +445,7 @@
     "operationId": "deleteProductVariant",
     "mountTarget": "ProductVariants",
     "methodName": "delete",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    if err := client.ProductVariants().Delete(context.Background(), 1, 2); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductVariantsDeleteParams{}\n    if err := json.Unmarshal([]byte(\"{}\"), params); err != nil { panic(err) }\n    if err := client.ProductVariants().Delete(context.Background(), 1, 2, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
   },
   {
     "language": "go",
@@ -530,6 +530,30 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "listSubscriptions",
+    "mountTarget": "Subscriptions",
+    "methodName": "list_subscriptions",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsListParams{}\n    page := client.Subscriptions().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "searchSubscriptions",
+    "mountTarget": "Subscriptions",
+    "methodName": "search_subscriptions",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsSearchParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"filters\\\":[{\\\"field\\\":\\\"status\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":\\\"ACTIVE\\\"}],\\\"search\\\":{\\\"value\\\":\\\"maya.chen@example.com\\\"}}\"), params); err != nil { panic(err) }\n    page := client.Subscriptions().Search(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSubscription",
+    "mountTarget": "Subscriptions",
+    "methodName": "get_subscription",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.Subscriptions().Get(context.Background(), 123)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "getSubscriptionCapabilities",
     "mountTarget": "Subscriptions",
     "methodName": "get_capabilities",
@@ -554,6 +578,14 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "keepSubscription",
+    "mountTarget": "Subscriptions",
+    "methodName": "keep",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsKeepParams{}\n    if err := json.Unmarshal([]byte(\"{}\"), params); err != nil { panic(err) }\n    result, err := client.Subscriptions().Keep(context.Background(), 55, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "pauseSubscription",
     "mountTarget": "Subscriptions",
     "methodName": "pause",
@@ -573,7 +605,7 @@
     "operationId": "updateSubscriptionPaymentMethod",
     "mountTarget": "Subscriptions",
     "methodName": "update_payment_method",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsUpdatePaymentMethodParams{}\n    if err := json.Unmarshal([]byte(\"{}\"), params); err != nil { panic(err) }\n    if err := client.Subscriptions().UpdatePaymentMethod(context.Background(), 1, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsUpdatePaymentMethodParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"return_url\\\":\\\"https://store.example.com/billing/updated\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Subscriptions().UpdatePaymentMethod(context.Background(), 55, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -581,7 +613,7 @@
     "operationId": "previewSubscriptionPlanChange",
     "mountTarget": "Subscriptions",
     "methodName": "preview_plan_change",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsPreviewPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"target_variant_id\\\":4321,\\\"effective_timing\\\":\\\"immediate\\\",\\\"proration_behavior\\\":\\\"provider_default\\\"}\"), params); err != nil { panic(err) }\n    if err := client.Subscriptions().PreviewPlanChange(context.Background(), 1, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsPreviewPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"target_variant_id\\\":4321,\\\"effective_timing\\\":\\\"immediate\\\",\\\"proration_behavior\\\":\\\"provider_default\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Subscriptions().PreviewPlanChange(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -589,7 +621,7 @@
     "operationId": "confirmSubscriptionPlanChange",
     "mountTarget": "Subscriptions",
     "methodName": "confirm_plan_change",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsConfirmPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"target_variant_id\\\":4321,\\\"preview_token\\\":\\\"subprev_9c4b2f\\\"}\"), params); err != nil { panic(err) }\n    if err := client.Subscriptions().ConfirmPlanChange(context.Background(), 1, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsConfirmPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"target_variant_id\\\":4321,\\\"preview_token\\\":\\\"subprev_9c4b2f\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Subscriptions().ConfirmPlanChange(context.Background(), 55, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -610,26 +642,26 @@
   {
     "language": "go",
     "fileExtension": "go",
-    "operationId": "listSubscriptions",
-    "mountTarget": "Subscriptions",
-    "methodName": "list_subscriptions",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    page := client.Subscriptions().List(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "operationId": "listSubscriptionActions",
+    "mountTarget": "SubscriptionsActions",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsActionsListParams{}\n    page := client.SubscriptionsActions().List(context.Background(), 124, params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
     "fileExtension": "go",
-    "operationId": "searchSubscriptions",
-    "mountTarget": "Subscriptions",
-    "methodName": "search_subscriptions",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsSearchParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"search\\\":\\\"maya.chen@example.com\\\",\\\"status\\\":\\\"active\\\"}\"), params); err != nil { panic(err) }\n    page := client.Subscriptions().Search(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "operationId": "getSubscriptionAction",
+    "mountTarget": "SubscriptionsActions",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.SubscriptionsActions().Get(context.Background(), 124, 4192)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
     "fileExtension": "go",
-    "operationId": "getSubscription",
-    "mountTarget": "Subscriptions",
-    "methodName": "get_subscription",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.Subscriptions().Get(context.Background(), 991)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "operationId": "dismissSubscriptionAction",
+    "mountTarget": "SubscriptionsActions",
+    "methodName": "dismiss",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SubscriptionsActionsDismissParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"note\\\":\\\"Confirmed with the customer that they no longer want the upgrade.\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SubscriptionsActions().Dismiss(context.Background(), 124, 4207, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2573,7 +2605,7 @@
     "operationId": "listCustomerPortalSubscriptions",
     "mountTarget": "CustomerPortal",
     "methodName": "list_customer_portal_subscriptions",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    result, err := client.CustomerPortal().ListSubscriptions(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    page := client.CustomerPortal().ListSubscriptions(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -2605,7 +2637,7 @@
     "operationId": "cancelCustomerSubscriptionAtPeriodEnd",
     "mountTarget": "CustomerPortal",
     "methodName": "cancel_customer_subscription_at_period_end",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalCancelSubscriptionAtPeriodEndParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer requested this change\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().CancelSubscriptionAtPeriodEnd(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalCancelSubscriptionAtPeriodEndParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Taking a break over the summer.\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().CancelSubscriptionAtPeriodEnd(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2613,7 +2645,7 @@
     "operationId": "cancelCustomerSubscriptionImmediately",
     "mountTarget": "CustomerPortal",
     "methodName": "cancel_customer_subscription_immediately",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalCancelSubscriptionImmediatelyParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer requested this change\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().CancelSubscriptionImmediately(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalCancelSubscriptionImmediatelyParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"No longer needed.\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().CancelSubscriptionImmediately(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2621,7 +2653,7 @@
     "operationId": "pauseCustomerSubscription",
     "mountTarget": "CustomerPortal",
     "methodName": "pause_customer_subscription",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalPauseSubscriptionParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer requested this change\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().PauseSubscription(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalPauseSubscriptionParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"resume_at\\\":\\\"2026-11-01T00:00:00Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().PauseSubscription(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2629,7 +2661,7 @@
     "operationId": "resumeCustomerSubscription",
     "mountTarget": "CustomerPortal",
     "methodName": "resume_customer_subscription",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalResumeSubscriptionParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer requested this change\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().ResumeSubscription(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    result, err := client.CustomerPortal().ResumeSubscription(context.Background(), 42)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2637,7 +2669,7 @@
     "operationId": "updateCustomerSubscriptionPaymentMethod",
     "mountTarget": "CustomerPortal",
     "methodName": "update_customer_subscription_payment_method",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalUpdateSubscriptionPaymentMethodParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Customer requested this change\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().UpdateSubscriptionPaymentMethod(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalUpdateSubscriptionPaymentMethodParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"return_url\\\":\\\"https://acme.sell.app/customer-portal/subscriptions/991\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().UpdateSubscriptionPaymentMethod(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2645,7 +2677,7 @@
     "operationId": "previewCustomerSubscriptionPlanChange",
     "mountTarget": "CustomerPortal",
     "methodName": "preview_customer_subscription_plan_change",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalPreviewSubscriptionPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"product_variant_id\\\":84}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().PreviewSubscriptionPlanChange(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalPreviewSubscriptionPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"target_variant_id\\\":97}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().PreviewSubscriptionPlanChange(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2653,7 +2685,7 @@
     "operationId": "confirmCustomerSubscriptionPlanChange",
     "mountTarget": "CustomerPortal",
     "methodName": "confirm_customer_subscription_plan_change",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalConfirmSubscriptionPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"preview_id\\\":\\\"preview_01K4\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().ConfirmSubscriptionPlanChange(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalConfirmSubscriptionPlanChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"target_variant_id\\\":97,\\\"preview_token\\\":\\\"subprev_portal_991\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().ConfirmSubscriptionPlanChange(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2661,7 +2693,7 @@
     "operationId": "previewCustomerSubscriptionRenewalDateChange",
     "mountTarget": "CustomerPortal",
     "methodName": "preview_customer_subscription_renewal_date_change",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalPreviewSubscriptionRenewalDateChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"renewal_date\\\":\\\"2026-10-15\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().PreviewSubscriptionRenewalDateChange(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalPreviewSubscriptionRenewalDateChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"renewal_date\\\":\\\"2026-10-15T00:00:00Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().PreviewSubscriptionRenewalDateChange(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2669,7 +2701,7 @@
     "operationId": "confirmCustomerSubscriptionRenewalDateChange",
     "mountTarget": "CustomerPortal",
     "methodName": "confirm_customer_subscription_renewal_date_change",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalConfirmSubscriptionRenewalDateChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"preview_id\\\":\\\"preview_01K4\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().ConfirmSubscriptionRenewalDateChange(context.Background(), 42, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(\"\", \"\", sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")), sellapp.WithCustomerSession(os.Getenv(\"SELLAPP_CUSTOMER_SESSION\")))\n    params := &sellapp.CustomerPortalConfirmSubscriptionRenewalDateChangeParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"renewal_date\\\":\\\"2026-10-15T00:00:00Z\\\",\\\"preview_token\\\":\\\"subprev_portal_renewal_991\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CustomerPortal().ConfirmSubscriptionRenewalDateChange(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",

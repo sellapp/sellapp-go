@@ -1,0 +1,17 @@
+{
+  "data": {
+    "preview_token": "test_preview_token",
+    "expires_at": "2023-01-01T00:00:00.000Z",
+    "preview_payload": {
+      "provider": "provider_01234",
+      "payment_required": true,
+      "renewal_date": "2023-01-01T00:00:00.000Z",
+      "amount_due": 1,
+      "discount_warning": "test_discount_warning"
+    },
+    "request_payload": {},
+    "customer_message": "test_customer_message",
+    "seller_message": "test_seller_message"
+  },
+  "message": "test_message"
+}

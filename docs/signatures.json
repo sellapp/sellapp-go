@@ -1723,7 +1723,7 @@
     "operationId": "deleteProductVariant",
     "resource": "product_variants",
     "method": "Delete",
-    "nativeSignature": "func (s *ProductVariantService) Delete(ctx context.Context, product int, variant int, opts ...RequestOption) error",
+    "nativeSignature": "func (s *ProductVariantService) Delete(ctx context.Context, product int, variant int, params *ProductVariantsDeleteParams, opts ...RequestOption) error",
     "signatures": [
       {
         "name": "Delete",
@@ -1737,6 +1737,12 @@
           {
             "name": "variant",
             "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductVariantsDeleteParams",
             "optional": false,
             "passingStyle": "positional"
           },
@@ -2124,6 +2130,90 @@
     "sourceFile": "subscriptions.go"
   },
   {
+    "operationId": "listSubscriptions",
+    "resource": "subscriptions",
+    "method": "List",
+    "nativeSignature": "func (s *SubscriptionService) List(ctx context.Context, params *SubscriptionsListParams, opts ...RequestOption) *Iterator[SdkListSubscriptionsResponseValue200ApplicationJSON]",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SubscriptionsListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[SdkListSubscriptionsResponseValue200ApplicationJSON]",
+        "async": false
+      }
+    ],
+    "sourceFile": "subscriptions.go"
+  },
+  {
+    "operationId": "searchSubscriptions",
+    "resource": "subscriptions",
+    "method": "Search",
+    "nativeSignature": "func (s *SubscriptionService) Search(ctx context.Context, params *SubscriptionsSearchParams, opts ...RequestOption) *Iterator[SdkSearchSubscriptionsResponseValue200ApplicationJSON]",
+    "signatures": [
+      {
+        "name": "Search",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SubscriptionsSearchParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[SdkSearchSubscriptionsResponseValue200ApplicationJSON]",
+        "async": false
+      }
+    ],
+    "sourceFile": "subscriptions.go"
+  },
+  {
+    "operationId": "getSubscription",
+    "resource": "subscriptions",
+    "method": "Get",
+    "nativeSignature": "func (s *SubscriptionService) Get(ctx context.Context, productSubscription int, opts ...RequestOption) (*SdkGetSubscriptionResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "productSubscription",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSubscriptionResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "subscriptions.go"
+  },
+  {
     "operationId": "getSubscriptionCapabilities",
     "resource": "subscriptions",
     "method": "GetCapabilities",
@@ -2220,6 +2310,40 @@
     "sourceFile": "subscriptions.go"
   },
   {
+    "operationId": "keepSubscription",
+    "resource": "subscriptions",
+    "method": "Keep",
+    "nativeSignature": "func (s *SubscriptionService) Keep(ctx context.Context, productSubscription int, params *SubscriptionsKeepParams, opts ...RequestOption) (*SdkKeepSubscriptionResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Keep",
+        "params": [
+          {
+            "name": "productSubscription",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SubscriptionsKeepParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkKeepSubscriptionResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "subscriptions.go"
+  },
+  {
     "operationId": "pauseSubscription",
     "resource": "subscriptions",
     "method": "Pause",
@@ -2291,7 +2415,7 @@
     "operationId": "updateSubscriptionPaymentMethod",
     "resource": "subscriptions",
     "method": "UpdatePaymentMethod",
-    "nativeSignature": "func (s *SubscriptionService) UpdatePaymentMethod(ctx context.Context, productSubscription int, params *SubscriptionsUpdatePaymentMethodParams, opts ...RequestOption) error",
+    "nativeSignature": "func (s *SubscriptionService) UpdatePaymentMethod(ctx context.Context, productSubscription int, params *SubscriptionsUpdatePaymentMethodParams, opts ...RequestOption) (*SdkUpdateSubscriptionPaymentMethodResponseValue200ApplicationJSON, error)",
     "signatures": [
       {
         "name": "UpdatePaymentMethod",
@@ -2315,7 +2439,7 @@
             "passingStyle": "positional"
           }
         ],
-        "returnType": "error",
+        "returnType": "*SdkUpdateSubscriptionPaymentMethodResponseValue200ApplicationJSON",
         "async": false
       }
     ],
@@ -2325,7 +2449,7 @@
     "operationId": "previewSubscriptionPlanChange",
     "resource": "subscriptions",
     "method": "PreviewPlanChange",
-    "nativeSignature": "func (s *SubscriptionService) PreviewPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsPreviewPlanChangeParams, opts ...RequestOption) error",
+    "nativeSignature": "func (s *SubscriptionService) PreviewPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsPreviewPlanChangeParams, opts ...RequestOption) (*SdkPreviewSubscriptionPlanChangeResponseValue200ApplicationJSON, error)",
     "signatures": [
       {
         "name": "PreviewPlanChange",
@@ -2349,7 +2473,7 @@
             "passingStyle": "positional"
           }
         ],
-        "returnType": "error",
+        "returnType": "*SdkPreviewSubscriptionPlanChangeResponseValue200ApplicationJSON",
         "async": false
       }
     ],
@@ -2359,7 +2483,7 @@
     "operationId": "confirmSubscriptionPlanChange",
     "resource": "subscriptions",
     "method": "ConfirmPlanChange",
-    "nativeSignature": "func (s *SubscriptionService) ConfirmPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsConfirmPlanChangeParams, opts ...RequestOption) error",
+    "nativeSignature": "func (s *SubscriptionService) ConfirmPlanChange(ctx context.Context, productSubscription int, params *SubscriptionsConfirmPlanChangeParams, opts ...RequestOption) (*SdkConfirmSubscriptionPlanChangeResponseValue200ApplicationJSON, error)",
     "signatures": [
       {
         "name": "ConfirmPlanChange",
@@ -2383,7 +2507,7 @@
             "passingStyle": "positional"
           }
         ],
-        "returnType": "error",
+        "returnType": "*SdkConfirmSubscriptionPlanChangeResponseValue200ApplicationJSON",
         "async": false
       }
     ],
@@ -2458,39 +2582,23 @@
     "sourceFile": "subscriptions.go"
   },
   {
-    "operationId": "listSubscriptions",
-    "resource": "subscriptions",
+    "operationId": "listSubscriptionActions",
+    "resource": "subscriptions_actions",
     "method": "List",
-    "nativeSignature": "func (s *SubscriptionService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]",
+    "nativeSignature": "func (s *SubscriptionsActionService) List(ctx context.Context, productSubscription int, params *SubscriptionsActionsListParams, opts ...RequestOption) *Iterator[SdkListSubscriptionActionsResponseValue200ApplicationJSON]",
     "signatures": [
       {
         "name": "List",
         "params": [
           {
-            "name": "opts",
-            "type": "RequestOption",
+            "name": "productSubscription",
+            "type": "int",
             "optional": false,
             "passingStyle": "positional"
-          }
-        ],
-        "returnType": "*Iterator[ListSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]",
-        "async": false
-      }
-    ],
-    "sourceFile": "subscriptions.go"
-  },
-  {
-    "operationId": "searchSubscriptions",
-    "resource": "subscriptions",
-    "method": "Search",
-    "nativeSignature": "func (s *SubscriptionService) Search(ctx context.Context, params *SubscriptionsSearchParams, opts ...RequestOption) *Iterator[SearchSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]",
-    "signatures": [
-      {
-        "name": "Search",
-        "params": [
+          },
           {
             "name": "params",
-            "type": "*SubscriptionsSearchParams",
+            "type": "*SubscriptionsActionsListParams",
             "optional": false,
             "passingStyle": "positional"
           },
@@ -2501,17 +2609,17 @@
             "passingStyle": "positional"
           }
         ],
-        "returnType": "*Iterator[SearchSubscriptionsResponseValue200ApplicationJSONPropertyDataItem]",
+        "returnType": "*Iterator[SdkListSubscriptionActionsResponseValue200ApplicationJSON]",
         "async": false
       }
     ],
-    "sourceFile": "subscriptions.go"
+    "sourceFile": "subscriptions_actions.go"
   },
   {
-    "operationId": "getSubscription",
-    "resource": "subscriptions",
+    "operationId": "getSubscriptionAction",
+    "resource": "subscriptions_actions",
     "method": "Get",
-    "nativeSignature": "func (s *SubscriptionService) Get(ctx context.Context, productSubscription int, opts ...RequestOption) (*SdkGetSubscriptionResponseValue200ApplicationJSON, error)",
+    "nativeSignature": "func (s *SubscriptionsActionService) Get(ctx context.Context, productSubscription int, action int, opts ...RequestOption) (*SdkGetSubscriptionActionResponseValue200ApplicationJSON, error)",
     "signatures": [
       {
         "name": "Get",
@@ -2523,17 +2631,63 @@
             "passingStyle": "positional"
           },
           {
+            "name": "action",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
             "name": "opts",
             "type": "RequestOption",
             "optional": false,
             "passingStyle": "positional"
           }
         ],
-        "returnType": "*SdkGetSubscriptionResponseValue200ApplicationJSON",
+        "returnType": "*SdkGetSubscriptionActionResponseValue200ApplicationJSON",
         "async": false
       }
     ],
-    "sourceFile": "subscriptions.go"
+    "sourceFile": "subscriptions_actions.go"
+  },
+  {
+    "operationId": "dismissSubscriptionAction",
+    "resource": "subscriptions_actions",
+    "method": "Dismiss",
+    "nativeSignature": "func (s *SubscriptionsActionService) Dismiss(ctx context.Context, productSubscription int, action int, params *SubscriptionsActionsDismissParams, opts ...RequestOption) (*SdkDismissSubscriptionActionResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Dismiss",
+        "params": [
+          {
+            "name": "productSubscription",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "action",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SubscriptionsActionsDismissParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkDismissSubscriptionActionResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "subscriptions_actions.go"
   },
   {
     "operationId": "listAppointments",
@@ -10065,7 +10219,7 @@
     "operationId": "listCustomerPortalSubscriptions",
     "resource": "customer_portal",
     "method": "ListSubscriptions",
-    "nativeSignature": "func (s *CustomerPortalService) ListSubscriptions(ctx context.Context, opts ...RequestOption) (*SdkListCustomerPortalSubscriptionsResponseValue200ApplicationJSON, error)",
+    "nativeSignature": "func (s *CustomerPortalService) ListSubscriptions(ctx context.Context, opts ...RequestOption) *Iterator[CustomerPortalSubscription]",
     "signatures": [
       {
         "name": "ListSubscriptions",
@@ -10077,7 +10231,7 @@
             "passingStyle": "positional"
           }
         ],
-        "returnType": "*SdkListCustomerPortalSubscriptionsResponseValue200ApplicationJSON",
+        "returnType": "*Iterator[CustomerPortalSubscription]",
         "async": false
       }
     ],
@@ -10267,7 +10421,7 @@
     "operationId": "resumeCustomerSubscription",
     "resource": "customer_portal",
     "method": "ResumeSubscription",
-    "nativeSignature": "func (s *CustomerPortalService) ResumeSubscription(ctx context.Context, productSubscription int, params *CustomerPortalResumeSubscriptionParams, opts ...RequestOption) (*SdkResumeCustomerSubscriptionResponseValue200ApplicationJSON, error)",
+    "nativeSignature": "func (s *CustomerPortalService) ResumeSubscription(ctx context.Context, productSubscription int, opts ...RequestOption) (*SdkResumeCustomerSubscriptionResponseValue200ApplicationJSON, error)",
     "signatures": [
       {
         "name": "ResumeSubscription",
@@ -10275,12 +10429,6 @@
           {
             "name": "productSubscription",
             "type": "int",
-            "optional": false,
-            "passingStyle": "positional"
-          },
-          {
-            "name": "params",
-            "type": "*CustomerPortalResumeSubscriptionParams",
             "optional": false,
             "passingStyle": "positional"
           },

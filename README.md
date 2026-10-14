@@ -11,7 +11,7 @@ Already know your way around? Jump to [configuration](https://github.com/sellapp
 You need Go 1.23 or newer. In your application's module directory, install the SDK:
 
 ```sh
-go get github.com/sellapp/sellapp-go@v0.1.1
+go get github.com/sellapp/sellapp-go@v0.2.0
 ```
 
 For a new application, create its directory and module first:
@@ -20,7 +20,7 @@ For a new application, create its directory and module first:
 mkdir sellapp-example
 cd sellapp-example
 go mod init example.com/sellapp-example
-go get github.com/sellapp/sellapp-go@v0.1.1
+go get github.com/sellapp/sellapp-go@v0.2.0
 ```
 
 Go downloads the versioned module and records it in `go.mod` and `go.sum`. You can browse the [Go package reference](https://pkg.go.dev/github.com/sellapp/sellapp-go) or the [source repository](https://github.com/sellapp/sellapp-go).

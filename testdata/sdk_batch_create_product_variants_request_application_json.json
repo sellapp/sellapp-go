@@ -150,6 +150,9 @@
         "SOL_USDT",
         "SOL_USDC"
       ],
+      "custom_payment_method_ids": [
+        "00000000000000000000000000"
+      ],
       "other_settings": {
         "quantity_increments": 1
       },

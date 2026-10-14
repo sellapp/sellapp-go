@@ -1,7 +1,4 @@
 {
-  "preview_id": "preview_id_01234",
-  "product_variant_id": 1,
-  "renewal_date": "2023-01-01",
-  "return_url": "https://example.com",
+  "resume_at": "2023-01-01T00:00:00.000Z",
   "reason": "test_reason"
 }

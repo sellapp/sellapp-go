@@ -1,7 +1,8 @@
 {
   "data": {
     "id": 1,
-    "status": "test_status",
+    "invoice_id": 1,
+    "provider": "provider_01234",
     "subscription_id": "subscription_id_01234",
     "customer_id": "customer_id_01234",
     "provider_subscription_id": "provider_subscription_id_01234",
@@ -12,8 +13,27 @@
       "external_id": "external_id_01234",
       "name": "Test",
       "locale": "en",
-      "metadata": {}
+      "metadata": {
+        "key": {}
+      }
     },
-    "product_variant_id": 1
+    "customer_email": "test@example.com",
+    "status": "ACTIVE",
+    "current_period_start": "2023-01-01T00:00:00.000Z",
+    "current_period_end": "2023-01-01T00:00:00.000Z",
+    "trial_ends_at": "2023-01-01T00:00:00.000Z",
+    "cancel_at_period_end": true,
+    "cancellation_in_progress": true,
+    "store_id": 1,
+    "product_variant_id": 1,
+    "current_plan_variant_id": 1,
+    "auto_renew": true,
+    "paused_at": "2023-01-01T00:00:00.000Z",
+    "pause_resumes_at": "2023-01-01T00:00:00.000Z",
+    "canceled_immediately_at": "2023-01-01T00:00:00.000Z",
+    "payment_method_updated_at": "2023-01-01T00:00:00.000Z",
+    "last_customer_action_at": "2023-01-01T00:00:00.000Z",
+    "created_at": "2023-01-01T00:00:00.000Z",
+    "updated_at": "2023-01-01T00:00:00.000Z"
   }
 }

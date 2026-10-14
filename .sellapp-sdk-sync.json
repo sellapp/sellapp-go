@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "language": "go",
   "repository": "sellapp/sellapp-go",
-  "sourceSha": "2a8fd1a82c3091e60f332257fe4460785b0c6e9a",
-  "specSha256": "aea767326d7193deffe5004a5751f7e8f59e40b037636c8fc29b936699dfff2e",
+  "sourceSha": "5bfb944881c821f7c8b0af0e254d6f9bd16c0806",
+  "specSha256": "22a0f17c1c7099fa036382e9f037daa5b7e273d57605163d22042e03f964f1c8",
   "runId": "0",
   "runAttempt": "1",
-  "treeDigest": "9b66bae196d46c8b1be80b3ea5cda4013cba9b2b0708e7d3a7a01af1ae29ba6b",
-  "contentDigest": "214bdb88e6d2f3bd316681544e49f9a71e45bda4a1ad40a3fd143519af5979cd",
+  "treeDigest": "6f62548ebb2b0108e446b75a6757bcbb459c7709fa301d852ab8a48b94efa394",
+  "contentDigest": "5371770f1a0334ef669c2944b2d7c03c6db7df228e14273c173ee6824ec03704",
   "files": [
     {
       "path": ".github/scripts/native-ci.mjs",
@@ -47,7 +47,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "sha256": "74b40e8fff312eb7764cf268d7b8cb6ad0ec63e14ac8b0259ef2eb33c3a99319"
+      "sha256": "131c722b693d77a1de0621f8dced7a52187b6ba9101d4ddc460a95cb4ef9d1c6"
     },
     {
       "path": "account.go",
@@ -327,7 +327,7 @@
     {
       "path": "docs/migration.md",
       "mode": "100644",
-      "sha256": "d2152af699fb26ebea01160423ee170c0d2516d1100b8188a4e583956b20528d"
+      "sha256": "fc66a4951d15ce6a3455cd4aac9a310b3f8db00af0c07ef4567bdb83c3f54bea"
     },
     {
       "path": "docs/operation-examples.json",
@@ -812,7 +812,7 @@
     {
       "path": "generation-manifest.json",
       "mode": "100644",
-      "sha256": "f033d2e1596f3b84b70c7aa08e6b73f3ffb0996ac0891ff3dc40c49cc4a9c863"
+      "sha256": "ae24c97db25fc6b8110d50735aa025a9dcdc4b0d80cf0999acbeb3b0febe608d"
     },
     {
       "path": "go.mod",
@@ -1112,7 +1112,7 @@
     {
       "path": "runtime.go",
       "mode": "100644",
-      "sha256": "ea9de2e0e2bc087f97d25324210a9023d1ca52e1ebf824fc040f0aa462d2290c"
+      "sha256": "b3a8b84a0e6cbc263f96b8925a218e65441aaa0bfc1ab6f6968f8951e802969e"
     },
     {
       "path": "runtime_contract_test.go",
@@ -1172,7 +1172,7 @@
     {
       "path": "subscriptions_actions.go",
       "mode": "100644",
-      "sha256": "702e0aaf1bd88143a7548894cbca6c101e0389a5d112a2c4e77f71f813115861"
+      "sha256": "2f8141b51ee9054a039dca7a8ea65268a365595ab3e5ec351d65e5e730990614"
     },
     {
       "path": "subscriptions_actions_test.go",

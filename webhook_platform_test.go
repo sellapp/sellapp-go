@@ -38,6 +38,7 @@ func TestWebhookPlatform_ListDeliveries(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "GET", r.Method)
 		require.Equal(t, "/v2/webhook-deliveries", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":\"00000000-0000-0000-0000-000000000000\",\"event_id\":\"evt_00000000000000000000000000\",\"event_type\":\"test_event_type\",\"status\":\"pending\",\"destination_origin\":\"test_destination_origin\",\"attempts\":1,\"response_status\":1,\"response_body\":\"test_response_body\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -45,7 +46,7 @@ func TestWebhookPlatform_ListDeliveries(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.WebhookPlatform().ListDeliveries(context.Background())
+	iter := client.WebhookPlatform().ListDeliveries(context.Background(), &sellapp.WebhookPlatformListDeliveriesParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -62,7 +63,7 @@ func TestWebhookPlatform_ListDeliveries_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.WebhookPlatform().ListDeliveries(context.Background())
+	iter := client.WebhookPlatform().ListDeliveries(context.Background(), &sellapp.WebhookPlatformListDeliveriesParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

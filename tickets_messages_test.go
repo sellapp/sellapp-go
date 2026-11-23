@@ -189,6 +189,7 @@ func TestTicketsMessages_V2SearchTicketMessages(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/tickets/1/messages/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"author\":\"test_author\",\"sender\":\"test_sender\",\"content\":\"test_content\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"ticket_id\":1}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -196,7 +197,7 @@ func TestTicketsMessages_V2SearchTicketMessages(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.TicketsMessages().V2SearchTicketMessages(context.Background(), 1, &sellapp.TicketsMessagesV2SearchTicketMessagesParams{})
+	iter := client.TicketsMessages().V2SearchTicketMessages(context.Background(), 1, &sellapp.TicketsMessagesV2SearchTicketMessagesParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -213,7 +214,7 @@ func TestTicketsMessages_V2SearchTicketMessages_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.TicketsMessages().V2SearchTicketMessages(context.Background(), 1, &sellapp.TicketsMessagesV2SearchTicketMessagesParams{})
+	iter := client.TicketsMessages().V2SearchTicketMessages(context.Background(), 1, &sellapp.TicketsMessagesV2SearchTicketMessagesParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

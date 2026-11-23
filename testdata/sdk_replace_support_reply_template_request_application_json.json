@@ -1,0 +1,8 @@
+{
+  "label": "test_label",
+  "body": "test_body",
+  "is_active": true,
+  "supports_manual": true,
+  "supports_auto_respond": true,
+  "expected_updated_at": "2023-01-01T00:00:00.000Z"
+}

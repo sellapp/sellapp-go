@@ -3,13 +3,27 @@
   "line_item_id": 1,
   "type": "test_type",
   "status": "pending",
+  "delivered_product_id": 1,
   "product_variant_id": 1,
   "quantity": 1,
   "deliverable": {
     "types": [
       "test_types"
     ],
-    "data": {}
+    "data": {
+      "serials": [
+        "test_serials"
+      ],
+      "delivered_files": [
+        "test_delivered_files"
+      ],
+      "dynamic": "test_dynamic",
+      "manual": "test_manual",
+      "license_keys": [
+        "test_license_keys"
+      ],
+      "credits_granted": 1
+    }
   },
   "additional_information": [
     {}

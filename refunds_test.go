@@ -18,6 +18,7 @@ func TestRefunds_List(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "GET", r.Method)
 		require.Equal(t, "/v2/refunds", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"source\":\"test_source\",\"refundable\":{\"type\":\"order\",\"id\":1},\"provider\":\"provider_01234\",\"provider_payment_id\":\"provider_payment_id_01234\",\"provider_refund_id\":\"provider_refund_id_01234\",\"amount_cents\":1,\"currency\":\"test_currency\",\"status\":\"test_status\",\"reason\":\"test_reason\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -25,7 +26,7 @@ func TestRefunds_List(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Refunds().List(context.Background())
+	iter := client.Refunds().List(context.Background(), &sellapp.RefundsListParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -42,7 +43,7 @@ func TestRefunds_List_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Refunds().List(context.Background())
+	iter := client.Refunds().List(context.Background(), &sellapp.RefundsListParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }
@@ -76,7 +77,7 @@ func TestRefunds_Error401(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Refunds().List(context.Background())
+	iter := client.Refunds().List(context.Background(), &sellapp.RefundsListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.AuthenticationError{}, iter.Err())
 }
@@ -90,7 +91,7 @@ func TestRefunds_Error404(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Refunds().List(context.Background())
+	iter := client.Refunds().List(context.Background(), &sellapp.RefundsListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.NotFoundError{}, iter.Err())
 }
@@ -104,7 +105,7 @@ func TestRefunds_Error422(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Refunds().List(context.Background())
+	iter := client.Refunds().List(context.Background(), &sellapp.RefundsListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.UnprocessableEntityError{}, iter.Err())
 }

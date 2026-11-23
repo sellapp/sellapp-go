@@ -1,0 +1,7 @@
+{
+  "label": "test_label",
+  "body": "test_body",
+  "is_active": true,
+  "supports_manual": true,
+  "supports_auto_respond": true
+}

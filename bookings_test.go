@@ -152,6 +152,29 @@ func TestBookings_Cancel(t *testing.T) {
 	require.NotNil(t, result)
 }
 
+func TestBookings_Create(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/booking-products", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_create_booking_product_response_value_201_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Bookings().Create(context.Background(), decodeTestParams[sellapp.BookingsCreateParams](t, "{\"title\":\"test_title\",\"description\":\"test_description\",\"visibility\":\"PUBLIC\",\"variant_title\":\"test_variant_title\",\"variant_description\":\"test_variant_description\",\"price_cents\":1,\"compare_at_price_cents\":1,\"currency\":\"AUD\",\"payment_methods\":[\"AUTHNET\",\"BTCPAY\",\"CASHAPP\",\"COINBASE\",\"PADDLE\",\"PAYDASH\",\"PAYPAL\",\"PAYSTACK\",\"SQUARE\",\"STRIPE\",\"VENMO\",\"NMI\",\"MERCADO_PAGO\",\"MOLLIE\",\"RAZORPAY\",\"CUSTOM_PAYMENT_METHOD\",\"LIFI\",\"BTC\",\"LTC\",\"ETH\",\"XMR\",\"SOL\",\"ADA\",\"BNB\",\"TRX\",\"MATIC\",\"ETH_USDT\",\"ETH_USDC\",\"ETH_UNI\",\"ETH_SHIB\",\"ETH_DAI\",\"BNB_USDT\",\"BNB_USDC\",\"TRX_USDT\",\"TRX_USDC\",\"SOL_USDT\",\"SOL_USDC\"],\"timezone\":\"America/New_York\",\"duration_minutes\":30,\"min_notice_minutes\":1,\"max_advance_days\":1,\"buffer_before_minutes\":30,\"buffer_after_minutes\":30,\"provider_connection_ids\":[1],\"video_provider\":\"none\",\"video_provider_connection_id\":1,\"reminders_enabled\":true,\"reminder_offset_value\":1,\"reminder_offset_unit\":\"minutes\",\"availability\":[{\"day\":1,\"enabled\":true,\"start\":\"09:00\",\"end\":\"17:00\"}]}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestBookings_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

@@ -18,6 +18,46 @@ var _ = os.ReadFile
 var _ = json.Unmarshal
 var _ = io.ReadAll
 
+func TestVariantDeliverables_Preview(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/products/1/variants/1/deliverable/buyer-notification", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_preview_variant_buyer_notification_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.VariantDeliverables().Preview(context.Background(), 1, 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestVariantDeliverables_Notify(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/products/1/variants/1/deliverable/buyer-notification", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_notify_variant_buyers_response_value_202_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.VariantDeliverables().Notify(context.Background(), 1, 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestVariantDeliverables_Get(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "GET", r.Method)
@@ -70,7 +110,7 @@ func TestVariantDeliverables_Error401(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	_, err := client.VariantDeliverables().Get(context.Background(), "test_product", 1)
+	_, err := client.VariantDeliverables().Preview(context.Background(), 1, 1)
 	require.IsType(t, &sellapp.AuthenticationError{}, err)
 }
 
@@ -83,7 +123,7 @@ func TestVariantDeliverables_Error404(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	_, err := client.VariantDeliverables().Get(context.Background(), "test_product", 1)
+	_, err := client.VariantDeliverables().Preview(context.Background(), 1, 1)
 	require.IsType(t, &sellapp.NotFoundError{}, err)
 }
 
@@ -96,6 +136,6 @@ func TestVariantDeliverables_Error422(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	_, err := client.VariantDeliverables().Get(context.Background(), "test_product", 1)
+	_, err := client.VariantDeliverables().Preview(context.Background(), 1, 1)
 	require.IsType(t, &sellapp.UnprocessableEntityError{}, err)
 }

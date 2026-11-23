@@ -1,0 +1,14 @@
+{
+  "google_calendar": {
+    "connected": true,
+    "available": true,
+    "connection_id": 1,
+    "account": "test_account",
+    "calendar": "test_calendar",
+    "health": "healthy",
+    "connected_at": "2023-01-01T00:00:00.000Z"
+  },
+  "crisp": {
+    "configured": true
+  }
+}

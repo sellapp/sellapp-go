@@ -1,0 +1,38 @@
+{
+  "current_page": 1,
+  "from": 1,
+  "last_page": 4,
+  "links": [
+    {
+      "url": "https://example.com",
+      "label": "test_label",
+      "active": true
+    }
+  ],
+  "path": "https://sell.app/api/v1/blacklists",
+  "per_page": 15,
+  "to": 15,
+  "total": 57,
+  "period": {
+    "range": "7d",
+    "label": "test_label",
+    "start_at": "2023-01-01T00:00:00.000Z",
+    "end_at": "2023-01-01T00:00:00.000Z",
+    "currency": "USD"
+  },
+  "filters": {
+    "type": "TOP_UP",
+    "type_label": "test_type_label",
+    "customer": {
+      "id": 1,
+      "email": "test@example.com"
+    },
+    "wallet_id": 1
+  },
+  "summary": {
+    "entries_count": 1,
+    "net_amount_cents": 1,
+    "credits_cents": 1,
+    "debits_cents": 1
+  }
+}

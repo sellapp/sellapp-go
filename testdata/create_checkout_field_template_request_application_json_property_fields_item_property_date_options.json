@@ -1,0 +1,13 @@
+{
+  "min_date": "test_min_date",
+  "max_date": "test_max_date",
+  "start_day": 1,
+  "selectable_header": true,
+  "clearable": true,
+  "week_numbers": true,
+  "min_range": 1,
+  "max_range": 1,
+  "with_presets": true,
+  "with_inputs": true,
+  "presets": "test_presets"
+}

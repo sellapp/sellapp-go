@@ -90,7 +90,7 @@ func TestWallet_Adjust(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Wallet().Adjust(context.Background(), 1, decodeTestParams[sellapp.WalletAdjustParams](t, "{\"amount_cents\":1,\"idempotency_key\":\"idempotency_key_01234\",\"note\":\"test_note\"}"))
+	result, err := client.Wallet().Adjust(context.Background(), 1, decodeTestParams[sellapp.WalletAdjustParams](t, "{\"amount_cents\":1,\"idempotency_key\":\"idempotency_key_01234\",\"note\":\"test_note\",\"expected_balance_cents\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

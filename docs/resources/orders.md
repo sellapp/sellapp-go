@@ -151,7 +151,7 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.OrdersSearchParams{}
-    if err := json.Unmarshal([]byte("{\"filters\":[{\"field\":\"transaction_id\",\"operator\":\"contains\",\"value\":\"pi_3Example\"},{\"field\":\"status\",\"operator\":\"in\",\"value\":[\"COMPLETED\"]}],\"sort\":[{\"field\":\"created_at\",\"direction\":\"desc\"}],\"pagination\":{\"page\":1,\"limit\":25}}"), params); err != nil { panic(err) }
+    if err := json.Unmarshal([]byte("{\"filters\":[{\"field\":\"created_at\",\"operator\":\"gte\",\"value\":\"2026-07-01T00:00:00Z\"},{\"field\":\"created_at\",\"operator\":\"lte\",\"value\":\"2026-07-31T23:59:59Z\"},{\"field\":\"total\",\"operator\":\"gte\",\"value\":1000},{\"field\":\"currency\",\"operator\":\"eq\",\"value\":\"USD\"},{\"field\":\"status\",\"operator\":\"in\",\"value\":[\"COMPLETED\"]}],\"sort\":[{\"field\":\"created_at\",\"direction\":\"desc\"}],\"pagination\":{\"page\":1,\"limit\":25}}"), params); err != nil { panic(err) }
     page := client.Orders().Search(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
@@ -452,7 +452,7 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.OrdersCreateRefundParams{}
-    if err := json.Unmarshal([]byte("{\"amount\":\"5.00\"}"), params); err != nil { panic(err) }
+    if err := json.Unmarshal([]byte("{\"amount\":\"5.00\",\"expected_refunded_total_cents\":0}"), params); err != nil { panic(err) }
     result, err := client.Orders().CreateRefund(context.Background(), 9001, params, sellapp.WithIdempotencyKey("example-mutation-001"))
     if err != nil { panic(err) }
     fmt.Println(result)
@@ -661,6 +661,67 @@ Supported credential alternatives (each object is one alternative):
 ```
 
 Documented HTTP responses: 200, 400, 401, 403, 404, 409, 410, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## RegenerateTelegramInvite
+
+Create a Telegram invite link
+
+[API reference](https://sell.app/docs/api/orders/create-a-telegram-invite-link) · Effect: **consequential**
+
+```go
+func (s *OrderService) RegenerateTelegramInvite(ctx context.Context, order int, params *OrdersRegenerateTelegramInviteParams, opts ...RequestOption) (*SdkRegenerateOrderTelegramInviteResponseValue201ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| order | `int` | Yes |
+| params | `*OrdersRegenerateTelegramInviteParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkRegenerateOrderTelegramInviteResponseValue201ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.OrdersRegenerateTelegramInviteParams{}
+    if err := json.Unmarshal([]byte("{\"variant_id\":4321}"), params); err != nil { panic(err) }
+    result, err := client.Orders().RegenerateTelegramInvite(context.Background(), 9001, params, sellapp.WithIdempotencyKey("example-mutation-001"))
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 201, 400, 401, 403, 404, 409, 410, 422, 429, 500. See the API reference for field-level validation and consequences.
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 

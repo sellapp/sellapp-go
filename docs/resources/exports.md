@@ -9,11 +9,12 @@ List exports
 [API reference](https://sell.app/docs/api/exports) · Effect: **read**
 
 ```go
-func (s *ExportService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListExportsResponseValue200ApplicationJSONPropertyDataItem]
+func (s *ExportService) List(ctx context.Context, params *ExportsListParams, opts ...RequestOption) *Iterator[ListExportsResponseValue200ApplicationJSONPropertyDataItem]
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
+| params | `*ExportsListParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `*Iterator[ListExportsResponseValue200ApplicationJSONPropertyDataItem]`.
@@ -30,7 +31,8 @@ import (
 
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    page := client.Exports().List(context.Background())
+    params := &sellapp.ExportsListParams{}
+    page := client.Exports().List(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
 }

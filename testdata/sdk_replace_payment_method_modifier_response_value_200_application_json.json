@@ -1,0 +1,10 @@
+{
+  "data": {
+    "payment_method": "test_payment_method",
+    "kind": "discount",
+    "percentage": "00000000000000000000000000",
+    "fixed_amount": "00000000000000000000000000",
+    "condition": "above",
+    "threshold": "1.00"
+  }
+}

@@ -9,7 +9,15 @@
     "BOOKING",
     "CREDITS"
   ],
-  "data": {},
+  "data": {
+    "comment": "test_comment",
+    "licenseLength": 1,
+    "licenseLengthUnit": "DAY",
+    "isLicenseLengthUnlimited": true,
+    "licenseLimit": 1,
+    "isLicenseLimitUnlimited": true,
+    "licensePrefix": "test_licensePrefix"
+  },
   "webhook_configured": true,
   "updated_at": "2023-01-01T00:00:00.000Z"
 }

@@ -1,0 +1,9 @@
+{
+  "label": "test_label",
+  "description": "test_description",
+  "is_active": true,
+  "product_ids": [
+    1
+  ],
+  "expected_updated_at": "2023-01-01T00:00:00.000Z"
+}

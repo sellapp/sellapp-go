@@ -1,0 +1,19 @@
+{
+  "filters": [
+    {
+      "field": "test_field",
+      "operator": "eq",
+      "value": {}
+    }
+  ],
+  "sort": [
+    {
+      "field": "created_at",
+      "direction": "asc"
+    }
+  ],
+  "pagination": {
+    "page": 1,
+    "limit": 1
+  }
+}

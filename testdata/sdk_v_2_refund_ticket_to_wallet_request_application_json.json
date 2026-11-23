@@ -1,0 +1,6 @@
+{
+  "invoice_id": 1,
+  "amount_cents": 1,
+  "expected_refundable_cents": 1,
+  "customer_note": "test_customer_note"
+}

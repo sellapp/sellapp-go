@@ -1,0 +1,43 @@
+{
+  "quantity_increments": 1,
+  "discord_data_required": true,
+  "community_servers": {
+    "discord": {
+      "server_id": "server_id_01234",
+      "roles": [
+        "test_roles"
+      ],
+      "required": true,
+      "remove_on_expire": true
+    },
+    "telegram": {
+      "server_id": "server_id_01234",
+      "roles": [
+        "test_roles"
+      ],
+      "required": true,
+      "remove_on_expire": true
+    },
+    "slack": {
+      "server_id": "server_id_01234",
+      "roles": [
+        "test_roles"
+      ],
+      "required": true,
+      "remove_on_expire": true
+    },
+    "whatsapp": {
+      "server_id": "server_id_01234",
+      "roles": [
+        "test_roles"
+      ],
+      "required": true,
+      "remove_on_expire": true
+    }
+  },
+  "discord_server": "test_discord_server",
+  "discord_roles": [
+    "test_discord_roles"
+  ],
+  "discord_kick_on_expire": true
+}

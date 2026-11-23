@@ -1,0 +1,4 @@
+{
+  "transport": "cursor_polling",
+  "url": "https://example.com"
+}

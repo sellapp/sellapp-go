@@ -476,3 +476,62 @@ Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API r
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
+## GetUsage
+
+Retrieve promotion usage
+
+[API reference](https://sell.app/docs/api/promotions/retrieve-promotion-usage) · Effect: **read**
+
+```go
+func (s *PromotionService) GetUsage(ctx context.Context, promotion int, params *PromotionsGetUsageParams, opts ...RequestOption) (*SdkGetPromotionUsageResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| promotion | `int` | Yes |
+| params | `*PromotionsGetUsageParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkGetPromotionUsageResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.PromotionsGetUsageParams{}
+    result, err := client.Promotions().GetUsage(context.Background(), 30, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+

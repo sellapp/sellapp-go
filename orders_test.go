@@ -25,7 +25,7 @@ func TestOrders_List(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"PENDING\",\"timeline\":[{\"status\":\"PENDING\",\"set_at\":\"2023-01-01T00:00:00.000Z\"}],\"customer\":{\"id\":1,\"email\":\"test@example.com\",\"country\":\"test_country\",\"location\":\"test_location\",\"proxied\":true},\"payment\":{\"method\":\"AUTHNET\",\"transaction_id\":\"transaction_id_01234\",\"payment_id\":\"payment_id_01234\",\"payment_capture_id\":\"payment_capture_id_01234\",\"blockchain_txid\":\"blockchain_txid_01234\",\"settlement_gateway\":\"test_settlement_gateway\",\"has_checkout_url\":true},\"totals\":{\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"total_exclusive_usd_cents\":1,\"total_usd_cents\":1},\"coupon_id\":1,\"line_items\":[{\"id\":1,\"product_id\":1,\"product_variant_id\":1,\"product_title\":\"test_product_title\",\"variant_title\":\"test_variant_title\",\"quantity\":1,\"status\":\"PENDING\",\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"subscription_id\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\"}],\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"PENDING\",\"timeline\":[{\"status\":\"PENDING\",\"set_at\":\"2023-01-01T00:00:00.000Z\"}],\"customer\":{\"id\":1,\"email\":\"test@example.com\",\"country\":\"test_country\",\"location\":\"test_location\",\"proxied\":true},\"payment\":{\"method\":\"AUTHNET\",\"transaction_id\":\"transaction_id_01234\",\"payment_id\":\"payment_id_01234\",\"payment_capture_id\":\"payment_capture_id_01234\",\"blockchain_txid\":\"blockchain_txid_01234\",\"settlement_gateway\":\"test_settlement_gateway\",\"has_checkout_url\":true},\"totals\":{\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"total_exclusive_usd_cents\":1,\"total_usd_cents\":1,\"refund_currency\":\"test_refund_currency\",\"refunded_total_cents\":1},\"coupon_id\":1,\"line_items\":[{\"id\":1,\"product_id\":1,\"product_variant_id\":1,\"product_title\":\"test_product_title\",\"variant_title\":\"test_variant_title\",\"quantity\":1,\"status\":\"PENDING\",\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"subscription_id\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\"}],\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -81,7 +81,7 @@ func TestOrders_Search(t *testing.T) {
 		require.Equal(t, "/v2/orders/search", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"PENDING\",\"timeline\":[{\"status\":\"PENDING\",\"set_at\":\"2023-01-01T00:00:00.000Z\"}],\"customer\":{\"id\":1,\"email\":\"test@example.com\",\"country\":\"test_country\",\"location\":\"test_location\",\"proxied\":true},\"payment\":{\"method\":\"AUTHNET\",\"transaction_id\":\"transaction_id_01234\",\"payment_id\":\"payment_id_01234\",\"payment_capture_id\":\"payment_capture_id_01234\",\"blockchain_txid\":\"blockchain_txid_01234\",\"settlement_gateway\":\"test_settlement_gateway\",\"has_checkout_url\":true},\"totals\":{\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"total_exclusive_usd_cents\":1,\"total_usd_cents\":1},\"coupon_id\":1,\"line_items\":[{\"id\":1,\"product_id\":1,\"product_variant_id\":1,\"product_title\":\"test_product_title\",\"variant_title\":\"test_variant_title\",\"quantity\":1,\"status\":\"PENDING\",\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"subscription_id\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\"}],\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"status\":\"PENDING\",\"timeline\":[{\"status\":\"PENDING\",\"set_at\":\"2023-01-01T00:00:00.000Z\"}],\"customer\":{\"id\":1,\"email\":\"test@example.com\",\"country\":\"test_country\",\"location\":\"test_location\",\"proxied\":true},\"payment\":{\"method\":\"AUTHNET\",\"transaction_id\":\"transaction_id_01234\",\"payment_id\":\"payment_id_01234\",\"payment_capture_id\":\"payment_capture_id_01234\",\"blockchain_txid\":\"blockchain_txid_01234\",\"settlement_gateway\":\"test_settlement_gateway\",\"has_checkout_url\":true},\"totals\":{\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"total_exclusive_usd_cents\":1,\"total_usd_cents\":1,\"refund_currency\":\"test_refund_currency\",\"refunded_total_cents\":1},\"coupon_id\":1,\"line_items\":[{\"id\":1,\"product_id\":1,\"product_variant_id\":1,\"product_title\":\"test_product_title\",\"variant_title\":\"test_variant_title\",\"quantity\":1,\"status\":\"PENDING\",\"currency\":\"test_cur\",\"subtotal_cents\":1,\"total_exclusive_cents\":1,\"total_cents\":1,\"subscription_id\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\"}],\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -146,7 +146,7 @@ func TestOrders_UpdateStatus(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Orders().UpdateStatus(context.Background(), 1, decodeTestParams[sellapp.OrdersUpdateStatusParams](t, "{\"status\":\"COMPLETED\",\"expected_status\":\"PENDING\"}"))
+	result, err := client.Orders().UpdateStatus(context.Background(), 1, decodeTestParams[sellapp.OrdersUpdateStatusParams](t, "{\"status\":\"COMPLETED\",\"expected_status\":\"PENDING\",\"payment_received\":true}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -193,7 +193,7 @@ func TestOrders_CreateReplacement(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Orders().CreateReplacement(context.Background(), 1, decodeTestParams[sellapp.OrdersCreateReplacementParams](t, "{\"product_variants\":{}}"))
+	result, err := client.Orders().CreateReplacement(context.Background(), 1, decodeTestParams[sellapp.OrdersCreateReplacementParams](t, "{\"product_variants\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -216,7 +216,7 @@ func TestOrders_CreateRefund(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Orders().CreateRefund(context.Background(), 1, decodeTestParams[sellapp.OrdersCreateRefundParams](t, "{\"amount\":\"5.00\"}"))
+	result, err := client.Orders().CreateRefund(context.Background(), 1, decodeTestParams[sellapp.OrdersCreateRefundParams](t, "{\"amount\":\"5.00\",\"expected_refunded_total_cents\":0}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -286,6 +286,29 @@ func TestOrders_SendFulfillmentNotifications(t *testing.T) {
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
 	result, err := client.Orders().SendFulfillmentNotifications(context.Background(), 1, decodeTestParams[sellapp.OrdersSendFulfillmentNotificationsParams](t, "{\"email\":\"test@example.com\",\"product_variant_ids\":[1]}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestOrders_RegenerateTelegramInvite(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/orders/1/telegram-invites", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_regenerate_order_telegram_invite_response_value_201_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Orders().RegenerateTelegramInvite(context.Background(), 1, decodeTestParams[sellapp.OrdersRegenerateTelegramInviteParams](t, "{\"variant_id\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

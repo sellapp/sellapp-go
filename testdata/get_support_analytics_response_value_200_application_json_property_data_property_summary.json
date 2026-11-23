@@ -1,0 +1,9 @@
+{
+  "tickets_received": 1,
+  "tickets_resolved": 1,
+  "auto_closures": 1,
+  "manual_closures": 1,
+  "support_wallet_credit_cents": 1,
+  "auto_wallet_credit_cents": 1,
+  "warning_count": 1
+}

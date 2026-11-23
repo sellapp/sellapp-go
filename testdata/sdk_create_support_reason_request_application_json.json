@@ -1,0 +1,8 @@
+{
+  "label": "test_label",
+  "description": "test_description",
+  "is_active": true,
+  "product_ids": [
+    1
+  ]
+}

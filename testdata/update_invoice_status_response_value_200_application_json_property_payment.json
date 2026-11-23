@@ -43,5 +43,7 @@
       "exclusive": "test_exclusive",
       "inclusive": "test_inclusive"
     }
-  }
+  },
+  "refund_currency": "test_refund_currency",
+  "refunded_total_cents": 1
 }

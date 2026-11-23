@@ -5,6 +5,6 @@
   "name": "Test",
   "locale": "en",
   "metadata": {
-    "key": {}
+    "key": "test_value"
   }
 }

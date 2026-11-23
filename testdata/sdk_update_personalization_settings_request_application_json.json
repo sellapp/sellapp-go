@@ -1,0 +1,14 @@
+{
+  "support_email": "test@example.com",
+  "trustpilot_email": "test@example.com",
+  "sender_name": "Test",
+  "sender_email": "test@example.com",
+  "store_address": "test_store_address",
+  "store_city": "test_store_city",
+  "store_state": "test_store_state",
+  "store_zip": "test_store_zip",
+  "store_country": "test_store_country",
+  "store_tax": "test_store_tax",
+  "back_link_label": "test_back_link_label",
+  "back_link_url": "https://example.com"
+}

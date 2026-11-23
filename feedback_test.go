@@ -166,6 +166,7 @@ func TestFeedback_V2SearchFeedback(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/feedback/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"feedback\":\"test_feedback\",\"rating\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"metadata\":{},\"message\":\"test_message\",\"reply\":\"test_reply\",\"is_automatic\":true,\"product_id\":1,\"order_id\":1,\"sentiment\":\"POSITIVE\",\"variant_id\":1,\"product_title\":\"test_product_title\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -173,7 +174,7 @@ func TestFeedback_V2SearchFeedback(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Feedback().V2SearchFeedback(context.Background(), &sellapp.FeedbackV2SearchFeedbackParams{})
+	iter := client.Feedback().V2SearchFeedback(context.Background(), &sellapp.FeedbackV2SearchFeedbackParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -190,7 +191,7 @@ func TestFeedback_V2SearchFeedback_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Feedback().V2SearchFeedback(context.Background(), &sellapp.FeedbackV2SearchFeedbackParams{})
+	iter := client.Feedback().V2SearchFeedback(context.Background(), &sellapp.FeedbackV2SearchFeedbackParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

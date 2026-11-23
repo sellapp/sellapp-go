@@ -1,5 +1,5 @@
 {
-  "field": "test_field",
+  "field": "id",
   "operator": "eq",
   "value": {}
 }

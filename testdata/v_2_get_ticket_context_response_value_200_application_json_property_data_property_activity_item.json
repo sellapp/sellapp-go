@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "event": "refund_issued",
+  "actor_type": "test_actor_type",
+  "rule": {
+    "id": 1,
+    "name": "Test"
+  },
+  "wallet_entry": {
+    "id": 1,
+    "amount_usd_cents": 1,
+    "reversed": true
+  },
+  "created_at": "2023-01-01T00:00:00.000Z"
+}

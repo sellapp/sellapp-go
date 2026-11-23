@@ -1,0 +1,28 @@
+{
+  "period": {
+    "preset": "test_preset",
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01",
+    "timezone": "test_timezone",
+    "currency": "test_currency"
+  },
+  "compared_with": {
+    "start_date": "2023-01-01",
+    "end_date": "2023-01-01"
+  },
+  "revenue": {
+    "currency": "test_currency",
+    "total_cents": 1,
+    "previous_total_cents": 1,
+    "formatted": "test_formatted",
+    "previous_formatted": "test_previous_formatted",
+    "trend": "test_trend",
+    "trend_up": true
+  },
+  "completed_charges": {
+    "count": 1,
+    "previous_count": 1,
+    "trend": "test_trend",
+    "trend_up": true
+  }
+}

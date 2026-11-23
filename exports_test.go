@@ -29,7 +29,7 @@ func TestExports_List(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Exports().List(context.Background())
+	iter := client.Exports().List(context.Background(), &sellapp.ExportsListParams{})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -46,7 +46,7 @@ func TestExports_List_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Exports().List(context.Background())
+	iter := client.Exports().List(context.Background(), &sellapp.ExportsListParams{})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }
@@ -116,7 +116,7 @@ func TestExports_Error401(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Exports().List(context.Background())
+	iter := client.Exports().List(context.Background(), &sellapp.ExportsListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.AuthenticationError{}, iter.Err())
 }
@@ -130,7 +130,7 @@ func TestExports_Error404(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Exports().List(context.Background())
+	iter := client.Exports().List(context.Background(), &sellapp.ExportsListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.NotFoundError{}, iter.Err())
 }
@@ -144,7 +144,7 @@ func TestExports_Error422(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Exports().List(context.Background())
+	iter := client.Exports().List(context.Background(), &sellapp.ExportsListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.UnprocessableEntityError{}, iter.Err())
 }

@@ -65,5 +65,6 @@
         "label": "test_label"
       }
     ]
-  }
+  },
+  "is_draft": true
 }

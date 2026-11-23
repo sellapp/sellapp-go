@@ -1,0 +1,23 @@
+{
+  "is_valid": true,
+  "used_placeholders": [
+    "test_used_placeholders"
+  ],
+  "requested_placeholders": [
+    "test_requested_placeholders"
+  ],
+  "unsupported_placeholders": [
+    "test_unsupported_placeholders"
+  ],
+  "suggested_replacements": [
+    {
+      "requested": "test_requested",
+      "replacement": "test_replacement",
+      "replacement_token": "test_replacement_token",
+      "message": "test_message"
+    }
+  ],
+  "supported_tokens": [
+    "test_supported_tokens"
+  ]
+}

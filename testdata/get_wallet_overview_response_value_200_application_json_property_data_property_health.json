@@ -1,0 +1,11 @@
+{
+  "liability_cents": 1,
+  "available_cents": 1,
+  "held_cents": 1,
+  "held_count": 1,
+  "wallets_with_balance": 1,
+  "total_wallets": 1,
+  "frozen_wallets": 1,
+  "expiring_soon_cents": 1,
+  "expiring_soon_days": 1
+}

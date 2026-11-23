@@ -17,5 +17,8 @@
   "enrollment_limit": 1,
   "delivery_text": "test_delivery_text",
   "visibility": "PUBLIC",
-  "expected_updated_at": "2023-01-01T00:00:00.000Z"
+  "expected_updated_at": "2023-01-01T00:00:00.000Z",
+  "title": "test_title",
+  "slug": "00000000000000000000000000",
+  "description": "test_description"
 }

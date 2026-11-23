@@ -25,7 +25,7 @@ func TestWebhookChannels_List(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":\"0f33d01f-f9f8-45e8-80c8-7734d057196d\",\"name\":\"Ship It webhook\",\"url\":\"https://example.com/sellapp/webhooks\",\"allowed_notifications\":[\"order.created\",\"order.paid\"],\"signing_secret_configured\":true}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":\"0f33d01f-f9f8-45e8-80c8-7734d057196d\",\"name\":\"Ship It webhook\",\"url\":\"https://example.com/sellapp/webhooks\",\"allowed_notifications\":[\"order.created\",\"order.paid\"],\"signing_secret_configured\":true,\"health\":{\"state\":\"active\",\"last_success_at\":\"2023-01-01T00:00:00.000Z\",\"last_failure_at\":\"2023-01-01T00:00:00.000Z\"},\"last_delivery\":{\"id\":\"00000000-0000-0000-0000-000000000000\",\"event_type\":\"test_event_type\",\"status\":\"pending\",\"created_at\":\"2023-01-01T00:00:00.000Z\"}}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -81,7 +81,7 @@ func TestWebhookChannels_Search(t *testing.T) {
 		require.Equal(t, "/v2/webhook-channels/search", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":\"0f33d01f-f9f8-45e8-80c8-7734d057196d\",\"name\":\"Ship It webhook\",\"url\":\"https://example.com/sellapp/webhooks\",\"allowed_notifications\":[\"order.created\",\"order.paid\"],\"signing_secret_configured\":true}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":\"0f33d01f-f9f8-45e8-80c8-7734d057196d\",\"name\":\"Ship It webhook\",\"url\":\"https://example.com/sellapp/webhooks\",\"allowed_notifications\":[\"order.created\",\"order.paid\"],\"signing_secret_configured\":true,\"health\":{\"state\":\"active\",\"last_success_at\":\"2023-01-01T00:00:00.000Z\",\"last_failure_at\":\"2023-01-01T00:00:00.000Z\"},\"last_delivery\":{\"id\":\"00000000-0000-0000-0000-000000000000\",\"event_type\":\"test_event_type\",\"status\":\"pending\",\"created_at\":\"2023-01-01T00:00:00.000Z\"}}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 

@@ -1,0 +1,9 @@
+{
+  "comment": "test_comment",
+  "licenseLength": 1,
+  "licenseLengthUnit": "DAY",
+  "isLicenseLengthUnlimited": true,
+  "licenseLimit": 1,
+  "isLicenseLimitUnlimited": true,
+  "licensePrefix": "test_licensePrefix"
+}

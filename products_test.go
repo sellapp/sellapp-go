@@ -25,7 +25,7 @@ func TestProducts_List(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"slug\":\"test_slug\",\"description\":\"test_description\",\"images\":[{\"path\":\"test_path\",\"metadata\":{\"size\":1,\"filename\":\"Test\",\"extension\":\"test_extension\",\"mime_type\":\"test_mime_type\"}}],\"order\":1,\"visibility\":\"test_visibility\",\"delivery_text\":\"test_delivery_text\",\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}],\"other_settings\":{\"faq\":[{\"question\":\"test_question\",\"answer\":\"test_answer\"}],\"video_url\":\"video_url_01234\",\"redirect_url\":\"https://example.com\",\"product_title\":\"test_product_title\",\"product_description\":\"test_product_description\"},\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"section_id\":1,\"section_order\":1,\"is_discoverable\":true,\"variants\":[{\"id\":1,\"title\":\"test_title\"}],\"url\":\"https://example.com\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"slug\":\"test_slug\",\"description\":\"test_description\",\"images\":[{\"path\":\"test_path\",\"metadata\":{\"size\":1,\"filename\":\"Test\",\"extension\":\"test_extension\",\"mime_type\":\"test_mime_type\"}}],\"order\":1,\"visibility\":\"test_visibility\",\"delivery_text\":\"test_delivery_text\",\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}],\"other_settings\":{\"faq\":[{\"question\":\"test_question\",\"answer\":\"test_answer\"}],\"video_url\":\"video_url_01234\",\"redirect_url\":\"https://example.com\",\"product_title\":\"test_product_title\",\"product_description\":\"test_product_description\"},\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"section_id\":1,\"section_order\":1,\"is_discoverable\":true,\"variants\":[{\"id\":1,\"title\":\"test_title\"}],\"url\":\"https://example.com\",\"price_range\":\"test_price_range\",\"stock\":1,\"sales\":1,\"sold_out\":true}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -161,7 +161,7 @@ func TestProducts_Search(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"slug\":\"test_slug\",\"description\":\"test_description\",\"images\":[{\"path\":\"test_path\",\"metadata\":{\"size\":1,\"filename\":\"Test\",\"extension\":\"test_extension\",\"mime_type\":\"test_mime_type\"}}],\"order\":1,\"visibility\":\"test_visibility\",\"delivery_text\":\"test_delivery_text\",\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}],\"other_settings\":{\"faq\":[{\"question\":\"test_question\",\"answer\":\"test_answer\"}],\"video_url\":\"video_url_01234\",\"redirect_url\":\"https://example.com\",\"product_title\":\"test_product_title\",\"product_description\":\"test_product_description\"},\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"section_id\":1,\"section_order\":1,\"is_discoverable\":true,\"variants\":[{\"id\":1,\"title\":\"test_title\"}],\"url\":\"https://example.com\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"slug\":\"test_slug\",\"description\":\"test_description\",\"images\":[{\"path\":\"test_path\",\"metadata\":{\"size\":1,\"filename\":\"Test\",\"extension\":\"test_extension\",\"mime_type\":\"test_mime_type\"}}],\"order\":1,\"visibility\":\"test_visibility\",\"delivery_text\":\"test_delivery_text\",\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}],\"other_settings\":{\"faq\":[{\"question\":\"test_question\",\"answer\":\"test_answer\"}],\"video_url\":\"video_url_01234\",\"redirect_url\":\"https://example.com\",\"product_title\":\"test_product_title\",\"product_description\":\"test_product_description\"},\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"section_id\":1,\"section_order\":1,\"is_discoverable\":true,\"variants\":[{\"id\":1,\"title\":\"test_title\"}],\"url\":\"https://example.com\",\"price_range\":\"test_price_range\",\"stock\":1,\"sales\":1,\"sold_out\":true}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -245,6 +245,72 @@ func TestProducts_BatchDelete(t *testing.T) {
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
 	err := client.Products().BatchDelete(context.Background(), decodeTestParams[sellapp.ProductsBatchDeleteParams](t, "{\"resources\":[1]}"))
 	require.NoError(t, err)
+}
+
+func TestProducts_Publish(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/products/1/publish", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_product_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Products().Publish(context.Background(), 1, decodeTestParams[sellapp.ProductsPublishParams](t, "{\"visibility\":\"PUBLIC\",\"variant_ids\":[1]}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestProducts_Duplicate(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/products/1/duplicate", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_product_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Products().Duplicate(context.Background(), 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestProducts_Move(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/products/1/position", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_product_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Products().Move(context.Background(), 1, decodeTestParams[sellapp.ProductsMoveParams](t, "{\"position\":1,\"expected_position\":1}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
 }
 
 func TestProducts_Error401(t *testing.T) {

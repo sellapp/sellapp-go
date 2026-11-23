@@ -9,11 +9,12 @@ List disputes
 [API reference](https://sell.app/docs/api/disputes) · Effect: **read**
 
 ```go
-func (s *DisputeService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListDisputesResponseValue200ApplicationJSONPropertyDataItem]
+func (s *DisputeService) List(ctx context.Context, params *DisputesListParams, opts ...RequestOption) *Iterator[ListDisputesResponseValue200ApplicationJSONPropertyDataItem]
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
+| params | `*DisputesListParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `*Iterator[ListDisputesResponseValue200ApplicationJSONPropertyDataItem]`.
@@ -30,7 +31,8 @@ import (
 
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    page := client.Disputes().List(context.Background())
+    params := &sellapp.DisputesListParams{}
+    page := client.Disputes().List(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
 }

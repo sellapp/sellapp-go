@@ -14,7 +14,7 @@
       "name": "Test",
       "locale": "en",
       "metadata": {
-        "key": {}
+        "key": "test_value"
       }
     },
     "customer_email": "test@example.com",

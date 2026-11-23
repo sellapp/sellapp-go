@@ -9,11 +9,12 @@ List refunds
 [API reference](https://sell.app/docs/api/refunds) · Effect: **read**
 
 ```go
-func (s *RefundService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListRefundsResponseValue200ApplicationJSONPropertyDataItem]
+func (s *RefundService) List(ctx context.Context, params *RefundsListParams, opts ...RequestOption) *Iterator[ListRefundsResponseValue200ApplicationJSONPropertyDataItem]
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
+| params | `*RefundsListParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `*Iterator[ListRefundsResponseValue200ApplicationJSONPropertyDataItem]`.
@@ -30,7 +31,8 @@ import (
 
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    page := client.Refunds().List(context.Background())
+    params := &sellapp.RefundsListParams{}
+    page := client.Refunds().List(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
 }

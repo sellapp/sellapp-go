@@ -140,6 +140,34 @@
     "sourceFile": "charges.go"
   },
   {
+    "operationId": "getChargeSummary",
+    "resource": "charges",
+    "method": "GetSummary",
+    "nativeSignature": "func (s *ChargeService) GetSummary(ctx context.Context, params *ChargesGetSummaryParams, opts ...RequestOption) (*SdkGetChargeSummaryResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetSummary",
+        "params": [
+          {
+            "name": "params",
+            "type": "*ChargesGetSummaryParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetChargeSummaryResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "charges.go"
+  },
+  {
     "operationId": "listGroups",
     "resource": "groups",
     "method": "List",
@@ -1532,6 +1560,226 @@
     "sourceFile": "products.go"
   },
   {
+    "operationId": "publishProduct",
+    "resource": "products",
+    "method": "Publish",
+    "nativeSignature": "func (s *ProductService) Publish(ctx context.Context, product int, params *ProductsPublishParams, opts ...RequestOption) (*SdkPublishProductResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Publish",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductsPublishParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkPublishProductResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products.go"
+  },
+  {
+    "operationId": "duplicateProduct",
+    "resource": "products",
+    "method": "Duplicate",
+    "nativeSignature": "func (s *ProductService) Duplicate(ctx context.Context, product int, opts ...RequestOption) (*SdkDuplicateProductResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Duplicate",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkDuplicateProductResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products.go"
+  },
+  {
+    "operationId": "moveProduct",
+    "resource": "products",
+    "method": "Move",
+    "nativeSignature": "func (s *ProductService) Move(ctx context.Context, product int, params *ProductsMoveParams, opts ...RequestOption) (*SdkMoveProductResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Move",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductsMoveParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkMoveProductResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products.go"
+  },
+  {
+    "operationId": "getProductFeaturedVariant",
+    "resource": "products_featured_variant",
+    "method": "Get",
+    "nativeSignature": "func (s *ProductsFeaturedVariantService) Get(ctx context.Context, product int, opts ...RequestOption) (*SdkGetProductFeaturedVariantResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetProductFeaturedVariantResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products_featured_variant.go"
+  },
+  {
+    "operationId": "replaceProductFeaturedVariant",
+    "resource": "products_featured_variant",
+    "method": "Replace",
+    "nativeSignature": "func (s *ProductsFeaturedVariantService) Replace(ctx context.Context, product int, params *ProductsFeaturedVariantReplaceParams, opts ...RequestOption) (*SdkReplaceProductFeaturedVariantResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductsFeaturedVariantReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceProductFeaturedVariantResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products_featured_variant.go"
+  },
+  {
+    "operationId": "listProductSimilarProducts",
+    "resource": "products_similar_products",
+    "method": "List",
+    "nativeSignature": "func (s *ProductsSimilarProductService) List(ctx context.Context, product int, opts ...RequestOption) (*SdkListProductSimilarProductsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkListProductSimilarProductsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products_similar_products.go"
+  },
+  {
+    "operationId": "replaceProductSimilarProducts",
+    "resource": "products_similar_products",
+    "method": "Replace",
+    "nativeSignature": "func (s *ProductsSimilarProductService) Replace(ctx context.Context, product int, params *ProductsSimilarProductsReplaceParams, opts ...RequestOption) (*SdkReplaceProductSimilarProductsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductsSimilarProductsReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceProductSimilarProductsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "products_similar_products.go"
+  },
+  {
     "operationId": "listProductVariants",
     "resource": "product_variants",
     "method": "List",
@@ -2094,6 +2342,222 @@
       }
     ],
     "sourceFile": "product_variants.go"
+  },
+  {
+    "operationId": "publishProductVariant",
+    "resource": "product_variants",
+    "method": "Publish",
+    "nativeSignature": "func (s *ProductVariantService) Publish(ctx context.Context, product int, variant int, opts ...RequestOption) (*SdkPublishProductVariantResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Publish",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkPublishProductVariantResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "product_variants.go"
+  },
+  {
+    "operationId": "duplicateProductVariant",
+    "resource": "product_variants",
+    "method": "Duplicate",
+    "nativeSignature": "func (s *ProductVariantService) Duplicate(ctx context.Context, product int, variant int, opts ...RequestOption) (*SdkDuplicateProductVariantResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Duplicate",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkDuplicateProductVariantResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "product_variants.go"
+  },
+  {
+    "operationId": "reorderProductVariants",
+    "resource": "product_variants",
+    "method": "Reorder",
+    "nativeSignature": "func (s *ProductVariantService) Reorder(ctx context.Context, product int, params *ProductVariantsReorderParams, opts ...RequestOption) (*SdkReorderProductVariantsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Reorder",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductVariantsReorderParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReorderProductVariantsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "product_variants.go"
+  },
+  {
+    "operationId": "getVariantSubscriptionSettings",
+    "resource": "product_variants_subscription_settings",
+    "method": "Get",
+    "nativeSignature": "func (s *ProductVariantsSubscriptionSettingService) Get(ctx context.Context, product int, variant int, opts ...RequestOption) (*SdkGetVariantSubscriptionSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetVariantSubscriptionSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "product_variants_subscription_settings.go"
+  },
+  {
+    "operationId": "updateVariantSubscriptionSettings",
+    "resource": "product_variants_subscription_settings",
+    "method": "Update",
+    "nativeSignature": "func (s *ProductVariantsSubscriptionSettingService) Update(ctx context.Context, product int, variant int, params *ProductVariantsSubscriptionSettingsUpdateParams, opts ...RequestOption) (*SdkUpdateVariantSubscriptionSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductVariantsSubscriptionSettingsUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateVariantSubscriptionSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "product_variants_subscription_settings.go"
+  },
+  {
+    "operationId": "replaceVariantCommunityAccess",
+    "resource": "product_variants_community_access",
+    "method": "Replace",
+    "nativeSignature": "func (s *ProductVariantsCommunityAccessService) Replace(ctx context.Context, product int, variant int, params *ProductVariantsCommunityAccessReplaceParams, opts ...RequestOption) (*SdkReplaceVariantCommunityAccessResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*ProductVariantsCommunityAccessReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceVariantCommunityAccessResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "product_variants_community_access.go"
   },
   {
     "operationId": "cancelSubscription",
@@ -3012,6 +3476,34 @@
     "sourceFile": "bookings_calendar_events.go"
   },
   {
+    "operationId": "createBookingProduct",
+    "resource": "bookings",
+    "method": "Create",
+    "nativeSignature": "func (s *BookingService) Create(ctx context.Context, params *BookingsCreateParams, opts ...RequestOption) (*SdkCreateBookingProductResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "params",
+            "type": "*BookingsCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkCreateBookingProductResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "bookings.go"
+  },
+  {
     "operationId": "getBundleItem",
     "resource": "bundle_items",
     "method": "Get",
@@ -3146,6 +3638,148 @@
       }
     ],
     "sourceFile": "bundle_items.go"
+  },
+  {
+    "operationId": "previewVariantBuyerNotification",
+    "resource": "variant_deliverables",
+    "method": "Preview",
+    "nativeSignature": "func (s *VariantDeliverableService) Preview(ctx context.Context, product int, variant int, opts ...RequestOption) (*SdkPreviewVariantBuyerNotificationResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Preview",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkPreviewVariantBuyerNotificationResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "variant_deliverables.go"
+  },
+  {
+    "operationId": "notifyVariantBuyers",
+    "resource": "variant_deliverables",
+    "method": "Notify",
+    "nativeSignature": "func (s *VariantDeliverableService) Notify(ctx context.Context, product int, variant int, opts ...RequestOption) (*SdkNotifyVariantBuyersResponseValue202ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Notify",
+        "params": [
+          {
+            "name": "product",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkNotifyVariantBuyersResponseValue202ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "variant_deliverables.go"
+  },
+  {
+    "operationId": "getVariantDeliverableConfiguration",
+    "resource": "variant_deliverables",
+    "method": "Get",
+    "nativeSignature": "func (s *VariantDeliverableService) Get(ctx context.Context, product string, variant int, opts ...RequestOption) (*SdkGetVariantDeliverableConfigurationResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "product",
+            "type": "string",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetVariantDeliverableConfigurationResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "variant_deliverables.go"
+  },
+  {
+    "operationId": "replaceVariantDeliverableConfiguration",
+    "resource": "variant_deliverables",
+    "method": "Replace",
+    "nativeSignature": "func (s *VariantDeliverableService) Replace(ctx context.Context, product string, variant int, params *VariantDeliverablesReplaceParams, opts ...RequestOption) (*SdkReplaceVariantDeliverableConfigurationResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "product",
+            "type": "string",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "variant",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*VariantDeliverablesReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceVariantDeliverableConfigurationResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "variant_deliverables.go"
   },
   {
     "operationId": "listPromotions",
@@ -3450,6 +4084,40 @@
       }
     ],
     "sourceFile": "promotions_phases.go"
+  },
+  {
+    "operationId": "getPromotionUsage",
+    "resource": "promotions",
+    "method": "GetUsage",
+    "nativeSignature": "func (s *PromotionService) GetUsage(ctx context.Context, promotion int, params *PromotionsGetUsageParams, opts ...RequestOption) (*SdkGetPromotionUsageResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetUsage",
+        "params": [
+          {
+            "name": "promotion",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*PromotionsGetUsageParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetPromotionUsageResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "promotions.go"
   },
   {
     "operationId": "listAddOns",
@@ -4558,6 +5226,798 @@
     "sourceFile": "webhook_channels.go"
   },
   {
+    "operationId": "listSupportReplyTemplates",
+    "resource": "support_reply_templates",
+    "method": "List",
+    "nativeSignature": "func (s *SupportReplyTemplateService) List(ctx context.Context, params *SupportReplyTemplatesListParams, opts ...RequestOption) *Iterator[ListSupportReplyTemplatesResponseValue200ApplicationJSONPropertyDataItem]",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[ListSupportReplyTemplatesResponseValue200ApplicationJSONPropertyDataItem]",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "createSupportReplyTemplate",
+    "resource": "support_reply_templates",
+    "method": "Create",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Create(ctx context.Context, params *SupportReplyTemplatesCreateParams, opts ...RequestOption) (*SdkCreateSupportReplyTemplateResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkCreateSupportReplyTemplateResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "getSupportReplyTemplate",
+    "resource": "support_reply_templates",
+    "method": "Get",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Get(ctx context.Context, supportReplyTemplate int, opts ...RequestOption) (*SdkGetSupportReplyTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "supportReplyTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportReplyTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "replaceSupportReplyTemplate",
+    "resource": "support_reply_templates",
+    "method": "Replace",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Replace(ctx context.Context, supportReplyTemplate int, params *SupportReplyTemplatesReplaceParams, opts ...RequestOption) (*SdkReplaceSupportReplyTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "supportReplyTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceSupportReplyTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "updateSupportReplyTemplate",
+    "resource": "support_reply_templates",
+    "method": "Update",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Update(ctx context.Context, supportReplyTemplate int, params *SupportReplyTemplatesUpdateParams, opts ...RequestOption) (*SdkUpdateSupportReplyTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "supportReplyTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateSupportReplyTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "deleteSupportReplyTemplate",
+    "resource": "support_reply_templates",
+    "method": "Delete",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Delete(ctx context.Context, supportReplyTemplate int, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "Delete",
+        "params": [
+          {
+            "name": "supportReplyTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "renderSupportReplyTemplate",
+    "resource": "support_reply_templates",
+    "method": "Render",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Render(ctx context.Context, supportReplyTemplate int, params *SupportReplyTemplatesRenderParams, opts ...RequestOption) (*SdkRenderSupportReplyTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Render",
+        "params": [
+          {
+            "name": "supportReplyTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesRenderParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkRenderSupportReplyTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "reorderSupportReplyTemplates",
+    "resource": "support_reply_templates",
+    "method": "Reorder",
+    "nativeSignature": "func (s *SupportReplyTemplateService) Reorder(ctx context.Context, params *SupportReplyTemplatesReorderParams, opts ...RequestOption) (*SdkReorderSupportReplyTemplatesResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Reorder",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesReorderParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReorderSupportReplyTemplatesResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "getSupportReplyTemplateOptions",
+    "resource": "support_reply_templates",
+    "method": "GetOptions",
+    "nativeSignature": "func (s *SupportReplyTemplateService) GetOptions(ctx context.Context, params *SupportReplyTemplatesGetOptionsParams, opts ...RequestOption) (*SdkGetSupportReplyTemplateOptionsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetOptions",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportReplyTemplatesGetOptionsParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportReplyTemplateOptionsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reply_templates.go"
+  },
+  {
+    "operationId": "listSupportReasons",
+    "resource": "support_reasons",
+    "method": "List",
+    "nativeSignature": "func (s *SupportReasonService) List(ctx context.Context, params *SupportReasonsListParams, opts ...RequestOption) *Iterator[ListSupportReasonsResponseValue200ApplicationJSONPropertyDataItem]",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportReasonsListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[ListSupportReasonsResponseValue200ApplicationJSONPropertyDataItem]",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "createSupportReason",
+    "resource": "support_reasons",
+    "method": "Create",
+    "nativeSignature": "func (s *SupportReasonService) Create(ctx context.Context, params *SupportReasonsCreateParams, opts ...RequestOption) (*SdkCreateSupportReasonResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportReasonsCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkCreateSupportReasonResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "getSupportReason",
+    "resource": "support_reasons",
+    "method": "Get",
+    "nativeSignature": "func (s *SupportReasonService) Get(ctx context.Context, supportReason int, opts ...RequestOption) (*SdkGetSupportReasonResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "supportReason",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportReasonResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "replaceSupportReason",
+    "resource": "support_reasons",
+    "method": "Replace",
+    "nativeSignature": "func (s *SupportReasonService) Replace(ctx context.Context, supportReason int, params *SupportReasonsReplaceParams, opts ...RequestOption) (*SdkReplaceSupportReasonResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "supportReason",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportReasonsReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceSupportReasonResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "updateSupportReason",
+    "resource": "support_reasons",
+    "method": "Update",
+    "nativeSignature": "func (s *SupportReasonService) Update(ctx context.Context, supportReason int, params *SupportReasonsUpdateParams, opts ...RequestOption) (*SdkUpdateSupportReasonResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "supportReason",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportReasonsUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateSupportReasonResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "deleteSupportReason",
+    "resource": "support_reasons",
+    "method": "Delete",
+    "nativeSignature": "func (s *SupportReasonService) Delete(ctx context.Context, supportReason int, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "Delete",
+        "params": [
+          {
+            "name": "supportReason",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "getSupportReasonOptions",
+    "resource": "support_reasons",
+    "method": "GetOptions",
+    "nativeSignature": "func (s *SupportReasonService) GetOptions(ctx context.Context, opts ...RequestOption) (*SdkGetSupportReasonOptionsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetOptions",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportReasonOptionsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_reasons.go"
+  },
+  {
+    "operationId": "listSupportAutomationRules",
+    "resource": "support_automation_rules",
+    "method": "List",
+    "nativeSignature": "func (s *SupportAutomationRuleService) List(ctx context.Context, params *SupportAutomationRulesListParams, opts ...RequestOption) *Iterator[ListSupportAutomationRulesResponseValue200ApplicationJSONPropertyDataItem]",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[ListSupportAutomationRulesResponseValue200ApplicationJSONPropertyDataItem]",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "createSupportAutomationRule",
+    "resource": "support_automation_rules",
+    "method": "Create",
+    "nativeSignature": "func (s *SupportAutomationRuleService) Create(ctx context.Context, params *SupportAutomationRulesCreateParams, opts ...RequestOption) (*SdkCreateSupportAutomationRuleResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkCreateSupportAutomationRuleResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "getSupportAutomationRule",
+    "resource": "support_automation_rules",
+    "method": "Get",
+    "nativeSignature": "func (s *SupportAutomationRuleService) Get(ctx context.Context, supportAutomationRule int, opts ...RequestOption) (*SdkGetSupportAutomationRuleResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "supportAutomationRule",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportAutomationRuleResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "replaceSupportAutomationRule",
+    "resource": "support_automation_rules",
+    "method": "Replace",
+    "nativeSignature": "func (s *SupportAutomationRuleService) Replace(ctx context.Context, supportAutomationRule int, params *SupportAutomationRulesReplaceParams, opts ...RequestOption) (*SdkReplaceSupportAutomationRuleResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "supportAutomationRule",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceSupportAutomationRuleResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "updateSupportAutomationRule",
+    "resource": "support_automation_rules",
+    "method": "Update",
+    "nativeSignature": "func (s *SupportAutomationRuleService) Update(ctx context.Context, supportAutomationRule int, params *SupportAutomationRulesUpdateParams, opts ...RequestOption) (*SdkUpdateSupportAutomationRuleResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "supportAutomationRule",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateSupportAutomationRuleResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "updateSupportAutomationRuleState",
+    "resource": "support_automation_rules",
+    "method": "UpdateState",
+    "nativeSignature": "func (s *SupportAutomationRuleService) UpdateState(ctx context.Context, supportAutomationRule int, params *SupportAutomationRulesUpdateStateParams, opts ...RequestOption) (*SdkUpdateSupportAutomationRuleStateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdateState",
+        "params": [
+          {
+            "name": "supportAutomationRule",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesUpdateStateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateSupportAutomationRuleStateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "reorderSupportAutomationRules",
+    "resource": "support_automation_rules",
+    "method": "Reorder",
+    "nativeSignature": "func (s *SupportAutomationRuleService) Reorder(ctx context.Context, params *SupportAutomationRulesReorderParams, opts ...RequestOption) (*SdkReorderSupportAutomationRulesResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Reorder",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesReorderParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReorderSupportAutomationRulesResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "dryRunSupportAutomationRules",
+    "resource": "support_automation_rules",
+    "method": "DryRun",
+    "nativeSignature": "func (s *SupportAutomationRuleService) DryRun(ctx context.Context, params *SupportAutomationRulesDryRunParams, opts ...RequestOption) (*SdkDryRunSupportAutomationRulesResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "DryRun",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportAutomationRulesDryRunParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkDryRunSupportAutomationRulesResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_rules.go"
+  },
+  {
+    "operationId": "getSupportAutomationSettings",
+    "resource": "support_automation_settings",
+    "method": "Get",
+    "nativeSignature": "func (s *SupportAutomationSettingService) Get(ctx context.Context, opts ...RequestOption) (*SdkGetSupportAutomationSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportAutomationSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_settings.go"
+  },
+  {
+    "operationId": "replaceSupportAutomationSettings",
+    "resource": "support_automation_settings",
+    "method": "Replace",
+    "nativeSignature": "func (s *SupportAutomationSettingService) Replace(ctx context.Context, params *SupportAutomationSettingsReplaceParams, opts ...RequestOption) (*SdkReplaceSupportAutomationSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportAutomationSettingsReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceSupportAutomationSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_settings.go"
+  },
+  {
+    "operationId": "updateSupportAutomationSettings",
+    "resource": "support_automation_settings",
+    "method": "Update",
+    "nativeSignature": "func (s *SupportAutomationSettingService) Update(ctx context.Context, params *SupportAutomationSettingsUpdateParams, opts ...RequestOption) (*SdkUpdateSupportAutomationSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "params",
+            "type": "*SupportAutomationSettingsUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateSupportAutomationSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "support_automation_settings.go"
+  },
+  {
     "operationId": "listCustomers",
     "resource": "customers",
     "method": "List",
@@ -5150,6 +6610,40 @@
     "sourceFile": "orders.go"
   },
   {
+    "operationId": "regenerateOrderTelegramInvite",
+    "resource": "orders",
+    "method": "RegenerateTelegramInvite",
+    "nativeSignature": "func (s *OrderService) RegenerateTelegramInvite(ctx context.Context, order int, params *OrdersRegenerateTelegramInviteParams, opts ...RequestOption) (*SdkRegenerateOrderTelegramInviteResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "RegenerateTelegramInvite",
+        "params": [
+          {
+            "name": "order",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*OrdersRegenerateTelegramInviteParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkRegenerateOrderTelegramInviteResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "orders.go"
+  },
+  {
     "operationId": "listOrderDeliverables",
     "resource": "orders",
     "method": "ListDeliverables",
@@ -5424,80 +6918,6 @@
       }
     ],
     "sourceFile": "orders_line_items.go"
-  },
-  {
-    "operationId": "getVariantDeliverableConfiguration",
-    "resource": "variant_deliverables",
-    "method": "Get",
-    "nativeSignature": "func (s *VariantDeliverableService) Get(ctx context.Context, product string, variant int, opts ...RequestOption) (*SdkGetVariantDeliverableConfigurationResponseValue200ApplicationJSON, error)",
-    "signatures": [
-      {
-        "name": "Get",
-        "params": [
-          {
-            "name": "product",
-            "type": "string",
-            "optional": false,
-            "passingStyle": "positional"
-          },
-          {
-            "name": "variant",
-            "type": "int",
-            "optional": false,
-            "passingStyle": "positional"
-          },
-          {
-            "name": "opts",
-            "type": "RequestOption",
-            "optional": false,
-            "passingStyle": "positional"
-          }
-        ],
-        "returnType": "*SdkGetVariantDeliverableConfigurationResponseValue200ApplicationJSON",
-        "async": false
-      }
-    ],
-    "sourceFile": "variant_deliverables.go"
-  },
-  {
-    "operationId": "replaceVariantDeliverableConfiguration",
-    "resource": "variant_deliverables",
-    "method": "Replace",
-    "nativeSignature": "func (s *VariantDeliverableService) Replace(ctx context.Context, product string, variant int, params *VariantDeliverablesReplaceParams, opts ...RequestOption) (*SdkReplaceVariantDeliverableConfigurationResponseValue200ApplicationJSON, error)",
-    "signatures": [
-      {
-        "name": "Replace",
-        "params": [
-          {
-            "name": "product",
-            "type": "string",
-            "optional": false,
-            "passingStyle": "positional"
-          },
-          {
-            "name": "variant",
-            "type": "int",
-            "optional": false,
-            "passingStyle": "positional"
-          },
-          {
-            "name": "params",
-            "type": "*VariantDeliverablesReplaceParams",
-            "optional": false,
-            "passingStyle": "positional"
-          },
-          {
-            "name": "opts",
-            "type": "RequestOption",
-            "optional": false,
-            "passingStyle": "positional"
-          }
-        ],
-        "returnType": "*SdkReplaceVariantDeliverableConfigurationResponseValue200ApplicationJSON",
-        "async": false
-      }
-    ],
-    "sourceFile": "variant_deliverables.go"
   },
   {
     "operationId": "listVariantDeliverableFiles",
@@ -6304,6 +7724,34 @@
     "sourceFile": "affiliate_program.go"
   },
   {
+    "operationId": "resendAffiliateInvitation",
+    "resource": "affiliate_program",
+    "method": "Resend",
+    "nativeSignature": "func (s *AffiliateProgramService) Resend(ctx context.Context, invitation int, opts ...RequestOption) (*SdkResendAffiliateInvitationResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Resend",
+        "params": [
+          {
+            "name": "invitation",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkResendAffiliateInvitationResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliate_program.go"
+  },
+  {
     "operationId": "listRewardRules",
     "resource": "reward_rules",
     "method": "List",
@@ -6984,6 +8432,40 @@
     "sourceFile": "upsell_offers.go"
   },
   {
+    "operationId": "getUpsellOfferPerformance",
+    "resource": "upsell_offers",
+    "method": "GetPerformance",
+    "nativeSignature": "func (s *UpsellOfferService) GetPerformance(ctx context.Context, upsellOffer int, params *UpsellOffersGetPerformanceParams, opts ...RequestOption) (*SdkGetUpsellOfferPerformanceResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetPerformance",
+        "params": [
+          {
+            "name": "upsellOffer",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*UpsellOffersGetPerformanceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetUpsellOfferPerformanceResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "upsell_offers.go"
+  },
+  {
     "operationId": "listCommunityConnections",
     "resource": "community_connections",
     "method": "List",
@@ -7164,6 +8646,208 @@
     "sourceFile": "community_connections.go"
   },
   {
+    "operationId": "listCommunityFailedGrantReasons",
+    "resource": "community_connections",
+    "method": "ListFailedGrantReasons",
+    "nativeSignature": "func (s *CommunityConnectionService) ListFailedGrantReasons(ctx context.Context, opts ...RequestOption) (*SdkListCommunityFailedGrantReasonsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ListFailedGrantReasons",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkListCommunityFailedGrantReasonsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections.go"
+  },
+  {
+    "operationId": "getCommunityServer",
+    "resource": "community_connections_servers",
+    "method": "Get",
+    "nativeSignature": "func (s *CommunityConnectionsServerService) Get(ctx context.Context, platform CommunityConnectionsPlatform, server string, opts ...RequestOption) (*SdkGetCommunityServerResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "platform",
+            "type": "CommunityConnectionsPlatform",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "server",
+            "type": "string",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetCommunityServerResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections_servers.go"
+  },
+  {
+    "operationId": "removeCommunityServer",
+    "resource": "community_connections_servers",
+    "method": "Remove",
+    "nativeSignature": "func (s *CommunityConnectionsServerService) Remove(ctx context.Context, platform CommunityConnectionsPlatform, server string, params *CommunityConnectionsServersRemoveParams, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "Remove",
+        "params": [
+          {
+            "name": "platform",
+            "type": "CommunityConnectionsPlatform",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "server",
+            "type": "string",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*CommunityConnectionsServersRemoveParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections_servers.go"
+  },
+  {
+    "operationId": "syncDiscordRoles",
+    "resource": "community_connections",
+    "method": "SyncDiscordRoles",
+    "nativeSignature": "func (s *CommunityConnectionService) SyncDiscordRoles(ctx context.Context, params *CommunityConnectionsSyncDiscordRolesParams, opts ...RequestOption) (*SdkSyncDiscordRolesResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "SyncDiscordRoles",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CommunityConnectionsSyncDiscordRolesParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkSyncDiscordRolesResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections.go"
+  },
+  {
+    "operationId": "listSlackAvailableChannels",
+    "resource": "community_connections_slack",
+    "method": "ListChannels",
+    "nativeSignature": "func (s *CommunityConnectionsSlackService) ListChannels(ctx context.Context, opts ...RequestOption) (*SdkListSlackAvailableChannelsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ListChannels",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkListSlackAvailableChannelsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections_slack.go"
+  },
+  {
+    "operationId": "addSlackChannel",
+    "resource": "community_connections_slack",
+    "method": "AddChannel",
+    "nativeSignature": "func (s *CommunityConnectionsSlackService) AddChannel(ctx context.Context, params *CommunityConnectionsSlackAddChannelParams, opts ...RequestOption) (*SdkAddSlackChannelResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "AddChannel",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CommunityConnectionsSlackAddChannelParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkAddSlackChannelResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections_slack.go"
+  },
+  {
+    "operationId": "replaceSlackWorkspaceInviteLink",
+    "resource": "community_connections_slack",
+    "method": "ReplaceInviteLink",
+    "nativeSignature": "func (s *CommunityConnectionsSlackService) ReplaceInviteLink(ctx context.Context, params *CommunityConnectionsSlackReplaceInviteLinkParams, opts ...RequestOption) (*SdkReplaceSlackWorkspaceInviteLinkResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplaceInviteLink",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CommunityConnectionsSlackReplaceInviteLinkParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceSlackWorkspaceInviteLinkResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "community_connections_slack.go"
+  },
+  {
     "operationId": "getWalletSettings",
     "resource": "wallet_settings",
     "method": "Get",
@@ -7336,6 +9020,102 @@
       }
     ],
     "sourceFile": "wallet.go"
+  },
+  {
+    "operationId": "reverseWalletTransaction",
+    "resource": "wallet_transactions",
+    "method": "Reverse",
+    "nativeSignature": "func (s *WalletTransactionService) Reverse(ctx context.Context, customer int, transaction int, params *WalletTransactionsReverseParams, opts ...RequestOption) (*SdkReverseWalletTransactionResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Reverse",
+        "params": [
+          {
+            "name": "customer",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "transaction",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*WalletTransactionsReverseParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReverseWalletTransactionResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "wallet_transactions.go"
+  },
+  {
+    "operationId": "listStoreWalletTransactions",
+    "resource": "wallet_ledger",
+    "method": "List",
+    "nativeSignature": "func (s *WalletLedgerService) List(ctx context.Context, params *WalletLedgerListParams, opts ...RequestOption) *Iterator[ListStoreWalletTransactionsResponseValue200ApplicationJSONPropertyDataItem]",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*WalletLedgerListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[ListStoreWalletTransactionsResponseValue200ApplicationJSONPropertyDataItem]",
+        "async": false
+      }
+    ],
+    "sourceFile": "wallet_ledger.go"
+  },
+  {
+    "operationId": "getWalletOverview",
+    "resource": "wallet_overview",
+    "method": "Get",
+    "nativeSignature": "func (s *WalletOverviewService) Get(ctx context.Context, params *WalletOverviewGetParams, opts ...RequestOption) (*SdkGetWalletOverviewResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "params",
+            "type": "*WalletOverviewGetParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetWalletOverviewResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "wallet_overview.go"
   },
   {
     "operationId": "listWalletTransactions",
@@ -7580,6 +9360,34 @@
     "sourceFile": "cashback_rules.go"
   },
   {
+    "operationId": "quoteCashbackRule",
+    "resource": "cashback_rules",
+    "method": "Quote",
+    "nativeSignature": "func (s *CashbackRuleService) Quote(ctx context.Context, params *CashbackRulesQuoteParams, opts ...RequestOption) (*SdkQuoteCashbackRuleResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Quote",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CashbackRulesQuoteParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkQuoteCashbackRuleResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "cashback_rules.go"
+  },
+  {
     "operationId": "listWalletBonusTiers",
     "resource": "wallet_bonus_tiers",
     "method": "List",
@@ -7754,6 +9562,34 @@
     "sourceFile": "wallet_bonus_tiers.go"
   },
   {
+    "operationId": "quoteWalletBonusTier",
+    "resource": "wallet_bonus_tiers",
+    "method": "Quote",
+    "nativeSignature": "func (s *WalletBonusTierService) Quote(ctx context.Context, params *WalletBonusTiersQuoteParams, opts ...RequestOption) (*SdkQuoteWalletBonusTierResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Quote",
+        "params": [
+          {
+            "name": "params",
+            "type": "*WalletBonusTiersQuoteParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkQuoteWalletBonusTierResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "wallet_bonus_tiers.go"
+  },
+  {
     "operationId": "listCourses",
     "resource": "courses",
     "method": "List",
@@ -7776,6 +9612,34 @@
           }
         ],
         "returnType": "*Iterator[SdkListCoursesResponseValue200ApplicationJSON]",
+        "async": false
+      }
+    ],
+    "sourceFile": "courses.go"
+  },
+  {
+    "operationId": "createCourse",
+    "resource": "courses",
+    "method": "Create",
+    "nativeSignature": "func (s *CourseService) Create(ctx context.Context, params *CoursesCreateParams, opts ...RequestOption) (*SdkCreateCourseResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CoursesCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkCreateCourseResponseValue201ApplicationJSON",
         "async": false
       }
     ],
@@ -7900,6 +9764,34 @@
           }
         ],
         "returnType": "*SdkUpdateCourseResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "courses.go"
+  },
+  {
+    "operationId": "getCourseStudentSummary",
+    "resource": "courses",
+    "method": "GetStudentSummary",
+    "nativeSignature": "func (s *CourseService) GetStudentSummary(ctx context.Context, params *CoursesGetStudentSummaryParams, opts ...RequestOption) (*SdkGetCourseStudentSummaryResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetStudentSummary",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CoursesGetStudentSummaryParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetCourseStudentSummaryResponseValue200ApplicationJSON",
         "async": false
       }
     ],
@@ -8276,6 +10168,226 @@
     "sourceFile": "courses_lessons.go"
   },
   {
+    "operationId": "listCheckoutFieldTemplates",
+    "resource": "checkout_field_templates",
+    "method": "List",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) List(ctx context.Context, params *CheckoutFieldTemplatesListParams, opts ...RequestOption) (*SdkListCheckoutFieldTemplatesResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CheckoutFieldTemplatesListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkListCheckoutFieldTemplatesResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
+    "operationId": "createCheckoutFieldTemplate",
+    "resource": "checkout_field_templates",
+    "method": "Create",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) Create(ctx context.Context, params *CheckoutFieldTemplatesCreateParams, opts ...RequestOption) (*SdkCreateCheckoutFieldTemplateResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "params",
+            "type": "*CheckoutFieldTemplatesCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkCreateCheckoutFieldTemplateResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
+    "operationId": "getCheckoutFieldTemplate",
+    "resource": "checkout_field_templates",
+    "method": "Get",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) Get(ctx context.Context, checkoutFieldTemplate int, opts ...RequestOption) (*SdkGetCheckoutFieldTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "checkoutFieldTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetCheckoutFieldTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
+    "operationId": "replaceCheckoutFieldTemplate",
+    "resource": "checkout_field_templates",
+    "method": "Replace",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) Replace(ctx context.Context, checkoutFieldTemplate int, params *CheckoutFieldTemplatesReplaceParams, opts ...RequestOption) (*SdkReplaceCheckoutFieldTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "checkoutFieldTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*CheckoutFieldTemplatesReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceCheckoutFieldTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
+    "operationId": "updateCheckoutFieldTemplate",
+    "resource": "checkout_field_templates",
+    "method": "Update",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) Update(ctx context.Context, checkoutFieldTemplate int, params *CheckoutFieldTemplatesUpdateParams, opts ...RequestOption) (*SdkUpdateCheckoutFieldTemplateResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "checkoutFieldTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*CheckoutFieldTemplatesUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateCheckoutFieldTemplateResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
+    "operationId": "deleteCheckoutFieldTemplate",
+    "resource": "checkout_field_templates",
+    "method": "Delete",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) Delete(ctx context.Context, checkoutFieldTemplate int, params *CheckoutFieldTemplatesDeleteParams, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "Delete",
+        "params": [
+          {
+            "name": "checkoutFieldTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*CheckoutFieldTemplatesDeleteParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
+    "operationId": "duplicateCheckoutFieldTemplate",
+    "resource": "checkout_field_templates",
+    "method": "Duplicate",
+    "nativeSignature": "func (s *CheckoutFieldTemplateService) Duplicate(ctx context.Context, checkoutFieldTemplate int, params *CheckoutFieldTemplatesDuplicateParams, opts ...RequestOption) (*SdkDuplicateCheckoutFieldTemplateResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Duplicate",
+        "params": [
+          {
+            "name": "checkoutFieldTemplate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*CheckoutFieldTemplatesDuplicateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkDuplicateCheckoutFieldTemplateResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "checkout_field_templates.go"
+  },
+  {
     "operationId": "listPaymentMethods",
     "resource": "payment_methods",
     "method": "List",
@@ -8420,6 +10532,68 @@
       }
     ],
     "sourceFile": "payment_methods.go"
+  },
+  {
+    "operationId": "getPaymentMethodModifier",
+    "resource": "payment_methods_modifier",
+    "method": "Get",
+    "nativeSignature": "func (s *PaymentMethodsModifierService) Get(ctx context.Context, paymentMethod string, opts ...RequestOption) (*SdkGetPaymentMethodModifierResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "paymentMethod",
+            "type": "string",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetPaymentMethodModifierResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "payment_methods_modifier.go"
+  },
+  {
+    "operationId": "replacePaymentMethodModifier",
+    "resource": "payment_methods_modifier",
+    "method": "Replace",
+    "nativeSignature": "func (s *PaymentMethodsModifierService) Replace(ctx context.Context, paymentMethod string, params *PaymentMethodsModifierReplaceParams, opts ...RequestOption) (*SdkReplacePaymentMethodModifierResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Replace",
+        "params": [
+          {
+            "name": "paymentMethod",
+            "type": "string",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*PaymentMethodsModifierReplaceParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplacePaymentMethodModifierResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "payment_methods_modifier.go"
   },
   {
     "operationId": "listCustomPaymentMethods",
@@ -8786,6 +10960,614 @@
     "sourceFile": "store_settings.go"
   },
   {
+    "operationId": "getCheckoutSettings",
+    "resource": "store_settings",
+    "method": "GetCheckout",
+    "nativeSignature": "func (s *StoreSettingService) GetCheckout(ctx context.Context, opts ...RequestOption) (*SdkGetCheckoutSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetCheckout",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetCheckoutSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "replaceCheckoutSettings",
+    "resource": "store_settings",
+    "method": "ReplaceCheckout",
+    "nativeSignature": "func (s *StoreSettingService) ReplaceCheckout(ctx context.Context, params *StoreSettingsReplaceCheckoutParams, opts ...RequestOption) (*SdkReplaceCheckoutSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplaceCheckout",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsReplaceCheckoutParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceCheckoutSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "updateCheckoutSettings",
+    "resource": "store_settings",
+    "method": "UpdateCheckout",
+    "nativeSignature": "func (s *StoreSettingService) UpdateCheckout(ctx context.Context, params *StoreSettingsUpdateCheckoutParams, opts ...RequestOption) (*SdkUpdateCheckoutSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdateCheckout",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsUpdateCheckoutParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateCheckoutSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "getTaxSettings",
+    "resource": "store_settings",
+    "method": "GetTaxes",
+    "nativeSignature": "func (s *StoreSettingService) GetTaxes(ctx context.Context, opts ...RequestOption) (*SdkGetTaxSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetTaxes",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetTaxSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "replaceTaxSettings",
+    "resource": "store_settings",
+    "method": "ReplaceTaxes",
+    "nativeSignature": "func (s *StoreSettingService) ReplaceTaxes(ctx context.Context, params *StoreSettingsReplaceTaxesParams, opts ...RequestOption) (*SdkReplaceTaxSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplaceTaxes",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsReplaceTaxesParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceTaxSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "updateTaxSettings",
+    "resource": "store_settings",
+    "method": "UpdateTaxes",
+    "nativeSignature": "func (s *StoreSettingService) UpdateTaxes(ctx context.Context, params *StoreSettingsUpdateTaxesParams, opts ...RequestOption) (*SdkUpdateTaxSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdateTaxes",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsUpdateTaxesParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateTaxSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "getCustomerEmailSettings",
+    "resource": "store_settings",
+    "method": "GetCustomerEmails",
+    "nativeSignature": "func (s *StoreSettingService) GetCustomerEmails(ctx context.Context, opts ...RequestOption) (*SdkGetCustomerEmailSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetCustomerEmails",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetCustomerEmailSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "replaceCustomerEmailSettings",
+    "resource": "store_settings",
+    "method": "ReplaceCustomerEmails",
+    "nativeSignature": "func (s *StoreSettingService) ReplaceCustomerEmails(ctx context.Context, params *StoreSettingsReplaceCustomerEmailsParams, opts ...RequestOption) (*SdkReplaceCustomerEmailSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplaceCustomerEmails",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsReplaceCustomerEmailsParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceCustomerEmailSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "updateCustomerEmailSettings",
+    "resource": "store_settings",
+    "method": "UpdateCustomerEmails",
+    "nativeSignature": "func (s *StoreSettingService) UpdateCustomerEmails(ctx context.Context, params *StoreSettingsUpdateCustomerEmailsParams, opts ...RequestOption) (*SdkUpdateCustomerEmailSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdateCustomerEmails",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsUpdateCustomerEmailsParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateCustomerEmailSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "getStoreAlertSettings",
+    "resource": "store_settings",
+    "method": "GetAlerts",
+    "nativeSignature": "func (s *StoreSettingService) GetAlerts(ctx context.Context, opts ...RequestOption) (*SdkGetStoreAlertSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetAlerts",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetStoreAlertSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "replaceStoreAlertSettings",
+    "resource": "store_settings",
+    "method": "ReplaceAlerts",
+    "nativeSignature": "func (s *StoreSettingService) ReplaceAlerts(ctx context.Context, params *StoreSettingsReplaceAlertsParams, opts ...RequestOption) (*SdkReplaceStoreAlertSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplaceAlerts",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsReplaceAlertsParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceStoreAlertSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "updateStoreAlertSettings",
+    "resource": "store_settings",
+    "method": "UpdateAlerts",
+    "nativeSignature": "func (s *StoreSettingService) UpdateAlerts(ctx context.Context, params *StoreSettingsUpdateAlertsParams, opts ...RequestOption) (*SdkUpdateStoreAlertSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdateAlerts",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsUpdateAlertsParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateStoreAlertSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "getPersonalizationSettings",
+    "resource": "store_settings",
+    "method": "GetPersonalization",
+    "nativeSignature": "func (s *StoreSettingService) GetPersonalization(ctx context.Context, opts ...RequestOption) (*SdkGetPersonalizationSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetPersonalization",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetPersonalizationSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "replacePersonalizationSettings",
+    "resource": "store_settings",
+    "method": "ReplacePersonalization",
+    "nativeSignature": "func (s *StoreSettingService) ReplacePersonalization(ctx context.Context, params *StoreSettingsReplacePersonalizationParams, opts ...RequestOption) (*SdkReplacePersonalizationSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplacePersonalization",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsReplacePersonalizationParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplacePersonalizationSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "updatePersonalizationSettings",
+    "resource": "store_settings",
+    "method": "UpdatePersonalization",
+    "nativeSignature": "func (s *StoreSettingService) UpdatePersonalization(ctx context.Context, params *StoreSettingsUpdatePersonalizationParams, opts ...RequestOption) (*SdkUpdatePersonalizationSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdatePersonalization",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsUpdatePersonalizationParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdatePersonalizationSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "replaceCryptoCheckoutSettings",
+    "resource": "store_settings",
+    "method": "ReplaceCryptoCheckout",
+    "nativeSignature": "func (s *StoreSettingService) ReplaceCryptoCheckout(ctx context.Context, params *StoreSettingsReplaceCryptoCheckoutParams, opts ...RequestOption) (*SdkReplaceCryptoCheckoutSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ReplaceCryptoCheckout",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsReplaceCryptoCheckoutParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkReplaceCryptoCheckoutSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "updateCryptoCheckoutSettings",
+    "resource": "store_settings",
+    "method": "UpdateCryptoCheckout",
+    "nativeSignature": "func (s *StoreSettingService) UpdateCryptoCheckout(ctx context.Context, params *StoreSettingsUpdateCryptoCheckoutParams, opts ...RequestOption) (*SdkUpdateCryptoCheckoutSettingsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "UpdateCryptoCheckout",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSettingsUpdateCryptoCheckoutParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateCryptoCheckoutSettingsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_settings.go"
+  },
+  {
+    "operationId": "getSenderEmail",
+    "resource": "store_sender_email",
+    "method": "Get",
+    "nativeSignature": "func (s *StoreSenderEmailService) Get(ctx context.Context, params *StoreSenderEmailGetParams, opts ...RequestOption) (*SdkGetSenderEmailResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSenderEmailGetParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSenderEmailResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_sender_email.go"
+  },
+  {
+    "operationId": "setSenderEmail",
+    "resource": "store_sender_email",
+    "method": "Set",
+    "nativeSignature": "func (s *StoreSenderEmailService) Set(ctx context.Context, params *StoreSenderEmailSetParams, opts ...RequestOption) (*SdkSetSenderEmailResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Set",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSenderEmailSetParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkSetSenderEmailResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_sender_email.go"
+  },
+  {
+    "operationId": "deleteSenderEmail",
+    "resource": "store_sender_email",
+    "method": "Delete",
+    "nativeSignature": "func (s *StoreSenderEmailService) Delete(ctx context.Context, params *StoreSenderEmailDeleteParams, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "Delete",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSenderEmailDeleteParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_sender_email.go"
+  },
+  {
+    "operationId": "sendSenderEmailVerification",
+    "resource": "store_sender_email",
+    "method": "SendVerification",
+    "nativeSignature": "func (s *StoreSenderEmailService) SendVerification(ctx context.Context, params *StoreSenderEmailSendVerificationParams, opts ...RequestOption) (*SdkSendSenderEmailVerificationResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "SendVerification",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreSenderEmailSendVerificationParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkSendSenderEmailVerificationResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_sender_email.go"
+  },
+  {
+    "operationId": "getStoreIntegrations",
+    "resource": "store_integrations",
+    "method": "Get",
+    "nativeSignature": "func (s *StoreIntegrationService) Get(ctx context.Context, opts ...RequestOption) (*SdkGetStoreIntegrationsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetStoreIntegrationsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_integrations.go"
+  },
+  {
+    "operationId": "disconnectGoogleCalendar",
+    "resource": "store_integrations",
+    "method": "DisconnectGoogleCalendar",
+    "nativeSignature": "func (s *StoreIntegrationService) DisconnectGoogleCalendar(ctx context.Context, params *StoreIntegrationsDisconnectGoogleCalendarParams, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "DisconnectGoogleCalendar",
+        "params": [
+          {
+            "name": "params",
+            "type": "*StoreIntegrationsDisconnectGoogleCalendarParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "store_integrations.go"
+  },
+  {
     "operationId": "listNotificationChannels",
     "resource": "store_notification_channels",
     "method": "List",
@@ -9092,6 +11874,62 @@
       }
     ],
     "sourceFile": "store_custom_domains.go"
+  },
+  {
+    "operationId": "listNotifications",
+    "resource": "notifications",
+    "method": "List",
+    "nativeSignature": "func (s *NotificationService) List(ctx context.Context, params *NotificationsListParams, opts ...RequestOption) *Iterator[ListNotificationsResponseValue200ApplicationJSONPropertyDataItem]",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "params",
+            "type": "*NotificationsListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[ListNotificationsResponseValue200ApplicationJSONPropertyDataItem]",
+        "async": false
+      }
+    ],
+    "sourceFile": "notifications.go"
+  },
+  {
+    "operationId": "markNotificationsSeen",
+    "resource": "notifications",
+    "method": "Mark",
+    "nativeSignature": "func (s *NotificationService) Mark(ctx context.Context, params *NotificationsMarkParams, opts ...RequestOption) *Iterator[MarkNotificationsSeenResponseValue200ApplicationJSONPropertyDataItem]",
+    "signatures": [
+      {
+        "name": "Mark",
+        "params": [
+          {
+            "name": "params",
+            "type": "*NotificationsMarkParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*Iterator[MarkNotificationsSeenResponseValue200ApplicationJSONPropertyDataItem]",
+        "async": false
+      }
+    ],
+    "sourceFile": "notifications.go"
   },
   {
     "operationId": "listCreditsProducts",
@@ -9528,6 +12366,158 @@
     "sourceFile": "affiliates.go"
   },
   {
+    "operationId": "getAffiliateProducts",
+    "resource": "affiliates_products",
+    "method": "Get",
+    "nativeSignature": "func (s *AffiliatesProductService) Get(ctx context.Context, affiliate int, opts ...RequestOption) (*SdkGetAffiliateProductsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "affiliate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetAffiliateProductsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliates_products.go"
+  },
+  {
+    "operationId": "updateAffiliateProducts",
+    "resource": "affiliates_products",
+    "method": "Update",
+    "nativeSignature": "func (s *AffiliatesProductService) Update(ctx context.Context, affiliate int, params *AffiliatesProductsUpdateParams, opts ...RequestOption) (*SdkUpdateAffiliateProductsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Update",
+        "params": [
+          {
+            "name": "affiliate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*AffiliatesProductsUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkUpdateAffiliateProductsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliates_products.go"
+  },
+  {
+    "operationId": "getAffiliateCoupon",
+    "resource": "affiliates_coupon",
+    "method": "Get",
+    "nativeSignature": "func (s *AffiliatesCouponService) Get(ctx context.Context, affiliate int, opts ...RequestOption) (*SdkGetAffiliateCouponResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "affiliate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetAffiliateCouponResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliates_coupon.go"
+  },
+  {
+    "operationId": "saveAffiliateCoupon",
+    "resource": "affiliates_coupon",
+    "method": "Save",
+    "nativeSignature": "func (s *AffiliatesCouponService) Save(ctx context.Context, affiliate int, params *AffiliatesCouponSaveParams, opts ...RequestOption) (*SdkSaveAffiliateCouponResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Save",
+        "params": [
+          {
+            "name": "affiliate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*AffiliatesCouponSaveParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkSaveAffiliateCouponResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliates_coupon.go"
+  },
+  {
+    "operationId": "disableAffiliateCoupon",
+    "resource": "affiliates_coupon",
+    "method": "Disable",
+    "nativeSignature": "func (s *AffiliatesCouponService) Disable(ctx context.Context, affiliate int, opts ...RequestOption) error",
+    "signatures": [
+      {
+        "name": "Disable",
+        "params": [
+          {
+            "name": "affiliate",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliates_coupon.go"
+  },
+  {
     "operationId": "listAffiliateReferrals",
     "resource": "affiliate_referrals",
     "method": "List",
@@ -9792,14 +12782,48 @@
     "sourceFile": "affiliate_payouts.go"
   },
   {
+    "operationId": "markAffiliatePayoutsPaid",
+    "resource": "affiliate_payouts",
+    "method": "MarkPaid",
+    "nativeSignature": "func (s *AffiliatePayoutService) MarkPaid(ctx context.Context, params *AffiliatePayoutsMarkPaidParams, opts ...RequestOption) (*SdkMarkAffiliatePayoutsPaidResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "MarkPaid",
+        "params": [
+          {
+            "name": "params",
+            "type": "*AffiliatePayoutsMarkPaidParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkMarkAffiliatePayoutsPaidResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "affiliate_payouts.go"
+  },
+  {
     "operationId": "listRefunds",
     "resource": "refunds",
     "method": "List",
-    "nativeSignature": "func (s *RefundService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListRefundsResponseValue200ApplicationJSONPropertyDataItem]",
+    "nativeSignature": "func (s *RefundService) List(ctx context.Context, params *RefundsListParams, opts ...RequestOption) *Iterator[ListRefundsResponseValue200ApplicationJSONPropertyDataItem]",
     "signatures": [
       {
         "name": "List",
         "params": [
+          {
+            "name": "params",
+            "type": "*RefundsListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
           {
             "name": "opts",
             "type": "RequestOption",
@@ -9845,11 +12869,17 @@
     "operationId": "listExports",
     "resource": "exports",
     "method": "List",
-    "nativeSignature": "func (s *ExportService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListExportsResponseValue200ApplicationJSONPropertyDataItem]",
+    "nativeSignature": "func (s *ExportService) List(ctx context.Context, params *ExportsListParams, opts ...RequestOption) *Iterator[ListExportsResponseValue200ApplicationJSONPropertyDataItem]",
     "signatures": [
       {
         "name": "List",
         "params": [
+          {
+            "name": "params",
+            "type": "*ExportsListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
           {
             "name": "opts",
             "type": "RequestOption",
@@ -9957,11 +12987,17 @@
     "operationId": "listDisputes",
     "resource": "disputes",
     "method": "List",
-    "nativeSignature": "func (s *DisputeService) List(ctx context.Context, opts ...RequestOption) *Iterator[ListDisputesResponseValue200ApplicationJSONPropertyDataItem]",
+    "nativeSignature": "func (s *DisputeService) List(ctx context.Context, params *DisputesListParams, opts ...RequestOption) *Iterator[ListDisputesResponseValue200ApplicationJSONPropertyDataItem]",
     "signatures": [
       {
         "name": "List",
         "params": [
+          {
+            "name": "params",
+            "type": "*DisputesListParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
           {
             "name": "opts",
             "type": "RequestOption",
@@ -10703,11 +13739,17 @@
     "operationId": "listWebhookDeliveries",
     "resource": "webhook_platform",
     "method": "ListDeliveries",
-    "nativeSignature": "func (s *WebhookPlatformService) ListDeliveries(ctx context.Context, opts ...RequestOption) *Iterator[ListWebhookDeliveriesResponseValue200ApplicationJSONPropertyDataItem]",
+    "nativeSignature": "func (s *WebhookPlatformService) ListDeliveries(ctx context.Context, params *WebhookPlatformListDeliveriesParams, opts ...RequestOption) *Iterator[ListWebhookDeliveriesResponseValue200ApplicationJSONPropertyDataItem]",
     "signatures": [
       {
         "name": "ListDeliveries",
         "params": [
+          {
+            "name": "params",
+            "type": "*WebhookPlatformListDeliveriesParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
           {
             "name": "opts",
             "type": "RequestOption",
@@ -12129,11 +15171,17 @@
     "operationId": "v2ListBlacklists",
     "resource": "blacklists",
     "method": "V2ListBlacklists",
-    "nativeSignature": "func (s *BlacklistService) V2ListBlacklists(ctx context.Context, opts ...RequestOption) *Iterator[Blacklist]",
+    "nativeSignature": "func (s *BlacklistService) V2ListBlacklists(ctx context.Context, params *BlacklistsV2ListBlacklistsParams, opts ...RequestOption) *Iterator[Blacklist]",
     "signatures": [
       {
         "name": "V2ListBlacklists",
         "params": [
+          {
+            "name": "params",
+            "type": "*BlacklistsV2ListBlacklistsParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
           {
             "name": "opts",
             "type": "RequestOption",
@@ -12598,6 +15646,34 @@
           }
         ],
         "returnType": "error",
+        "async": false
+      }
+    ],
+    "sourceFile": "coupons.go"
+  },
+  {
+    "operationId": "v2GetCouponUsage",
+    "resource": "coupons",
+    "method": "V2GetCouponUsage",
+    "nativeSignature": "func (s *CouponService) V2GetCouponUsage(ctx context.Context, coupon int, opts ...RequestOption) (*SdkV2GetCouponUsageResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "V2GetCouponUsage",
+        "params": [
+          {
+            "name": "coupon",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkV2GetCouponUsageResponseValue200ApplicationJSON",
         "async": false
       }
     ],
@@ -13396,6 +16472,220 @@
       }
     ],
     "sourceFile": "tickets_messages.go"
+  },
+  {
+    "operationId": "batchUpdateTickets",
+    "resource": "tickets",
+    "method": "BatchUpdate",
+    "nativeSignature": "func (s *TicketService) BatchUpdate(ctx context.Context, params *TicketsBatchUpdateParams, opts ...RequestOption) (*SdkBatchUpdateTicketsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "BatchUpdate",
+        "params": [
+          {
+            "name": "params",
+            "type": "*TicketsBatchUpdateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkBatchUpdateTicketsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets.go"
+  },
+  {
+    "operationId": "v2GetTicketContext",
+    "resource": "tickets",
+    "method": "GetContext",
+    "nativeSignature": "func (s *TicketService) GetContext(ctx context.Context, ticket int, opts ...RequestOption) (*SdkV2GetTicketContextResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "GetContext",
+        "params": [
+          {
+            "name": "ticket",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkV2GetTicketContextResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets.go"
+  },
+  {
+    "operationId": "v2ListTicketWalletRefundOptions",
+    "resource": "tickets_wallet_refunds",
+    "method": "ListOptions",
+    "nativeSignature": "func (s *TicketsWalletRefundService) ListOptions(ctx context.Context, ticket int, opts ...RequestOption) (*SdkV2ListTicketWalletRefundOptionsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "ListOptions",
+        "params": [
+          {
+            "name": "ticket",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkV2ListTicketWalletRefundOptionsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets_wallet_refunds.go"
+  },
+  {
+    "operationId": "v2ListTicketWalletRefunds",
+    "resource": "tickets_wallet_refunds",
+    "method": "List",
+    "nativeSignature": "func (s *TicketsWalletRefundService) List(ctx context.Context, ticket int, opts ...RequestOption) (*SdkV2ListTicketWalletRefundsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "List",
+        "params": [
+          {
+            "name": "ticket",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkV2ListTicketWalletRefundsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets_wallet_refunds.go"
+  },
+  {
+    "operationId": "v2RefundTicketToWallet",
+    "resource": "tickets_wallet_refunds",
+    "method": "Create",
+    "nativeSignature": "func (s *TicketsWalletRefundService) Create(ctx context.Context, ticket int, params *TicketsWalletRefundsCreateParams, opts ...RequestOption) (*SdkV2RefundTicketToWalletResponseValue201ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Create",
+        "params": [
+          {
+            "name": "ticket",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*TicketsWalletRefundsCreateParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkV2RefundTicketToWalletResponseValue201ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets_wallet_refunds.go"
+  },
+  {
+    "operationId": "v2ReverseTicketWalletRefund",
+    "resource": "tickets_wallet_refunds",
+    "method": "Reverse",
+    "nativeSignature": "func (s *TicketsWalletRefundService) Reverse(ctx context.Context, ticket int, walletRefund int, params *TicketsWalletRefundsReverseParams, opts ...RequestOption) (*SdkV2ReverseTicketWalletRefundResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Reverse",
+        "params": [
+          {
+            "name": "ticket",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "walletRefund",
+            "type": "int",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "params",
+            "type": "*TicketsWalletRefundsReverseParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkV2ReverseTicketWalletRefundResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets_wallet_refunds.go"
+  },
+  {
+    "operationId": "getSupportAnalytics",
+    "resource": "tickets_analytics",
+    "method": "Get",
+    "nativeSignature": "func (s *TicketsAnalyticService) Get(ctx context.Context, params *TicketsAnalyticsGetParams, opts ...RequestOption) (*SdkGetSupportAnalyticsResponseValue200ApplicationJSON, error)",
+    "signatures": [
+      {
+        "name": "Get",
+        "params": [
+          {
+            "name": "params",
+            "type": "*TicketsAnalyticsGetParams",
+            "optional": false,
+            "passingStyle": "positional"
+          },
+          {
+            "name": "opts",
+            "type": "RequestOption",
+            "optional": false,
+            "passingStyle": "positional"
+          }
+        ],
+        "returnType": "*SdkGetSupportAnalyticsResponseValue200ApplicationJSON",
+        "async": false
+      }
+    ],
+    "sourceFile": "tickets_analytics.go"
   },
   {
     "operationId": "getOAuthAuthorizationServerMetadata",

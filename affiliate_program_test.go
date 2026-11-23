@@ -118,6 +118,26 @@ func TestAffiliateProgram_Invite(t *testing.T) {
 	require.NotNil(t, result)
 }
 
+func TestAffiliateProgram_Resend(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/affiliate-invitations/1/resend", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_resend_affiliate_invitation_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.AffiliateProgram().Resend(context.Background(), 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestAffiliateProgram_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

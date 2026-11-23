@@ -52,7 +52,11 @@
           "title": "test_title"
         }
       ],
-      "url": "https://example.com"
+      "url": "https://example.com",
+      "price_range": "test_price_range",
+      "stock": 1,
+      "sales": 1,
+      "sold_out": true
     }
   ],
   "list_metadata": {

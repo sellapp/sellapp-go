@@ -137,6 +137,49 @@ func TestCommunityConnections_Disconnect(t *testing.T) {
 	require.NoError(t, err)
 }
 
+func TestCommunityConnections_ListFailedGrantReasons(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/community-connections/failed-grant-reasons", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_list_community_failed_grant_reasons_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.CommunityConnections().ListFailedGrantReasons(context.Background())
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestCommunityConnections_SyncDiscordRoles(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/community-connections/discord/sync-roles", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_sync_discord_roles_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.CommunityConnections().SyncDiscordRoles(context.Background(), decodeTestParams[sellapp.CommunityConnectionsSyncDiscordRolesParams](t, "{\"server_id\":\"server_id_01234\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestCommunityConnections_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

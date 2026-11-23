@@ -135,6 +135,7 @@ func TestGroupsProducts_Search(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/groups/1/products/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"slug\":\"test_slug\",\"description\":\"test_description\",\"images\":[{\"path\":\"test_path\",\"metadata\":{\"size\":1,\"filename\":\"Test\",\"extension\":\"test_extension\",\"mime_type\":\"test_mime_type\"}}],\"order\":1,\"visibility\":\"test_visibility\",\"delivery_text\":\"test_delivery_text\",\"additional_information\":[\"test_additional_information\"],\"other_settings\":{\"faq\":[{\"question\":\"test_question\",\"answer\":\"test_answer\"}],\"video_url\":\"video_url_01234\",\"redirect_url\":\"https://example.com\",\"product_title\":\"test_product_title\",\"product_description\":\"test_product_description\"},\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"section_id\":1,\"section_order\":1,\"is_discoverable\":true,\"pivot\":{\"group_id\":1,\"listing_id\":1,\"order\":1},\"default_price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"}}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -142,7 +143,7 @@ func TestGroupsProducts_Search(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.GroupsProducts().Search(context.Background(), 1, &sellapp.GroupsProductsSearchParams{})
+	iter := client.GroupsProducts().Search(context.Background(), 1, &sellapp.GroupsProductsSearchParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -159,7 +160,7 @@ func TestGroupsProducts_Search_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.GroupsProducts().Search(context.Background(), 1, &sellapp.GroupsProductsSearchParams{})
+	iter := client.GroupsProducts().Search(context.Background(), 1, &sellapp.GroupsProductsSearchParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

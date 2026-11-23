@@ -137,6 +137,26 @@ func TestCharges_MarkVoided(t *testing.T) {
 	require.Equal(t, "test_message", result.Message)
 }
 
+func TestCharges_GetSummary(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/charges/summary", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_charge_summary_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Charges().GetSummary(context.Background(), &sellapp.ChargesGetSummaryParams{})
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestCharges_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

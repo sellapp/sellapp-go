@@ -126,7 +126,8 @@
             "label": "test_label"
           }
         ]
-      }
+      },
+      "is_draft": true
     }
   },
   "order": {
@@ -162,7 +163,9 @@
         "total_exclusive_cents": 1,
         "total_cents": 1,
         "total_exclusive_usd_cents": 1,
-        "total_usd_cents": 1
+        "total_usd_cents": 1,
+        "refund_currency": "test_refund_currency",
+        "refunded_total_cents": 1
       },
       "coupon_id": 1,
       "line_items": [

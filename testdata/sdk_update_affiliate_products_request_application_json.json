@@ -1,0 +1,11 @@
+{
+  "enable_specific_products": true,
+  "products": [
+    {
+      "id": 1,
+      "enabled": true,
+      "commission": {}
+    }
+  ],
+  "replace_products": true
+}

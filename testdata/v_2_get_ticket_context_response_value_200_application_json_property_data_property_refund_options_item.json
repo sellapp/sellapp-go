@@ -1,0 +1,10 @@
+{
+  "invoice_id": 1,
+  "order_id": 1,
+  "product_id": 1,
+  "product_title": "test_product_title",
+  "currency": "USD",
+  "paid_cents": 1,
+  "active_support_refunds_cents": 1,
+  "refundable_cents": 1
+}

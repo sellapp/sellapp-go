@@ -276,11 +276,12 @@ List blacklist rules
 [API reference](https://sell.app/docs/api/blacklists/list-blacklists) · Effect: **read**
 
 ```go
-func (s *BlacklistService) V2ListBlacklists(ctx context.Context, opts ...RequestOption) *Iterator[Blacklist]
+func (s *BlacklistService) V2ListBlacklists(ctx context.Context, params *BlacklistsV2ListBlacklistsParams, opts ...RequestOption) *Iterator[Blacklist]
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
+| params | `*BlacklistsV2ListBlacklistsParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `*Iterator[Blacklist]`.
@@ -297,7 +298,8 @@ import (
 
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    page := client.Blacklists().V2ListBlacklists(context.Background())
+    params := &sellapp.BlacklistsV2ListBlacklistsParams{}
+    page := client.Blacklists().V2ListBlacklists(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
 }

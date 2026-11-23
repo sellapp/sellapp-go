@@ -52,6 +52,29 @@ func TestCourses_List_Empty(t *testing.T) {
 	require.NoError(t, iter.Err())
 }
 
+func TestCourses_Create(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/courses", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_course_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Courses().Create(context.Background(), decodeTestParams[sellapp.CoursesCreateParams](t, "{\"category\":\"development\",\"level\":\"all_levels\",\"language\":\"test_language\",\"subtitle\":\"test_subtitle\",\"author\":\"test_author\",\"subcategory\":\"test_subcategory\",\"what_you_learn\":[\"test_what_you_learn\"],\"requirements\":[\"test_requirements\"],\"certificate_enabled\":true,\"access_type\":\"lifetime\",\"access_duration_days\":1,\"enrollment_limit\":1,\"delivery_text\":\"test_delivery_text\",\"title\":\"test_title\",\"slug\":\"00000000000000000000000000\",\"description\":\"test_description\",\"visibility\":\"PUBLIC\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestCourses_Search(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
@@ -124,7 +147,7 @@ func TestCourses_Replace(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Courses().Replace(context.Background(), "test_course", decodeTestParams[sellapp.CoursesReplaceParams](t, "{\"category\":\"development\",\"level\":\"all_levels\",\"language\":\"test_language\",\"subtitle\":\"test_subtitle\",\"author\":\"test_author\",\"subcategory\":\"test_subcategory\",\"what_you_learn\":[\"test_what_you_learn\"],\"requirements\":[\"test_requirements\"],\"certificate_enabled\":true,\"access_type\":\"lifetime\",\"access_duration_days\":1,\"enrollment_limit\":1,\"delivery_text\":\"test_delivery_text\",\"visibility\":\"PUBLIC\",\"expected_updated_at\":\"2023-01-01T00:00:00.000Z\"}"))
+	result, err := client.Courses().Replace(context.Background(), "test_course", decodeTestParams[sellapp.CoursesReplaceParams](t, "{\"category\":\"development\",\"level\":\"all_levels\",\"language\":\"test_language\",\"subtitle\":\"test_subtitle\",\"author\":\"test_author\",\"subcategory\":\"test_subcategory\",\"what_you_learn\":[\"test_what_you_learn\"],\"requirements\":[\"test_requirements\"],\"certificate_enabled\":true,\"access_type\":\"lifetime\",\"access_duration_days\":1,\"enrollment_limit\":1,\"delivery_text\":\"test_delivery_text\",\"visibility\":\"PUBLIC\",\"expected_updated_at\":\"2023-01-01T00:00:00.000Z\",\"title\":\"test_title\",\"slug\":\"00000000000000000000000000\",\"description\":\"test_description\"}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -147,7 +170,27 @@ func TestCourses_Update(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Courses().Update(context.Background(), "test_course", decodeTestParams[sellapp.CoursesUpdateParams](t, "{\"category\":\"development\",\"level\":\"all_levels\",\"language\":\"test_language\",\"subtitle\":\"test_subtitle\",\"author\":\"test_author\",\"subcategory\":\"test_subcategory\",\"what_you_learn\":[\"test_what_you_learn\"],\"requirements\":[\"test_requirements\"],\"certificate_enabled\":true,\"access_type\":\"lifetime\",\"access_duration_days\":1,\"enrollment_limit\":1,\"delivery_text\":\"test_delivery_text\",\"visibility\":\"PUBLIC\",\"expected_updated_at\":\"2023-01-01T00:00:00.000Z\"}"))
+	result, err := client.Courses().Update(context.Background(), "test_course", decodeTestParams[sellapp.CoursesUpdateParams](t, "{\"category\":\"development\",\"level\":\"all_levels\",\"language\":\"test_language\",\"subtitle\":\"test_subtitle\",\"author\":\"test_author\",\"subcategory\":\"test_subcategory\",\"what_you_learn\":[\"test_what_you_learn\"],\"requirements\":[\"test_requirements\"],\"certificate_enabled\":true,\"access_type\":\"lifetime\",\"access_duration_days\":1,\"enrollment_limit\":1,\"delivery_text\":\"test_delivery_text\",\"visibility\":\"PUBLIC\",\"expected_updated_at\":\"2023-01-01T00:00:00.000Z\",\"title\":\"test_title\",\"slug\":\"00000000000000000000000000\",\"description\":\"test_description\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestCourses_GetStudentSummary(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/course-students", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_course_student_summary_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Courses().GetStudentSummary(context.Background(), &sellapp.CoursesGetStudentSummaryParams{})
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

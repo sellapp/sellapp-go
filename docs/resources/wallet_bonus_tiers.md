@@ -353,3 +353,63 @@ Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API r
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 
+## Quote
+
+Quote a wallet bonus tier
+
+[API reference](https://sell.app/docs/api/wallet/quote-bonus-tier) · Effect: **read**
+
+```go
+func (s *WalletBonusTierService) Quote(ctx context.Context, params *WalletBonusTiersQuoteParams, opts ...RequestOption) (*SdkQuoteWalletBonusTierResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| params | `*WalletBonusTiersQuoteParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkQuoteWalletBonusTierResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.WalletBonusTiersQuoteParams{}
+    if err := json.Unmarshal([]byte("20000"), &params.TopUpCents); err != nil { panic(err) }
+    result, err := client.WalletBonusTiers().Quote(context.Background(), params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+

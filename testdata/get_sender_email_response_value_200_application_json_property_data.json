@@ -1,0 +1,12 @@
+{
+  "email": "test@example.com",
+  "verified": true,
+  "sender_name": "Test",
+  "default_from": "test_default_from",
+  "customer_emails_from": "test@example.com",
+  "pending": {
+    "email": "test@example.com",
+    "verified": true,
+    "problem": "test_problem"
+  }
+}

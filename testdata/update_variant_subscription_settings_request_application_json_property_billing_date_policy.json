@@ -1,0 +1,7 @@
+{
+  "max_shift_days": 1,
+  "max_changes_per_period": 1,
+  "allowed_day_min": 1,
+  "allowed_day_max": 1,
+  "preview_required": true
+}

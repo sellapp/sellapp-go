@@ -62,7 +62,15 @@ func TestConnectedCatalogCheckoutWorkflow(t *testing.T) {
 		}
 		if r.Method == "GET" && r.URL.Path == "/api/v2/products" {
 			page := r.URL.Query().Get("page")
-			data := []any{product}
+			listed := map[string]any{}
+			for key, value := range product {
+				listed[key] = value
+			}
+			listed["price_range"] = nil
+			listed["stock"] = 0
+			listed["sales"] = 0
+			listed["sold_out"] = true
+			data := []any{listed}
 			var next any = "?page=2"
 			if page == "2" {
 				data = []any{}

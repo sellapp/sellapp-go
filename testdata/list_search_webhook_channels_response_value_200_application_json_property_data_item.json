@@ -8,7 +8,18 @@
         "order.created",
         "order.paid"
       ],
-      "signing_secret_configured": true
+      "signing_secret_configured": true,
+      "health": {
+        "state": "active",
+        "last_success_at": "2023-01-01T00:00:00.000Z",
+        "last_failure_at": "2023-01-01T00:00:00.000Z"
+      },
+      "last_delivery": {
+        "id": "00000000-0000-0000-0000-000000000000",
+        "event_type": "test_event_type",
+        "status": "pending",
+        "created_at": "2023-01-01T00:00:00.000Z"
+      }
     }
   ],
   "list_metadata": {

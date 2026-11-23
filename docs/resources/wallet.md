@@ -149,7 +149,7 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.WalletAdjustParams{}
-    if err := json.Unmarshal([]byte("{\"amount_cents\":2500,\"idempotency_key\":\"wallet-adjustment-01992a65\",\"note\":\"Launch-day account credit\"}"), params); err != nil { panic(err) }
+    if err := json.Unmarshal([]byte("{\"amount_cents\":2500,\"idempotency_key\":\"wallet-adjustment-01992a65\",\"note\":\"Launch-day account credit\",\"expected_balance_cents\":0}"), params); err != nil { panic(err) }
     result, err := client.Wallet().Adjust(context.Background(), 1, params)
     if err != nil { panic(err) }
     fmt.Println(result)

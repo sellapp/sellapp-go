@@ -1,0 +1,19 @@
+{
+  "data": {
+    "shopping_cart_enabled": true,
+    "customer_email_required": true,
+    "allow_vpn_purchases": true,
+    "blacklist_on_dispute": true,
+    "minimum_spend": "00000000000000000000000000",
+    "billing_descriptor": "test_billing_descrip",
+    "attempts_per_customer": 1,
+    "attempts_per_ip": 1,
+    "attempts_per_email": 1,
+    "attempts_per_fingerprint": 1,
+    "rate_limit_window_seconds": 60,
+    "crypto": {
+      "underpaid_percentage": 1,
+      "minimum_confirmations": 1
+    }
+  }
+}

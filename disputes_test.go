@@ -18,6 +18,7 @@ func TestDisputes_List(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "GET", r.Method)
 		require.Equal(t, "/v2/disputes", r.URL.Path)
+		require.Equal(t, "test_provider", r.URL.Query().Get("provider"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":\"00000000-0000-0000-0000-000000000000\",\"source\":{\"type\":\"order\",\"id\":1},\"provider\":\"provider_01234\",\"provider_dispute_id\":\"provider_dispute_id_01234\",\"amount\":1,\"currency\":\"test_currency\",\"status\":\"open\",\"reason\":\"test_reason\"}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -25,7 +26,7 @@ func TestDisputes_List(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Disputes().List(context.Background())
+	iter := client.Disputes().List(context.Background(), &sellapp.DisputesListParams{Provider: ptrString("test_provider")})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -42,7 +43,7 @@ func TestDisputes_List_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Disputes().List(context.Background())
+	iter := client.Disputes().List(context.Background(), &sellapp.DisputesListParams{Provider: ptrString("test_provider")})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }
@@ -76,7 +77,7 @@ func TestDisputes_Error401(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Disputes().List(context.Background())
+	iter := client.Disputes().List(context.Background(), &sellapp.DisputesListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.AuthenticationError{}, iter.Err())
 }
@@ -90,7 +91,7 @@ func TestDisputes_Error404(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Disputes().List(context.Background())
+	iter := client.Disputes().List(context.Background(), &sellapp.DisputesListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.NotFoundError{}, iter.Err())
 }
@@ -104,7 +105,7 @@ func TestDisputes_Error422(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Disputes().List(context.Background())
+	iter := client.Disputes().List(context.Background(), &sellapp.DisputesListParams{})
 	require.False(t, iter.Next())
 	require.IsType(t, &sellapp.UnprocessableEntityError{}, iter.Err())
 }

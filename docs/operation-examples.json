@@ -42,6 +42,14 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "getChargeSummary",
+    "mountTarget": "Charges",
+    "methodName": "get_summary",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ChargesGetSummaryParams{}\n    result, err := client.Charges().GetSummary(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listGroups",
     "mountTarget": "Groups",
     "methodName": "list",
@@ -221,7 +229,7 @@
     "operationId": "createInvoiceRefund",
     "mountTarget": "Invoices",
     "methodName": "create_refund",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.InvoicesCreateRefundParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"amount\\\":\\\"12.50\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Invoices().CreateRefund(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.InvoicesCreateRefundParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"amount\\\":\\\"12.50\\\",\\\"expected_refunded_total_cents\\\":0}\"), params); err != nil { panic(err) }\n    result, err := client.Invoices().CreateRefund(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -373,7 +381,7 @@
     "operationId": "searchProducts",
     "mountTarget": "Products",
     "methodName": "search",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsSearchParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"filters\\\":[{\\\"field\\\":\\\"id\\\",\\\"operator\\\":\\\"=\\\",\\\"value\\\":1}],\\\"sort\\\":[{\\\"field\\\":\\\"created_at\\\",\\\"direction\\\":\\\"desc\\\"}]}\"), params); err != nil { panic(err) }\n    page := client.Products().Search(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsSearchParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"search\\\":{\\\"value\\\":\\\"launch\\\"},\\\"max_price\\\":2500,\\\"stock\\\":\\\"in_stock\\\",\\\"visibility\\\":[\\\"PUBLIC\\\"],\\\"has_sales\\\":true}\"), params); err != nil { panic(err) }\n    page := client.Products().Search(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -398,6 +406,62 @@
     "mountTarget": "Products",
     "methodName": "batch_delete",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsBatchDeleteParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"resources\\\":[1,2]}\"), params); err != nil { panic(err) }\n    if err := client.Products().BatchDelete(context.Background(), params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "publishProduct",
+    "mountTarget": "Products",
+    "methodName": "publish",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsPublishParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"variant_ids\\\":[2]}\"), params); err != nil { panic(err) }\n    result, err := client.Products().Publish(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "duplicateProduct",
+    "mountTarget": "Products",
+    "methodName": "duplicate",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.Products().Duplicate(context.Background(), 1)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "moveProduct",
+    "mountTarget": "Products",
+    "methodName": "move",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsMoveParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"position\\\":1,\\\"expected_position\\\":3}\"), params); err != nil { panic(err) }\n    result, err := client.Products().Move(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getProductFeaturedVariant",
+    "mountTarget": "ProductsFeaturedVariant",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.ProductsFeaturedVariant().Get(context.Background(), 1)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceProductFeaturedVariant",
+    "mountTarget": "ProductsFeaturedVariant",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsFeaturedVariantReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"variant_id\\\":2,\\\"highlight_label\\\":\\\"best_value\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.ProductsFeaturedVariant().Replace(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "listProductSimilarProducts",
+    "mountTarget": "ProductsSimilarProducts",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.ProductsSimilarProducts().List(context.Background(), 30)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceProductSimilarProducts",
+    "mountTarget": "ProductsSimilarProducts",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductsSimilarProductsReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"variant_ids\\\":[31,41]}\"), params); err != nil { panic(err) }\n    result, err := client.ProductsSimilarProducts().Replace(context.Background(), 30, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -518,6 +582,54 @@
     "mountTarget": "ProductVariants",
     "methodName": "batch_delete",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductVariantsBatchDeleteParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"resources\\\":[1,2]}\"), params); err != nil { panic(err) }\n    if err := client.ProductVariants().BatchDelete(context.Background(), 1, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "publishProductVariant",
+    "mountTarget": "ProductVariants",
+    "methodName": "publish",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.ProductVariants().Publish(context.Background(), 11, 12)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "duplicateProductVariant",
+    "mountTarget": "ProductVariants",
+    "methodName": "duplicate",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.ProductVariants().Duplicate(context.Background(), 1, 2)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "reorderProductVariants",
+    "mountTarget": "ProductVariants",
+    "methodName": "reorder",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductVariantsReorderParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"variant_ids\\\":[2,1]}\"), params); err != nil { panic(err) }\n    result, err := client.ProductVariants().Reorder(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getVariantSubscriptionSettings",
+    "mountTarget": "ProductVariantsSubscriptionSettings",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.ProductVariantsSubscriptionSettings().Get(context.Background(), 1, 4)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateVariantSubscriptionSettings",
+    "mountTarget": "ProductVariantsSubscriptionSettings",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductVariantsSubscriptionSettingsUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"pause_policy\\\":{\\\"max_pause_days\\\":30},\\\"renewal_policy\\\":{\\\"redeliver_on_renewal\\\":false},\\\"expected_state\\\":\\\"3f9a1c0e7b2d4a6f8e1c5b9d0a7f3e2c4b6d8a0f1e3c5a7b9d2f4e6a8c0b1d3e\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.ProductVariantsSubscriptionSettings().Update(context.Background(), 1, 4, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceVariantCommunityAccess",
+    "mountTarget": "ProductVariantsCommunityAccess",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ProductVariantsCommunityAccessReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"community\\\":{\\\"platform\\\":\\\"discord\\\",\\\"server_id\\\":\\\"1187040134912155648\\\",\\\"role_ids\\\":[\\\"1187040299781210112\\\"],\\\"required\\\":true,\\\"remove_on_expire\\\":true},\\\"expected_updated_at\\\":\\\"2024-01-10T18:47:22.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.ProductVariantsCommunityAccess().Replace(context.Background(), 1, 2, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -746,6 +858,14 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "createBookingProduct",
+    "mountTarget": "Bookings",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.BookingsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"title\\\":\\\"Strategy consultation\\\",\\\"description\\\":\\\"<p>A private strategy session for your next launch.</p>\\\",\\\"variant_title\\\":\\\"60 minute session\\\",\\\"price_cents\\\":2500,\\\"currency\\\":\\\"USD\\\",\\\"payment_methods\\\":[\\\"STRIPE\\\"],\\\"timezone\\\":\\\"Europe/London\\\",\\\"duration_minutes\\\":60,\\\"availability\\\":[{\\\"day\\\":1,\\\"enabled\\\":true,\\\"start\\\":\\\"09:00\\\",\\\"end\\\":\\\"12:00\\\"},{\\\"day\\\":3,\\\"enabled\\\":true,\\\"start\\\":\\\"13:00\\\",\\\"end\\\":\\\"17:00\\\"}]}\"), params); err != nil { panic(err) }\n    result, err := client.Bookings().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "getBundleItem",
     "mountTarget": "BundleItems",
     "methodName": "get",
@@ -774,6 +894,38 @@
     "mountTarget": "BundleItems",
     "methodName": "detach",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.BundleItemsDetachParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"resources\\\":[1]}\"), params); err != nil { panic(err) }\n    if err := client.BundleItems().Detach(context.Background(), 1, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "previewVariantBuyerNotification",
+    "mountTarget": "VariantDeliverables",
+    "methodName": "preview",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.VariantDeliverables().Preview(context.Background(), 1, 2)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "notifyVariantBuyers",
+    "mountTarget": "VariantDeliverables",
+    "methodName": "notify",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.VariantDeliverables().Notify(context.Background(), 1, 2, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getVariantDeliverableConfiguration",
+    "mountTarget": "VariantDeliverables",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.VariantDeliverables().Get(context.Background(), \"string_example\", 1)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceVariantDeliverableConfiguration",
+    "mountTarget": "VariantDeliverables",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.VariantDeliverablesReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"types\\\":[\\\"MANUAL\\\"],\\\"data\\\":{\\\"comment\\\":\\\"Delivery is arranged by Launch Lab.\\\"}}\"), params); err != nil { panic(err) }\n    result, err := client.VariantDeliverables().Replace(context.Background(), \"string_example\", 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -854,6 +1006,14 @@
     "mountTarget": "PromotionsPhases",
     "methodName": "replace",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.PromotionsPhasesReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"phases\\\":[{\\\"discount_type\\\":\\\"percentage\\\",\\\"discount_value\\\":\\\"20\\\",\\\"ends_at\\\":\\\"2026-08-04T00:00:00Z\\\",\\\"max_redemptions\\\":200,\\\"minimum_amount\\\":\\\"10\\\"},{\\\"discount_type\\\":\\\"fixed\\\",\\\"discount_value\\\":\\\"5\\\",\\\"ends_at\\\":null,\\\"max_redemptions\\\":null,\\\"minimum_amount\\\":\\\"25\\\"}]}\"), params); err != nil { panic(err) }\n    result, err := client.PromotionsPhases().Replace(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getPromotionUsage",
+    "mountTarget": "Promotions",
+    "methodName": "get_usage",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.PromotionsGetUsageParams{}\n    result, err := client.Promotions().GetUsage(context.Background(), 30, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1138,6 +1298,222 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "listSupportReplyTemplates",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesListParams{}\n    page := client.SupportReplyTemplates().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createSupportReplyTemplate",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"label\\\":\\\"Refund credited\\\",\\\"body\\\":\\\"Hi {customer_email}, we credited {refund_amount} to your {store_name} wallet for {product_title}. Your wallet balance is now {wallet_balance}.\\\",\\\"supports_auto_respond\\\":true}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReplyTemplates().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportReplyTemplate",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.SupportReplyTemplates().Get(context.Background(), 32)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceSupportReplyTemplate",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"is_active\\\":false,\\\"expected_updated_at\\\":\\\"2026-07-03T09:12:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReplyTemplates().Replace(context.Background(), 31, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateSupportReplyTemplate",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"is_active\\\":false,\\\"expected_updated_at\\\":\\\"2026-07-03T09:12:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReplyTemplates().Update(context.Background(), 31, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "deleteSupportReplyTemplate",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "delete",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    if err := client.SupportReplyTemplates().Delete(context.Background(), 33); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "renderSupportReplyTemplate",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "render",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesRenderParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"ticket_id\\\":4821,\\\"invoice_id\\\":7001,\\\"refund_amount_cents\\\":999}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReplyTemplates().Render(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "reorderSupportReplyTemplates",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "reorder",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesReorderParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"ordered_template_ids\\\":[32,31]}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReplyTemplates().Reorder(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportReplyTemplateOptions",
+    "mountTarget": "SupportReplyTemplates",
+    "methodName": "get_options",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReplyTemplatesGetOptionsParams{}\n    result, err := client.SupportReplyTemplates().GetOptions(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "listSupportReasons",
+    "mountTarget": "SupportReasons",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReasonsListParams{}\n    page := client.SupportReasons().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createSupportReason",
+    "mountTarget": "SupportReasons",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReasonsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"label\\\":\\\"Download link expired\\\",\\\"description\\\":\\\"The download link in the order email no longer works.\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReasons().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportReason",
+    "mountTarget": "SupportReasons",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.SupportReasons().Get(context.Background(), 14)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceSupportReason",
+    "mountTarget": "SupportReasons",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReasonsReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"description\\\":\\\"The download link in the order email no longer opens.\\\",\\\"expected_updated_at\\\":\\\"2026-07-03T09:10:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReasons().Replace(context.Background(), 14, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateSupportReason",
+    "mountTarget": "SupportReasons",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportReasonsUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"description\\\":\\\"The download link in the order email no longer opens.\\\",\\\"expected_updated_at\\\":\\\"2026-07-03T09:10:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportReasons().Update(context.Background(), 14, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "deleteSupportReason",
+    "mountTarget": "SupportReasons",
+    "methodName": "delete",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    if err := client.SupportReasons().Delete(context.Background(), 15); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportReasonOptions",
+    "mountTarget": "SupportReasons",
+    "methodName": "get_options",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.SupportReasons().GetOptions(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "listSupportAutomationRules",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesListParams{}\n    page := client.SupportAutomationRules().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createSupportAutomationRule",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Expired download links\\\",\\\"match_reason_source\\\":\\\"store\\\",\\\"match_reason_code\\\":\\\"download-link-expired\\\",\\\"match_product_ids\\\":[120],\\\"match_max_order_total_cents\\\":5000,\\\"max_prior_support_refund_count\\\":0,\\\"response_template_id\\\":32,\\\"action_refund_kind\\\":\\\"partial\\\",\\\"action_refund_percent_basis\\\":5000,\\\"action_refund_cap_cents\\\":1000,\\\"action_close_outcome\\\":\\\"refunded_partial\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationRules().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportAutomationRule",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.SupportAutomationRules().Get(context.Background(), 7)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceSupportAutomationRule",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Expired download links, first refund only\\\",\\\"clear\\\":[\\\"match_max_order_total_cents\\\"],\\\"expected_updated_at\\\":\\\"2026-07-03T09:20:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationRules().Replace(context.Background(), 7, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateSupportAutomationRule",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Expired download links, first refund only\\\",\\\"clear\\\":[\\\"match_max_order_total_cents\\\"],\\\"expected_updated_at\\\":\\\"2026-07-03T09:20:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationRules().Update(context.Background(), 7, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateSupportAutomationRuleState",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "update_state",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesUpdateStateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"state\\\":\\\"active\\\",\\\"expected_updated_at\\\":\\\"2026-07-03T09:20:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationRules().UpdateState(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "reorderSupportAutomationRules",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "reorder",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesReorderParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"ordered_rule_ids\\\":[7]}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationRules().Reorder(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "dryRunSupportAutomationRules",
+    "mountTarget": "SupportAutomationRules",
+    "methodName": "dry_run",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationRulesDryRunParams{}\n    if err := json.Unmarshal([]byte(\"4821\"), &params.TicketID); err != nil { panic(err) }\n    result, err := client.SupportAutomationRules().DryRun(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportAutomationSettings",
+    "mountTarget": "SupportAutomationSettings",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.SupportAutomationSettings().Get(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceSupportAutomationSettings",
+    "mountTarget": "SupportAutomationSettings",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationSettingsReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"automation_enabled\\\":true,\\\"daily_refund_cap_cents\\\":5000,\\\"expected_automation_enabled\\\":false,\\\"expected_daily_refund_cap_cents\\\":null}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationSettings().Replace(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateSupportAutomationSettings",
+    "mountTarget": "SupportAutomationSettings",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.SupportAutomationSettingsUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"automation_enabled\\\":true,\\\"daily_refund_cap_cents\\\":5000,\\\"expected_automation_enabled\\\":false,\\\"expected_daily_refund_cap_cents\\\":null}\"), params); err != nil { panic(err) }\n    result, err := client.SupportAutomationSettings().Update(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listCustomers",
     "mountTarget": "Customers",
     "methodName": "list",
@@ -1221,7 +1597,7 @@
     "operationId": "searchOrders",
     "mountTarget": "Orders",
     "methodName": "search",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OrdersSearchParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"filters\\\":[{\\\"field\\\":\\\"transaction_id\\\",\\\"operator\\\":\\\"contains\\\",\\\"value\\\":\\\"pi_3Example\\\"},{\\\"field\\\":\\\"status\\\",\\\"operator\\\":\\\"in\\\",\\\"value\\\":[\\\"COMPLETED\\\"]}],\\\"sort\\\":[{\\\"field\\\":\\\"created_at\\\",\\\"direction\\\":\\\"desc\\\"}],\\\"pagination\\\":{\\\"page\\\":1,\\\"limit\\\":25}}\"), params); err != nil { panic(err) }\n    page := client.Orders().Search(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OrdersSearchParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"filters\\\":[{\\\"field\\\":\\\"created_at\\\",\\\"operator\\\":\\\"gte\\\",\\\"value\\\":\\\"2026-07-01T00:00:00Z\\\"},{\\\"field\\\":\\\"created_at\\\",\\\"operator\\\":\\\"lte\\\",\\\"value\\\":\\\"2026-07-31T23:59:59Z\\\"},{\\\"field\\\":\\\"total\\\",\\\"operator\\\":\\\"gte\\\",\\\"value\\\":1000},{\\\"field\\\":\\\"currency\\\",\\\"operator\\\":\\\"eq\\\",\\\"value\\\":\\\"USD\\\"},{\\\"field\\\":\\\"status\\\",\\\"operator\\\":\\\"in\\\",\\\"value\\\":[\\\"COMPLETED\\\"]}],\\\"sort\\\":[{\\\"field\\\":\\\"created_at\\\",\\\"direction\\\":\\\"desc\\\"}],\\\"pagination\\\":{\\\"page\\\":1,\\\"limit\\\":25}}\"), params); err != nil { panic(err) }\n    page := client.Orders().Search(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -1261,7 +1637,7 @@
     "operationId": "createOrderRefund",
     "mountTarget": "Orders",
     "methodName": "create_refund",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OrdersCreateRefundParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"amount\\\":\\\"5.00\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Orders().CreateRefund(context.Background(), 9001, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OrdersCreateRefundParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"amount\\\":\\\"5.00\\\",\\\"expected_refunded_total_cents\\\":0}\"), params); err != nil { panic(err) }\n    result, err := client.Orders().CreateRefund(context.Background(), 9001, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1286,6 +1662,14 @@
     "mountTarget": "Orders",
     "methodName": "send_fulfillment_notifications",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OrdersSendFulfillmentNotificationsParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"maya@example.com\\\",\\\"product_variant_ids\\\":[4321]}\"), params); err != nil { panic(err) }\n    result, err := client.Orders().SendFulfillmentNotifications(context.Background(), 9001, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "regenerateOrderTelegramInvite",
+    "mountTarget": "Orders",
+    "methodName": "regenerate_telegram_invite",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.OrdersRegenerateTelegramInviteParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"variant_id\\\":4321}\"), params); err != nil { panic(err) }\n    result, err := client.Orders().RegenerateTelegramInvite(context.Background(), 9001, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1358,22 +1742,6 @@
     "mountTarget": "OrdersLineItems",
     "methodName": "get",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.OrdersLineItems().Get(context.Background(), 4001, 9001)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
-  },
-  {
-    "language": "go",
-    "fileExtension": "go",
-    "operationId": "getVariantDeliverableConfiguration",
-    "mountTarget": "VariantDeliverables",
-    "methodName": "get",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.VariantDeliverables().Get(context.Background(), \"string_example\", 1)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
-  },
-  {
-    "language": "go",
-    "fileExtension": "go",
-    "operationId": "replaceVariantDeliverableConfiguration",
-    "mountTarget": "VariantDeliverables",
-    "methodName": "replace",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.VariantDeliverablesReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"types\\\":[\\\"MANUAL\\\"],\\\"data\\\":{\\\"comment\\\":\\\"Delivery is arranged by Launch Lab.\\\"}}\"), params); err != nil { panic(err) }\n    result, err := client.VariantDeliverables().Replace(context.Background(), \"string_example\", 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1542,6 +1910,14 @@
     "mountTarget": "AffiliateProgram",
     "methodName": "invite",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.AffiliateProgramInviteParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"alex.morgan@example.com\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.AffiliateProgram().Invite(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "resendAffiliateInvitation",
+    "mountTarget": "AffiliateProgram",
+    "methodName": "resend",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.AffiliateProgram().Resend(context.Background(), 77)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1730,6 +2106,14 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "getUpsellOfferPerformance",
+    "mountTarget": "UpsellOffers",
+    "methodName": "get_performance",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.UpsellOffersGetPerformanceParams{}\n    result, err := client.UpsellOffers().GetPerformance(context.Background(), 71, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listCommunityConnections",
     "mountTarget": "CommunityConnections",
     "methodName": "list",
@@ -1778,6 +2162,62 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "listCommunityFailedGrantReasons",
+    "mountTarget": "CommunityConnections",
+    "methodName": "list_failed_grant_reasons",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.CommunityConnections().ListFailedGrantReasons(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getCommunityServer",
+    "mountTarget": "CommunityConnectionsServers",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.CommunityConnectionsServers().Get(context.Background(), \"discord\", \"server_ship_room\")\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "removeCommunityServer",
+    "mountTarget": "CommunityConnectionsServers",
+    "methodName": "remove",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CommunityConnectionsServersRemoveParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"affected_variant_ids\\\":[902]}\"), params); err != nil { panic(err) }\n    if err := client.CommunityConnectionsServers().Remove(context.Background(), \"discord\", \"server_ship_room\", params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "syncDiscordRoles",
+    "mountTarget": "CommunityConnections",
+    "methodName": "sync_discord_roles",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CommunityConnectionsSyncDiscordRolesParams{}\n    if err := json.Unmarshal([]byte(\"{}\"), params); err != nil { panic(err) }\n    result, err := client.CommunityConnections().SyncDiscordRoles(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "listSlackAvailableChannels",
+    "mountTarget": "CommunityConnectionsSlack",
+    "methodName": "list_channels",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.CommunityConnectionsSlack().ListChannels(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "addSlackChannel",
+    "mountTarget": "CommunityConnectionsSlack",
+    "methodName": "add_channel",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CommunityConnectionsSlackAddChannelParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"channel_id\\\":\\\"C07LAUNCHVIP\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CommunityConnectionsSlack().AddChannel(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceSlackWorkspaceInviteLink",
+    "mountTarget": "CommunityConnectionsSlack",
+    "methodName": "replace_invite_link",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CommunityConnectionsSlackReplaceInviteLinkParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"invite_link\\\":\\\"https://join.slack.com/t/launch-lab/shared_invite/zt-2abc123\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CommunityConnectionsSlack().ReplaceInviteLink(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "getWalletSettings",
     "mountTarget": "WalletSettings",
     "methodName": "get",
@@ -1813,7 +2253,7 @@
     "operationId": "adjustCustomerWallet",
     "mountTarget": "Wallet",
     "methodName": "adjust",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletAdjustParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"amount_cents\\\":2500,\\\"idempotency_key\\\":\\\"wallet-adjustment-01992a65\\\",\\\"note\\\":\\\"Launch-day account credit\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Wallet().Adjust(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletAdjustParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"amount_cents\\\":2500,\\\"idempotency_key\\\":\\\"wallet-adjustment-01992a65\\\",\\\"note\\\":\\\"Launch-day account credit\\\",\\\"expected_balance_cents\\\":0}\"), params); err != nil { panic(err) }\n    result, err := client.Wallet().Adjust(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1822,6 +2262,30 @@
     "mountTarget": "Wallet",
     "methodName": "update_status",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletUpdateStatusParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"status\\\":\\\"frozen\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Wallet().UpdateStatus(context.Background(), 1, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "reverseWalletTransaction",
+    "mountTarget": "WalletTransactions",
+    "methodName": "reverse",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletTransactionsReverseParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"note\\\":\\\"Credit went to the wrong customer\\\",\\\"expected_balance_cents\\\":2500}\"), params); err != nil { panic(err) }\n    result, err := client.WalletTransactions().Reverse(context.Background(), 42, 501, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "listStoreWalletTransactions",
+    "mountTarget": "WalletLedger",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletLedgerListParams{}\n    page := client.WalletLedger().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getWalletOverview",
+    "mountTarget": "WalletOverview",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletOverviewGetParams{}\n    result, err := client.WalletOverview().Get(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1890,6 +2354,14 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "quoteCashbackRule",
+    "mountTarget": "CashbackRules",
+    "methodName": "quote",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CashbackRulesQuoteParams{}\n    result, err := client.CashbackRules().Quote(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listWalletBonusTiers",
     "mountTarget": "WalletBonusTiers",
     "methodName": "list",
@@ -1938,10 +2410,26 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "quoteWalletBonusTier",
+    "mountTarget": "WalletBonusTiers",
+    "methodName": "quote",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WalletBonusTiersQuoteParams{}\n    if err := json.Unmarshal([]byte(\"20000\"), &params.TopUpCents); err != nil { panic(err) }\n    result, err := client.WalletBonusTiers().Quote(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listCourses",
     "mountTarget": "Courses",
     "methodName": "list",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CoursesListParams{}\n    page := client.Courses().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createCourse",
+    "mountTarget": "Courses",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CoursesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"category\\\":\\\"design\\\",\\\"level\\\":\\\"beginner\\\",\\\"language\\\":\\\"English\\\",\\\"what_you_learn\\\":[\\\"Sketch a logo concept.\\\",\\\"Choose a color palette.\\\"],\\\"certificate_enabled\\\":true,\\\"delivery_text\\\":\\\"Open your course from the link in your receipt.\\\",\\\"title\\\":\\\"Brand identity basics\\\",\\\"description\\\":\\\"<p>Design a logo, color palette, and type system for your next project.</p>\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Courses().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -1974,6 +2462,14 @@
     "mountTarget": "Courses",
     "methodName": "update",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CoursesUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"level\\\":\\\"beginner\\\",\\\"visibility\\\":\\\"HIDDEN\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Courses().Update(context.Background(), \"string_example\", params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getCourseStudentSummary",
+    "mountTarget": "Courses",
+    "methodName": "get_student_summary",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CoursesGetStudentSummaryParams{}\n    if err := json.Unmarshal([]byte(\"\\\"2026-08-01\\\"\"), &params.StartDate); err != nil { panic(err) }\n    if err := json.Unmarshal([]byte(\"\\\"2026-08-31\\\"\"), &params.EndDate); err != nil { panic(err) }\n    result, err := client.Courses().GetStudentSummary(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2058,6 +2554,62 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "listCheckoutFieldTemplates",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CheckoutFieldTemplatesListParams{}\n    result, err := client.CheckoutFieldTemplates().List(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "createCheckoutFieldTemplate",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CheckoutFieldTemplatesCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Discord access\\\",\\\"fields\\\":[{\\\"type\\\":\\\"text\\\",\\\"label\\\":\\\"Discord username\\\",\\\"key\\\":\\\"discord_username\\\",\\\"required\\\":true,\\\"placeholder\\\":\\\"name#0001\\\",\\\"description\\\":\\\"We add this account to the community after purchase.\\\"},{\\\"type\\\":\\\"radio\\\",\\\"label\\\":\\\"Experience level\\\",\\\"key\\\":\\\"experience_level\\\",\\\"required\\\":false,\\\"options\\\":[\\\"Beginner\\\",\\\"Intermediate\\\",\\\"Advanced\\\"],\\\"variant\\\":\\\"cards\\\",\\\"variant_options\\\":{\\\"vertical\\\":true,\\\"indicator\\\":true}}]}\"), params); err != nil { panic(err) }\n    result, err := client.CheckoutFieldTemplates().Create(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getCheckoutFieldTemplate",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.CheckoutFieldTemplates().Get(context.Background(), 14)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceCheckoutFieldTemplate",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CheckoutFieldTemplatesReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Discord onboarding\\\",\\\"expected_updated_at\\\":\\\"2026-09-04T09:00:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CheckoutFieldTemplates().Replace(context.Background(), 14, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateCheckoutFieldTemplate",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CheckoutFieldTemplatesUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Discord onboarding\\\",\\\"expected_updated_at\\\":\\\"2026-09-04T09:00:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CheckoutFieldTemplates().Update(context.Background(), 14, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "deleteCheckoutFieldTemplate",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "delete",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CheckoutFieldTemplatesDeleteParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"expected_updated_at\\\":\\\"2026-09-04T09:00:00.000000Z\\\"}\"), params); err != nil { panic(err) }\n    if err := client.CheckoutFieldTemplates().Delete(context.Background(), 14, params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "duplicateCheckoutFieldTemplate",
+    "mountTarget": "CheckoutFieldTemplates",
+    "methodName": "duplicate",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CheckoutFieldTemplatesDuplicateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"name\\\":\\\"Discord access for courses\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.CheckoutFieldTemplates().Duplicate(context.Background(), 14, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listPaymentMethods",
     "mountTarget": "PaymentMethods",
     "methodName": "list",
@@ -2094,6 +2646,22 @@
     "mountTarget": "PaymentMethods",
     "methodName": "validate",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.PaymentMethodsValidateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"merchant_secure_key\\\":\\\"replace-with-nmi-secure-key\\\",\\\"merchant_tokenization_key\\\":\\\"replace-with-nmi-tokenization-key\\\",\\\"signing_key\\\":\\\"replace-with-nmi-signing-key\\\",\\\"currencies\\\":[\\\"USD\\\"]}\"), &params.Body); err != nil { panic(err) }\n    result, err := client.PaymentMethods().Validate(context.Background(), \"NMI\", params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getPaymentMethodModifier",
+    "mountTarget": "PaymentMethodsModifier",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.PaymentMethodsModifier().Get(context.Background(), \"STRIPE\")\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replacePaymentMethodModifier",
+    "mountTarget": "PaymentMethodsModifier",
+    "methodName": "replace",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.PaymentMethodsModifierReplaceParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"kind\\\":\\\"fee\\\",\\\"percentage\\\":\\\"3.00\\\",\\\"fixed_amount\\\":\\\"0.30\\\",\\\"condition\\\":\\\"below\\\",\\\"threshold\\\":\\\"20.00\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.PaymentMethodsModifier().Replace(context.Background(), \"STRIPE\", params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -2202,6 +2770,190 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "getCheckoutSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "get_checkout",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreSettings().GetCheckout(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceCheckoutSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "replace_checkout",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsReplaceCheckoutParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"shopping_cart_enabled\\\":true,\\\"customer_email_required\\\":true,\\\"allow_vpn_purchases\\\":true,\\\"blacklist_on_dispute\\\":true,\\\"minimum_spend\\\":\\\"5.00\\\",\\\"billing_descriptor\\\":\\\"LAUNCH LAB\\\",\\\"attempts_per_customer\\\":5,\\\"attempts_per_ip\\\":20,\\\"attempts_per_email\\\":null,\\\"attempts_per_fingerprint\\\":null,\\\"rate_limit_window_seconds\\\":3600,\\\"crypto\\\":{\\\"underpaid_percentage\\\":2,\\\"minimum_confirmations\\\":2}}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().ReplaceCheckout(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateCheckoutSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "update_checkout",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsUpdateCheckoutParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"minimum_spend\\\":\\\"10.00\\\",\\\"attempts_per_email\\\":10}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().UpdateCheckout(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getTaxSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "get_taxes",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreSettings().GetTaxes(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceTaxSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "replace_taxes",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsReplaceTaxesParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"vat_enabled\\\":true,\\\"vat_inclusive_pricing\\\":true,\\\"collect_billing_details\\\":false}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().ReplaceTaxes(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateTaxSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "update_taxes",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsUpdateTaxesParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"vat_inclusive_pricing\\\":true}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().UpdateTaxes(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getCustomerEmailSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "get_customer_emails",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreSettings().GetCustomerEmails(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceCustomerEmailSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "replace_customer_emails",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsReplaceCustomerEmailsParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"send_delivery_email\\\":true,\\\"send_payment_failure_email\\\":false}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().ReplaceCustomerEmails(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateCustomerEmailSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "update_customer_emails",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsUpdateCustomerEmailsParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"send_payment_failure_email\\\":false}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().UpdateCustomerEmails(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getStoreAlertSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "get_store_alerts",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreSettings().GetAlerts(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceStoreAlertSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "replace_store_alerts",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsReplaceAlertsParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"sale_emails_enabled\\\":false}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().ReplaceAlerts(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateStoreAlertSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "update_store_alerts",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsUpdateAlertsParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"sale_emails_enabled\\\":false}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().UpdateAlerts(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getPersonalizationSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "get_personalization",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreSettings().GetPersonalization(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replacePersonalizationSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "replace_personalization",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsReplacePersonalizationParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"support_email\\\":\\\"support@launch-lab.example.com\\\",\\\"trustpilot_email\\\":null,\\\"sender_name\\\":\\\"Launch Lab\\\",\\\"sender_email\\\":\\\"orders@launch-lab.example.com\\\",\\\"store_address\\\":\\\"651 N Broad St, Suite 206\\\",\\\"store_city\\\":\\\"Middletown\\\",\\\"store_state\\\":\\\"Delaware\\\",\\\"store_zip\\\":\\\"19709\\\",\\\"store_country\\\":\\\"United States\\\",\\\"store_tax\\\":\\\"EIN 98-7654321\\\",\\\"back_link_label\\\":\\\"Back to Launch Lab\\\",\\\"back_link_url\\\":\\\"https://launch-lab.example.com\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().ReplacePersonalization(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updatePersonalizationSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "update_personalization",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsUpdatePersonalizationParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"back_link_label\\\":\\\"Return to the shop\\\",\\\"back_link_url\\\":\\\"https://launch-lab.example.com/shop\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().UpdatePersonalization(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "replaceCryptoCheckoutSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "replace_crypto_checkout",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsReplaceCryptoCheckoutParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"underpaid_percentage\\\":1,\\\"minimum_confirmations\\\":3}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().ReplaceCryptoCheckout(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateCryptoCheckoutSettings",
+    "mountTarget": "StoreSettings",
+    "methodName": "update_crypto_checkout",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSettingsUpdateCryptoCheckoutParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"minimum_confirmations\\\":3}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSettings().UpdateCryptoCheckout(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSenderEmail",
+    "mountTarget": "StoreSenderEmail",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSenderEmailGetParams{}\n    result, err := client.StoreSenderEmail().Get(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "setSenderEmail",
+    "mountTarget": "StoreSenderEmail",
+    "methodName": "set",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSenderEmailSetParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"orders@launch-lab.example.com\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSenderEmail().Set(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "deleteSenderEmail",
+    "mountTarget": "StoreSenderEmail",
+    "methodName": "delete",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSenderEmailDeleteParams{}\n    if err := client.StoreSenderEmail().Delete(context.Background(), params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "sendSenderEmailVerification",
+    "mountTarget": "StoreSenderEmail",
+    "methodName": "send_verification",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreSenderEmailSendVerificationParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"email\\\":\\\"orders@launch-lab.example.com\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.StoreSenderEmail().SendVerification(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getStoreIntegrations",
+    "mountTarget": "StoreIntegrations",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreIntegrations().Get(context.Background())\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "disconnectGoogleCalendar",
+    "mountTarget": "StoreIntegrations",
+    "methodName": "disconnect_google_calendar",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.StoreIntegrationsDisconnectGoogleCalendarParams{}\n    if err := json.Unmarshal([]byte(\"7\"), &params.ConnectionID); err != nil { panic(err) }\n    if err := client.StoreIntegrations().DisconnectGoogleCalendar(context.Background(), params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listNotificationChannels",
     "mountTarget": "StoreNotificationChannels",
     "methodName": "list",
@@ -2286,6 +3038,22 @@
     "mountTarget": "StoreCustomDomains",
     "methodName": "refresh",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.StoreCustomDomains().Refresh(context.Background(), 1)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "listNotifications",
+    "mountTarget": "Notifications",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.NotificationsListParams{}\n    page := client.Notifications().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "markNotificationsSeen",
+    "mountTarget": "Notifications",
+    "methodName": "mark",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.NotificationsMarkParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"notification_ids\\\":[9182]}\"), params); err != nil { panic(err) }\n    page := client.Notifications().Mark(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -2402,6 +3170,46 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "getAffiliateProducts",
+    "mountTarget": "AffiliatesProducts",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.AffiliatesProducts().Get(context.Background(), 88)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "updateAffiliateProducts",
+    "mountTarget": "AffiliatesProducts",
+    "methodName": "update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.AffiliatesProductsUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"enable_specific_products\\\":true,\\\"products\\\":[{\\\"id\\\":42,\\\"enabled\\\":true,\\\"commission\\\":{\\\"type\\\":\\\"percentage\\\",\\\"percentage\\\":\\\"25\\\"}},{\\\"id\\\":43,\\\"enabled\\\":true,\\\"commission\\\":{\\\"type\\\":\\\"fixed\\\",\\\"amount_usd_cents\\\":550}}],\\\"replace_products\\\":true}\"), params); err != nil { panic(err) }\n    result, err := client.AffiliatesProducts().Update(context.Background(), 88, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getAffiliateCoupon",
+    "mountTarget": "AffiliatesCoupon",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.AffiliatesCoupon().Get(context.Background(), 88)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "saveAffiliateCoupon",
+    "mountTarget": "AffiliatesCoupon",
+    "methodName": "save",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.AffiliatesCouponSaveParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"code\\\":\\\"ALEX15\\\",\\\"type\\\":\\\"PERCENTAGE\\\",\\\"discount\\\":\\\"15\\\",\\\"store_wide\\\":true,\\\"maximum_discount_amount\\\":\\\"20\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.AffiliatesCoupon().Save(context.Background(), 88, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "disableAffiliateCoupon",
+    "mountTarget": "AffiliatesCoupon",
+    "methodName": "disable",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    if err := client.AffiliatesCoupon().Disable(context.Background(), 88); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listAffiliateReferrals",
     "mountTarget": "AffiliateReferrals",
     "methodName": "list",
@@ -2474,10 +3282,18 @@
   {
     "language": "go",
     "fileExtension": "go",
+    "operationId": "markAffiliatePayoutsPaid",
+    "mountTarget": "AffiliatePayouts",
+    "methodName": "mark_paid",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.AffiliatePayoutsMarkPaidParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"payout_ids\\\":[91,92],\\\"expected_total_usd_cents\\\":4250}\"), params); err != nil { panic(err) }\n    result, err := client.AffiliatePayouts().MarkPaid(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
     "operationId": "listRefunds",
     "mountTarget": "Refunds",
     "methodName": "list_refunds",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    page := client.Refunds().List(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.RefundsListParams{}\n    page := client.Refunds().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -2493,7 +3309,7 @@
     "operationId": "listExports",
     "mountTarget": "Exports",
     "methodName": "list_exports",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    page := client.Exports().List(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.ExportsListParams{}\n    page := client.Exports().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -2525,7 +3341,7 @@
     "operationId": "listDisputes",
     "mountTarget": "Disputes",
     "methodName": "list_disputes",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    page := client.Disputes().List(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.DisputesListParams{}\n    page := client.Disputes().List(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -2733,7 +3549,7 @@
     "operationId": "listWebhookDeliveries",
     "mountTarget": "WebhookPlatform",
     "methodName": "list_webhook_deliveries",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    page := client.WebhookPlatform().ListDeliveries(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.WebhookPlatformListDeliveriesParams{}\n    page := client.WebhookPlatform().ListDeliveries(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -3125,7 +3941,7 @@
     "operationId": "v2ListBlacklists",
     "mountTarget": "Blacklists",
     "methodName": "v2_list_blacklists",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    page := client.Blacklists().V2ListBlacklists(context.Background())\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.BlacklistsV2ListBlacklistsParams{}\n    page := client.Blacklists().V2ListBlacklists(context.Background(), params)\n    if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println(\"No results.\") }\n    if err := page.Err(); err != nil { panic(err) }\n}\n"
   },
   {
     "language": "go",
@@ -3246,6 +4062,14 @@
     "mountTarget": "Coupons",
     "methodName": "v2_batch_delete_coupons",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.CouponsV2BatchDeleteCouponsParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"resources\\\":[1,2]}\"), params); err != nil { panic(err) }\n    if err := client.Coupons().V2BatchDeleteCoupons(context.Background(), params); err != nil { panic(err) }\n    fmt.Println(\"Request completed.\")\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "v2GetCouponUsage",
+    "mountTarget": "Coupons",
+    "methodName": "v2_get_coupon_usage",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.Coupons().V2GetCouponUsage(context.Background(), 1)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -3421,7 +4245,7 @@
     "operationId": "updateTicket",
     "mountTarget": "Tickets",
     "methodName": "update",
-    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.TicketsUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"status\\\":\\\"CLOSED\\\",\\\"archived\\\":true}\"), params); err != nil { panic(err) }\n    result, err := client.Tickets().Update(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.TicketsUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"status\\\":\\\"CLOSED\\\",\\\"archived\\\":true,\\\"outcome\\\":\\\"delivered\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.Tickets().Update(context.Background(), 42, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",
@@ -3454,6 +4278,62 @@
     "mountTarget": "TicketsMessages",
     "methodName": "v2_get_ticket_message",
     "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.TicketsMessages().V2GetTicketMessage(context.Background(), 1, 2)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "batchUpdateTickets",
+    "mountTarget": "Tickets",
+    "methodName": "batch_update",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.TicketsBatchUpdateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"action\\\":\\\"close\\\",\\\"outcome\\\":\\\"delivered\\\",\\\"resources\\\":[311,313]}\"), params); err != nil { panic(err) }\n    result, err := client.Tickets().BatchUpdate(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "v2GetTicketContext",
+    "mountTarget": "Tickets",
+    "methodName": "get_context",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.Tickets().GetContext(context.Background(), 312)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "v2ListTicketWalletRefundOptions",
+    "mountTarget": "TicketsWalletRefunds",
+    "methodName": "list_options",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.TicketsWalletRefunds().ListOptions(context.Background(), 312)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "v2ListTicketWalletRefunds",
+    "mountTarget": "TicketsWalletRefunds",
+    "methodName": "list",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    result, err := client.TicketsWalletRefunds().List(context.Background(), 312)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "v2RefundTicketToWallet",
+    "mountTarget": "TicketsWalletRefunds",
+    "methodName": "create",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.TicketsWalletRefundsCreateParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"invoice_id\\\":5120,\\\"amount_cents\\\":500,\\\"expected_refundable_cents\\\":1999,\\\"customer_note\\\":\\\"We added $5.00 to your store wallet for the trouble with your download link.\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.TicketsWalletRefunds().Create(context.Background(), 312, params, sellapp.WithIdempotencyKey(\"example-mutation-001\"))\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "v2ReverseTicketWalletRefund",
+    "mountTarget": "TicketsWalletRefunds",
+    "methodName": "reverse",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"encoding/json\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.TicketsWalletRefundsReverseParams{}\n    if err := json.Unmarshal([]byte(\"{\\\"reason\\\":\\\"Issued on the wrong ticket.\\\"}\"), params); err != nil { panic(err) }\n    result, err := client.TicketsWalletRefunds().Reverse(context.Background(), 312, 7001, params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
+  },
+  {
+    "language": "go",
+    "fileExtension": "go",
+    "operationId": "getSupportAnalytics",
+    "mountTarget": "TicketsAnalytics",
+    "methodName": "get",
+    "content": "package main\n\nimport (\n    \"context\"\n    \"fmt\"\n    \"os\"\n    \"github.com/sellapp/sellapp-go\"\n)\n\nfunc main() {\n    client := sellapp.NewClient(os.Getenv(\"SELLAPP_API_KEY\"), os.Getenv(\"SELLAPP_STORE\"), sellapp.WithBaseURL(os.Getenv(\"SELLAPP_API_BASE_URL\")))\n    params := &sellapp.TicketsAnalyticsGetParams{}\n    result, err := client.TicketsAnalytics().Get(context.Background(), params)\n    if err != nil { panic(err) }\n    fmt.Println(result)\n}\n"
   },
   {
     "language": "go",

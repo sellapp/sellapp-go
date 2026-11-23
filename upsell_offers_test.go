@@ -188,6 +188,26 @@ func TestUpsellOffers_Delete(t *testing.T) {
 	require.NoError(t, err)
 }
 
+func TestUpsellOffers_GetPerformance(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/upsell-offers/1/performance", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_upsell_offer_performance_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.UpsellOffers().GetPerformance(context.Background(), 1, &sellapp.UpsellOffersGetPerformanceParams{})
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestUpsellOffers_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

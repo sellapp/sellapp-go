@@ -394,7 +394,7 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.ProductsSearchParams{}
-    if err := json.Unmarshal([]byte("{\"filters\":[{\"field\":\"id\",\"operator\":\"=\",\"value\":1}],\"sort\":[{\"field\":\"created_at\",\"direction\":\"desc\"}]}"), params); err != nil { panic(err) }
+    if err := json.Unmarshal([]byte("{\"search\":{\"value\":\"launch\"},\"max_price\":2500,\"stock\":\"in_stock\",\"visibility\":[\"PUBLIC\"],\"has_sales\":true}"), params); err != nil { panic(err) }
     page := client.Products().Search(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
@@ -599,6 +599,185 @@ Supported credential alternatives (each object is one alternative):
 ```
 
 Documented HTTP responses: 200, 400, 401, 403, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## Publish
+
+Publish a product
+
+[API reference](https://sell.app/docs/api/products/publish-a-product) · Effect: **consequential**
+
+```go
+func (s *ProductService) Publish(ctx context.Context, product int, params *ProductsPublishParams, opts ...RequestOption) (*SdkPublishProductResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| product | `int` | Yes |
+| params | `*ProductsPublishParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkPublishProductResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.ProductsPublishParams{}
+    if err := json.Unmarshal([]byte("{\"variant_ids\":[2]}"), params); err != nil { panic(err) }
+    result, err := client.Products().Publish(context.Background(), 1, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## Duplicate
+
+Duplicate a product
+
+[API reference](https://sell.app/docs/api/products/duplicate-a-product) · Effect: **write**
+
+```go
+func (s *ProductService) Duplicate(ctx context.Context, product int, opts ...RequestOption) (*SdkDuplicateProductResponseValue201ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| product | `int` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkDuplicateProductResponseValue201ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    result, err := client.Products().Duplicate(context.Background(), 1)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 201, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## Move
+
+Move a product
+
+[API reference](https://sell.app/docs/api/products/move-a-product) · Effect: **write**
+
+```go
+func (s *ProductService) Move(ctx context.Context, product int, params *ProductsMoveParams, opts ...RequestOption) (*SdkMoveProductResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| product | `int` | Yes |
+| params | `*ProductsMoveParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkMoveProductResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.ProductsMoveParams{}
+    if err := json.Unmarshal([]byte("{\"position\":1,\"expected_position\":3}"), params); err != nil { panic(err) }
+    result, err := client.Products().Move(context.Background(), 1, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
 
 [Response access, transport controls, pagination, and typed errors](../usage.md)
 

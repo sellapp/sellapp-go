@@ -376,6 +376,7 @@ func TestSections_V2SearchSections(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/sections/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"slug\":\"test_slug\",\"hidden\":true,\"order\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"groups_linked\":1,\"products_linked\":1,\"groups\":[{\"id\":1,\"title\":\"test_title\",\"group_products\":1}],\"products\":[{\"id\":\"01234\",\"title\":\"test_title\",\"description\":\"test_description\"}]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -383,7 +384,7 @@ func TestSections_V2SearchSections(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Sections().V2SearchSections(context.Background(), &sellapp.SectionsV2SearchSectionsParams{})
+	iter := client.Sections().V2SearchSections(context.Background(), &sellapp.SectionsV2SearchSectionsParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -400,7 +401,7 @@ func TestSections_V2SearchSections_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Sections().V2SearchSections(context.Background(), &sellapp.SectionsV2SearchSectionsParams{})
+	iter := client.Sections().V2SearchSections(context.Background(), &sellapp.SectionsV2SearchSectionsParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

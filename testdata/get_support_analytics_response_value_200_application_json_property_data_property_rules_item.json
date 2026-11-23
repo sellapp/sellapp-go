@@ -1,0 +1,8 @@
+{
+  "rule_id": 1,
+  "rule_name": "Test",
+  "matches": 1,
+  "closures": 1,
+  "wallet_credit_cents": 1,
+  "warning_count": 1
+}

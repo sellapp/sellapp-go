@@ -1,0 +1,23 @@
+{
+  "category": "development",
+  "level": "all_levels",
+  "language": "test_language",
+  "subtitle": "test_subtitle",
+  "author": "test_author",
+  "subcategory": "test_subcategory",
+  "what_you_learn": [
+    "test_what_you_learn"
+  ],
+  "requirements": [
+    "test_requirements"
+  ],
+  "certificate_enabled": true,
+  "access_type": "lifetime",
+  "access_duration_days": 1,
+  "enrollment_limit": 1,
+  "delivery_text": "test_delivery_text",
+  "title": "test_title",
+  "slug": "00000000000000000000000000",
+  "description": "test_description",
+  "visibility": "PUBLIC"
+}

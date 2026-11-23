@@ -1,0 +1,9 @@
+{
+  "automation_enabled": true,
+  "daily_refund_cap_cents": 1,
+  "expected_automation_enabled": true,
+  "expected_daily_refund_cap_cents": 1,
+  "currency": "USD",
+  "active_rules_count": 1,
+  "active_refund_rules_count": 1
+}

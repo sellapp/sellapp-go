@@ -1,0 +1,9 @@
+{
+  "source": "platform",
+  "code": "test_code",
+  "key": "test_key",
+  "label": "test_label",
+  "description": "test_description",
+  "group": "test_group",
+  "requires_order": true
+}

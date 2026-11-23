@@ -1,0 +1,8 @@
+{
+  "target_variant_id": 1,
+  "target_title": "test_target_title",
+  "effective_timing": "immediate",
+  "proration_behavior": "invoice_now",
+  "customer_label": "test_customer_label",
+  "is_active": true
+}

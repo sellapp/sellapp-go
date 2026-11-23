@@ -1,0 +1,70 @@
+{
+  "defaults": {
+    "is_active": true,
+    "product_scope": "test_product_scope"
+  },
+  "counts": {
+    "platform": 1,
+    "custom_total": 1,
+    "custom_active": 1,
+    "custom_inactive": 1,
+    "custom_product_scoped": 1
+  },
+  "platform_reasons": [
+    {
+      "source": "platform",
+      "code": "test_code",
+      "key": "test_key",
+      "label": "test_label",
+      "description": "test_description",
+      "group": "test_group",
+      "requires_order": true
+    }
+  ],
+  "custom_reasons": [
+    {
+      "source": "store",
+      "code": "test_code",
+      "key": "test_key",
+      "id": 1,
+      "label": "test_label",
+      "description": "test_description",
+      "is_active": true,
+      "product_ids": [
+        1
+      ],
+      "products": [
+        {
+          "id": 1,
+          "title": "test_title",
+          "type": "test_type"
+        }
+      ],
+      "product_scope": "all_products"
+    }
+  ],
+  "customer_visible_reasons": [
+    {
+      "source": "platform",
+      "code": "test_code",
+      "key": "test_key",
+      "label": "test_label",
+      "description": "test_description",
+      "group": "test_group",
+      "requires_order": true
+    }
+  ],
+  "product_scope_filters": [
+    {
+      "value": "test_value",
+      "label": "test_label"
+    }
+  ],
+  "active_state_filters": [
+    {
+      "value": "test_value",
+      "label": "test_label"
+    }
+  ],
+  "dashboard_url": "https://example.com"
+}

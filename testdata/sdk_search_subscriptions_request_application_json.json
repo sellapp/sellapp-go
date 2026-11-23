@@ -1,0 +1,36 @@
+{
+  "filters": [
+    {
+      "field": "test_field",
+      "operator": "test_operator",
+      "value": {},
+      "type": "and",
+      "nested": [
+        {}
+      ]
+    }
+  ],
+  "sort": [
+    {
+      "field": "test_field",
+      "direction": "asc"
+    }
+  ],
+  "search": {
+    "value": "test_value",
+    "case_sensitive": true
+  },
+  "includes": [
+    {
+      "relation": "test_relation"
+    }
+  ],
+  "order_id": 1042,
+  "product_id": 77,
+  "renews_after": "2026-11-01",
+  "renews_before": "2026-11-30",
+  "cancelled_after": "2026-10-01",
+  "cancelled_before": "2026-10-31",
+  "scheduled_to_cancel": true,
+  "paused": false
+}

@@ -25,7 +25,7 @@ func TestProductVariants_List(t *testing.T) {
 		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"product_id\":1,\"title\":\"test_title\",\"description\":\"test_description\",\"deliverable\":{\"data\":{\"removeDuplicate\":true,\"parsingMode\":\"test_parsingMode\",\"stock\":1,\"comment\":\"test_comment\"},\"types\":[\"test_types\"]},\"pricing\":{\"humble\":true,\"frequency\":{\"value\":1,\"interval\":\"test_interval\"},\"type\":\"test_type\",\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"},\"trial\":{\"kind\":\"free\",\"length\":{\"value\":1,\"interval\":\"DAY\"},\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"}}},\"minimum_purchase_quantity\":1,\"maximum_purchase_quantity\":1,\"bulk_discount\":[{\"discount_percentage\":1,\"minimum_purchase_amount\":1}],\"payment_methods\":[\"test_payment_methods\"],\"other_settings\":{\"quantity_increments\":1,\"discord_data_required\":true},\"order\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"product\":{\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}]}}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"product_id\":1,\"title\":\"test_title\",\"description\":\"test_description\",\"deliverable\":{\"data\":{\"removeDuplicate\":true,\"parsingMode\":\"test_parsingMode\",\"stock\":1,\"comment\":\"test_comment\"},\"types\":[\"test_types\"]},\"pricing\":{\"humble\":true,\"frequency\":{\"value\":1,\"interval\":\"test_interval\"},\"type\":\"test_type\",\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"},\"trial\":{\"kind\":\"free\",\"length\":{\"value\":1,\"interval\":\"DAY\"},\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"}}},\"minimum_purchase_quantity\":1,\"maximum_purchase_quantity\":1,\"bulk_discount\":[{\"discount_percentage\":1,\"minimum_purchase_amount\":1}],\"payment_methods\":[\"test_payment_methods\"],\"other_settings\":{\"quantity_increments\":1,\"discord_data_required\":true},\"order\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"product\":{\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}]},\"is_draft\":true}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
@@ -61,7 +61,7 @@ func TestProductVariants_Create(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_bundle_item_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -81,7 +81,7 @@ func TestProductVariants_Get(t *testing.T) {
 		require.Equal(t, "/v2/products/1/variants/1", r.URL.Path)
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_bundle_item_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -104,7 +104,7 @@ func TestProductVariants_Replace(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_bundle_item_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -127,7 +127,7 @@ func TestProductVariants_Update(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_bundle_item_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -158,14 +158,15 @@ func TestProductVariants_Search(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/products/1/variants/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		w.Write([]byte("{\"data\":[{\"id\":1,\"product_id\":1,\"title\":\"test_title\",\"description\":\"test_description\",\"deliverable\":{\"data\":{\"removeDuplicate\":true,\"parsingMode\":\"test_parsingMode\",\"stock\":1,\"comment\":\"test_comment\"},\"types\":[\"test_types\"]},\"pricing\":{\"humble\":true,\"frequency\":{\"value\":1,\"interval\":\"test_interval\"},\"type\":\"test_type\",\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"},\"trial\":{\"kind\":\"free\",\"length\":{\"value\":1,\"interval\":\"DAY\"},\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"}}},\"minimum_purchase_quantity\":1,\"maximum_purchase_quantity\":1,\"bulk_discount\":[{\"discount_percentage\":1,\"minimum_purchase_amount\":1}],\"payment_methods\":[\"test_payment_methods\"],\"other_settings\":{\"quantity_increments\":1,\"discord_data_required\":true},\"order\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"product\":{\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}]}}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
+		w.Write([]byte("{\"data\":[{\"id\":1,\"product_id\":1,\"title\":\"test_title\",\"description\":\"test_description\",\"deliverable\":{\"data\":{\"removeDuplicate\":true,\"parsingMode\":\"test_parsingMode\",\"stock\":1,\"comment\":\"test_comment\"},\"types\":[\"test_types\"]},\"pricing\":{\"humble\":true,\"frequency\":{\"value\":1,\"interval\":\"test_interval\"},\"type\":\"test_type\",\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"},\"trial\":{\"kind\":\"free\",\"length\":{\"value\":1,\"interval\":\"DAY\"},\"price\":{\"price\":\"test_price\",\"currency\":\"test_currency\"}}},\"minimum_purchase_quantity\":1,\"maximum_purchase_quantity\":1,\"bulk_discount\":[{\"discount_percentage\":1,\"minimum_purchase_amount\":1}],\"payment_methods\":[\"test_payment_methods\"],\"other_settings\":{\"quantity_increments\":1,\"discord_data_required\":true},\"order\":1,\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"product\":{\"additional_information\":[{\"required\":true,\"key\":\"test_key\",\"type\":\"test_type\",\"label\":\"test_label\"}]},\"is_draft\":true}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
 	}))
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.ProductVariants().Search(context.Background(), 1, &sellapp.ProductVariantsSearchParams{})
+	iter := client.ProductVariants().Search(context.Background(), 1, &sellapp.ProductVariantsSearchParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -182,7 +183,7 @@ func TestProductVariants_Search_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.ProductVariants().Search(context.Background(), 1, &sellapp.ProductVariantsSearchParams{})
+	iter := client.ProductVariants().Search(context.Background(), 1, &sellapp.ProductVariantsSearchParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }
@@ -196,7 +197,7 @@ func TestProductVariants_BatchCreate(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_batch_create_product_variants_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_reorder_product_variants_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -219,7 +220,7 @@ func TestProductVariants_BatchUpdate(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_batch_create_product_variants_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_reorder_product_variants_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -244,6 +245,69 @@ func TestProductVariants_BatchDelete(t *testing.T) {
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
 	err := client.ProductVariants().BatchDelete(context.Background(), 1, decodeTestParams[sellapp.ProductVariantsBatchDeleteParams](t, "{\"resources\":[1]}"))
 	require.NoError(t, err)
+}
+
+func TestProductVariants_Publish(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/products/1/variants/1/publish", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.ProductVariants().Publish(context.Background(), 1, 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestProductVariants_Duplicate(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/products/1/variants/1/duplicate", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.ProductVariants().Duplicate(context.Background(), 1, 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestProductVariants_Reorder(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/products/1/variants/order", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_reorder_product_variants_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.ProductVariants().Reorder(context.Background(), 1, decodeTestParams[sellapp.ProductVariantsReorderParams](t, "{\"variant_ids\":[1]}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
 }
 
 func TestProductVariants_Error401(t *testing.T) {

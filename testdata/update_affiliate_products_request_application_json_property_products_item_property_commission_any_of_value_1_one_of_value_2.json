@@ -1,0 +1,5 @@
+{
+  "type": "fixed",
+  "percentage": "test_percentage",
+  "amount_usd_cents": 1
+}

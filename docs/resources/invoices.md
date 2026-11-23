@@ -627,7 +627,7 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.InvoicesCreateRefundParams{}
-    if err := json.Unmarshal([]byte("{\"amount\":\"12.50\"}"), params); err != nil { panic(err) }
+    if err := json.Unmarshal([]byte("{\"amount\":\"12.50\",\"expected_refunded_total_cents\":0}"), params); err != nil { panic(err) }
     result, err := client.Invoices().CreateRefund(context.Background(), 1, params)
     if err != nil { panic(err) }
     fmt.Println(result)

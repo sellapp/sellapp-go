@@ -1,0 +1,10 @@
+{
+  "data": [
+    {
+      "reason": "invalid_credentials",
+      "label": "test_label",
+      "count": 1,
+      "what_to_do": "test_what_to_do"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "type": "test_type",
+  "code": "test_code",
+  "message": "test_message",
+  "status": 1,
+  "param": "test_param",
+  "request_id": "00000000-0000-0000-0000-000000000000",
+  "docs_url": "https://example.com",
+  "fallback": {
+    "transport": "cursor_polling",
+    "url": "https://example.com"
+  }
+}

@@ -8,7 +8,7 @@
     "visibility": "PUBLIC",
     "type": "addon",
     "is_draft": true,
-    "is_discoverable": false,
+    "is_discoverable": true,
     "parent_product_ids": [
       120,
       121

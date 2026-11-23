@@ -135,6 +135,7 @@ func TestGroups_Search(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/groups/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"order\":1,\"image\":{\"path\":\"test_path\",\"metadata\":{\"size\":1,\"filename\":\"Test\",\"extension\":\"test_extension\",\"mime_type\":\"test_mime_type\"}},\"unlisted\":true,\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"section_id\":1,\"section_order\":1,\"products_linked\":1,\"products\":[{\"id\":\"01234\",\"title\":\"test_title\",\"description\":\"test_description\"}]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -142,7 +143,7 @@ func TestGroups_Search(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Groups().Search(context.Background(), &sellapp.GroupsSearchParams{})
+	iter := client.Groups().Search(context.Background(), &sellapp.GroupsSearchParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -159,7 +160,7 @@ func TestGroups_Search_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Groups().Search(context.Background(), &sellapp.GroupsSearchParams{})
+	iter := client.Groups().Search(context.Background(), &sellapp.GroupsSearchParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

@@ -140,6 +140,26 @@ func TestWalletBonusTiers_Restore(t *testing.T) {
 	require.NotNil(t, result)
 }
 
+func TestWalletBonusTiers_Quote(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/wallet-bonus-tiers/quote", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_quote_wallet_bonus_tier_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.WalletBonusTiers().Quote(context.Background(), &sellapp.WalletBonusTiersQuoteParams{})
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestWalletBonusTiers_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

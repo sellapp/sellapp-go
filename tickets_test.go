@@ -143,6 +143,7 @@ func TestTickets_V2SearchTickets(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/tickets/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"title\":\"test_title\",\"status\":\"test_status\",\"customer\":{\"id\":1,\"email\":\"test@example.com\"},\"reference\":{\"type\":\"product\",\"id\":1},\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"archived\":1,\"read_status\":{\"customer\":true,\"store\":true},\"order_id\":1,\"reason\":\"test_reason\",\"message_count\":1}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -150,7 +151,7 @@ func TestTickets_V2SearchTickets(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Tickets().V2SearchTickets(context.Background(), &sellapp.TicketsV2SearchTicketsParams{})
+	iter := client.Tickets().V2SearchTickets(context.Background(), &sellapp.TicketsV2SearchTicketsParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -167,7 +168,7 @@ func TestTickets_V2SearchTickets_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Tickets().V2SearchTickets(context.Background(), &sellapp.TicketsV2SearchTicketsParams{})
+	iter := client.Tickets().V2SearchTickets(context.Background(), &sellapp.TicketsV2SearchTicketsParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }
@@ -210,7 +211,50 @@ func TestTickets_Update(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Tickets().Update(context.Background(), 1, decodeTestParams[sellapp.TicketsUpdateParams](t, "{\"status\":\"OPEN\",\"archived\":true}"))
+	result, err := client.Tickets().Update(context.Background(), 1, decodeTestParams[sellapp.TicketsUpdateParams](t, "{\"status\":\"OPEN\",\"archived\":true,\"outcome\":\"refunded\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestTickets_BatchUpdate(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/tickets/batch", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_batch_update_tickets_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Tickets().BatchUpdate(context.Background(), decodeTestParams[sellapp.TicketsBatchUpdateParams](t, "{\"action\":\"close\",\"outcome\":\"refunded\",\"resources\":[1]}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestTickets_GetContext(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/tickets/1/context", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_v_2_get_ticket_context_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Tickets().GetContext(context.Background(), 1)
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }

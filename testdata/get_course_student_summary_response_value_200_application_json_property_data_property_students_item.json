@@ -1,0 +1,16 @@
+{
+  "customer_id": 1,
+  "email": "test@example.com",
+  "courses_count": 1,
+  "course_purchases_count": 1,
+  "course_units_count": 1,
+  "orders_count": 1,
+  "latest_purchase_at": "2023-01-01T00:00:00.000Z",
+  "courses": [
+    {
+      "course_id": 1,
+      "title": "test_title",
+      "purchases_count": 1
+    }
+  ]
+}

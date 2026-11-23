@@ -176,6 +176,382 @@ func TestStoreSettings_UpdateMarketing(t *testing.T) {
 	require.NotNil(t, result)
 }
 
+func TestStoreSettings_GetCheckout(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/store/settings/checkout", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_checkout_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().GetCheckout(context.Background())
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_ReplaceCheckout(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/store/settings/checkout", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_checkout_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().ReplaceCheckout(context.Background(), decodeTestParams[sellapp.StoreSettingsReplaceCheckoutParams](t, "{\"shopping_cart_enabled\":true,\"customer_email_required\":true,\"allow_vpn_purchases\":true,\"blacklist_on_dispute\":true,\"minimum_spend\":\"00000000000000000000000000\",\"billing_descriptor\":\"test_billing_descrip\",\"attempts_per_customer\":1,\"attempts_per_ip\":1,\"attempts_per_email\":1,\"attempts_per_fingerprint\":1,\"rate_limit_window_seconds\":60,\"crypto\":{\"underpaid_percentage\":1,\"minimum_confirmations\":1}}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_UpdateCheckout(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/store/settings/checkout", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_checkout_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().UpdateCheckout(context.Background(), decodeTestParams[sellapp.StoreSettingsUpdateCheckoutParams](t, "{\"shopping_cart_enabled\":true,\"customer_email_required\":true,\"allow_vpn_purchases\":true,\"blacklist_on_dispute\":true,\"minimum_spend\":\"00000000000000000000000000\",\"billing_descriptor\":\"test_billing_descrip\",\"attempts_per_customer\":1,\"attempts_per_ip\":1,\"attempts_per_email\":1,\"attempts_per_fingerprint\":1,\"rate_limit_window_seconds\":60,\"crypto\":{\"underpaid_percentage\":1,\"minimum_confirmations\":1}}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_GetTaxes(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/store/settings/taxes", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_tax_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().GetTaxes(context.Background())
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_ReplaceTaxes(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/store/settings/taxes", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_tax_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().ReplaceTaxes(context.Background(), decodeTestParams[sellapp.StoreSettingsReplaceTaxesParams](t, "{\"vat_enabled\":true,\"vat_inclusive_pricing\":true,\"collect_billing_details\":true}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_UpdateTaxes(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/store/settings/taxes", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_tax_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().UpdateTaxes(context.Background(), decodeTestParams[sellapp.StoreSettingsUpdateTaxesParams](t, "{\"vat_enabled\":true,\"vat_inclusive_pricing\":true,\"collect_billing_details\":true}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_GetCustomerEmails(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/store/settings/customer-emails", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_customer_email_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().GetCustomerEmails(context.Background())
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_ReplaceCustomerEmails(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/store/settings/customer-emails", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_customer_email_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().ReplaceCustomerEmails(context.Background(), decodeTestParams[sellapp.StoreSettingsReplaceCustomerEmailsParams](t, "{\"send_delivery_email\":true,\"send_payment_failure_email\":true}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_UpdateCustomerEmails(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/store/settings/customer-emails", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_customer_email_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().UpdateCustomerEmails(context.Background(), decodeTestParams[sellapp.StoreSettingsUpdateCustomerEmailsParams](t, "{\"send_delivery_email\":true,\"send_payment_failure_email\":true}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_GetAlerts(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/store/settings/store-alerts", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_store_alert_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().GetAlerts(context.Background())
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_ReplaceAlerts(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/store/settings/store-alerts", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_store_alert_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().ReplaceAlerts(context.Background(), decodeTestParams[sellapp.StoreSettingsReplaceAlertsParams](t, "{\"sale_emails_enabled\":true}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_UpdateAlerts(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/store/settings/store-alerts", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_store_alert_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().UpdateAlerts(context.Background(), decodeTestParams[sellapp.StoreSettingsUpdateAlertsParams](t, "{\"sale_emails_enabled\":true}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_GetPersonalization(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/store/settings/personalization", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_personalization_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().GetPersonalization(context.Background())
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_ReplacePersonalization(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/store/settings/personalization", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_personalization_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().ReplacePersonalization(context.Background(), decodeTestParams[sellapp.StoreSettingsReplacePersonalizationParams](t, "{\"support_email\":\"test@example.com\",\"trustpilot_email\":\"test@example.com\",\"sender_name\":\"Test\",\"sender_email\":\"test@example.com\",\"store_address\":\"test_store_address\",\"store_city\":\"test_store_city\",\"store_state\":\"test_store_state\",\"store_zip\":\"test_store_zip\",\"store_country\":\"test_store_country\",\"store_tax\":\"test_store_tax\",\"back_link_label\":\"test_back_link_label\",\"back_link_url\":\"https://example.com\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_UpdatePersonalization(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/store/settings/personalization", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_personalization_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().UpdatePersonalization(context.Background(), decodeTestParams[sellapp.StoreSettingsUpdatePersonalizationParams](t, "{\"support_email\":\"test@example.com\",\"trustpilot_email\":\"test@example.com\",\"sender_name\":\"Test\",\"sender_email\":\"test@example.com\",\"store_address\":\"test_store_address\",\"store_city\":\"test_store_city\",\"store_state\":\"test_store_state\",\"store_zip\":\"test_store_zip\",\"store_country\":\"test_store_country\",\"store_tax\":\"test_store_tax\",\"back_link_label\":\"test_back_link_label\",\"back_link_url\":\"https://example.com\"}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_ReplaceCryptoCheckout(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PUT", r.Method)
+		require.Equal(t, "/v2/store/settings/checkout/crypto", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_checkout_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().ReplaceCryptoCheckout(context.Background(), decodeTestParams[sellapp.StoreSettingsReplaceCryptoCheckoutParams](t, "{\"underpaid_percentage\":1,\"minimum_confirmations\":1}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
+func TestStoreSettings_UpdateCryptoCheckout(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "PATCH", r.Method)
+		require.Equal(t, "/v2/store/settings/checkout/crypto", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_get_checkout_settings_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.StoreSettings().UpdateCryptoCheckout(context.Background(), decodeTestParams[sellapp.StoreSettingsUpdateCryptoCheckoutParams](t, "{\"underpaid_percentage\":1,\"minimum_confirmations\":1}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestStoreSettings_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

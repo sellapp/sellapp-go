@@ -27,7 +27,7 @@ func TestProductVariantsPricing_Replace(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_bundle_item_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}
@@ -50,7 +50,7 @@ func TestProductVariantsPricing_Update(t *testing.T) {
 		require.NoError(t, json.Unmarshal(body, &bodyMap))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
-		fixture, err := os.ReadFile("testdata/sdk_get_bundle_item_response_value_200_application_json.json")
+		fixture, err := os.ReadFile("testdata/sdk_get_product_variant_response_value_200_application_json.json")
 		if err != nil {
 			t.Fatalf("failed to read fixture: %v", err)
 		}

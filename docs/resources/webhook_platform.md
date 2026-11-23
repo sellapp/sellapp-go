@@ -65,11 +65,12 @@ List webhook deliveries
 [API reference](https://sell.app/docs/api/events) · Effect: **read**
 
 ```go
-func (s *WebhookPlatformService) ListDeliveries(ctx context.Context, opts ...RequestOption) *Iterator[ListWebhookDeliveriesResponseValue200ApplicationJSONPropertyDataItem]
+func (s *WebhookPlatformService) ListDeliveries(ctx context.Context, params *WebhookPlatformListDeliveriesParams, opts ...RequestOption) *Iterator[ListWebhookDeliveriesResponseValue200ApplicationJSONPropertyDataItem]
 ```
 
 | Argument | Native type | Required |
 | --- | --- | --- |
+| params | `*WebhookPlatformListDeliveriesParams` | Yes |
 | opts | `RequestOption` | Yes |
 
 Returns: `*Iterator[ListWebhookDeliveriesResponseValue200ApplicationJSONPropertyDataItem]`.
@@ -86,7 +87,8 @@ import (
 
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
-    page := client.WebhookPlatform().ListDeliveries(context.Background())
+    params := &sellapp.WebhookPlatformListDeliveriesParams{}
+    page := client.WebhookPlatform().ListDeliveries(context.Background(), params)
     if page.Next() { fmt.Println(page.Current()) } else if page.Err() == nil { fmt.Println("No results.") }
     if err := page.Err(); err != nil { panic(err) }
 }

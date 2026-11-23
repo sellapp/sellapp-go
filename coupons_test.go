@@ -298,7 +298,7 @@ func TestCoupons_V2CreateCoupon(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2CreateCoupon(context.Background(), decodeTestParams[sellapp.CouponsV2CreateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
+	result, err := client.Coupons().V2CreateCoupon(context.Background(), decodeTestParams[sellapp.CouponsV2CreateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"maximum_discount_amount\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -307,6 +307,7 @@ func TestCoupons_V2SearchCoupons(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "POST", r.Method)
 		require.Equal(t, "/v2/coupons/search", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":\"test_discount\",\"limit\":1,\"store_wide\":true,\"minimum_amount\":\"test_minimum_amount\",\"expires_at\":\"2026-07-03 12:15:00\",\"created_at\":\"2023-01-01T00:00:00.000Z\",\"updated_at\":\"2023-01-01T00:00:00.000Z\",\"store_id\":1,\"deleted_at\":\"2023-01-01T00:00:00.000Z\",\"maximum_discount_amount\":\"test_maximum_discount_amount\",\"applies_to\":\"one_time\",\"subscription_payments\":1,\"products\":[1],\"product_variants\":[1]}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -314,7 +315,7 @@ func TestCoupons_V2SearchCoupons(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Coupons().V2SearchCoupons(context.Background(), &sellapp.CouponsV2SearchCouponsParams{})
+	iter := client.Coupons().V2SearchCoupons(context.Background(), &sellapp.CouponsV2SearchCouponsParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -331,7 +332,7 @@ func TestCoupons_V2SearchCoupons_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Coupons().V2SearchCoupons(context.Background(), &sellapp.CouponsV2SearchCouponsParams{})
+	iter := client.Coupons().V2SearchCoupons(context.Background(), &sellapp.CouponsV2SearchCouponsParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }
@@ -374,7 +375,7 @@ func TestCoupons_V2ReplaceCoupon(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2ReplaceCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2ReplaceCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
+	result, err := client.Coupons().V2ReplaceCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2ReplaceCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"maximum_discount_amount\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -397,7 +398,7 @@ func TestCoupons_V2UpdateCoupon(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2UpdateCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2UpdateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}"))
+	result, err := client.Coupons().V2UpdateCoupon(context.Background(), 1, decodeTestParams[sellapp.CouponsV2UpdateCouponParams](t, "{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"maximum_discount_amount\":1}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -433,7 +434,7 @@ func TestCoupons_V2BatchCreateCoupons(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	result, err := client.Coupons().V2BatchCreateCoupons(context.Background(), decodeTestParams[sellapp.CouponsV2BatchCreateCouponsParams](t, "{\"resources\":[{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1}]}"))
+	result, err := client.Coupons().V2BatchCreateCoupons(context.Background(), decodeTestParams[sellapp.CouponsV2BatchCreateCouponsParams](t, "{\"resources\":[{\"code\":\"test_code\",\"type\":\"PERCENTAGE\",\"discount\":1,\"store_wide\":true,\"products\":[1],\"product_variants\":[1],\"limit\":1,\"expires_at\":\"2023-01-01T00:00:00.000Z\",\"minimum_amount\":1,\"applies_to\":\"one_time\",\"subscription_payments\":1,\"maximum_discount_amount\":1}]}"))
 	require.NoError(t, err)
 	require.NotNil(t, result)
 }
@@ -472,6 +473,26 @@ func TestCoupons_V2BatchDeleteCoupons(t *testing.T) {
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
 	err := client.Coupons().V2BatchDeleteCoupons(context.Background(), decodeTestParams[sellapp.CouponsV2BatchDeleteCouponsParams](t, "{\"resources\":[1]}"))
 	require.NoError(t, err)
+}
+
+func TestCoupons_V2GetCouponUsage(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "GET", r.Method)
+		require.Equal(t, "/v2/coupons/1/usage", r.URL.Path)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_v_2_get_coupon_usage_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.Coupons().V2GetCouponUsage(context.Background(), 1)
+	require.NoError(t, err)
+	require.NotNil(t, result)
 }
 
 func TestCoupons_Error401(t *testing.T) {

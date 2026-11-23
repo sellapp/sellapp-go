@@ -4,6 +4,8 @@ package sellapp_test
 
 import (
 	"context"
+	"encoding/json"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -13,6 +15,31 @@ import (
 )
 
 var _ = os.ReadFile
+var _ = json.Unmarshal
+var _ = io.ReadAll
+
+func TestWalletTransactions_Reverse(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/wallets/1/transactions/1/reverse", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_adjust_customer_wallet_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.WalletTransactions().Reverse(context.Background(), 1, 1, decodeTestParams[sellapp.WalletTransactionsReverseParams](t, "{\"note\":\"test_note\",\"expected_balance_cents\":1}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
 
 func TestWalletTransactions_List(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -57,9 +84,8 @@ func TestWalletTransactions_Error401(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.WalletTransactions().List(context.Background(), 1, &sellapp.WalletTransactionsListParams{})
-	require.False(t, iter.Next())
-	require.IsType(t, &sellapp.AuthenticationError{}, iter.Err())
+	_, err := client.WalletTransactions().Reverse(context.Background(), 1, 1, decodeTestParams[sellapp.WalletTransactionsReverseParams](t, "{\"note\":\"test_note\",\"expected_balance_cents\":1}"))
+	require.IsType(t, &sellapp.AuthenticationError{}, err)
 }
 
 func TestWalletTransactions_Error404(t *testing.T) {
@@ -71,9 +97,8 @@ func TestWalletTransactions_Error404(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.WalletTransactions().List(context.Background(), 1, &sellapp.WalletTransactionsListParams{})
-	require.False(t, iter.Next())
-	require.IsType(t, &sellapp.NotFoundError{}, iter.Err())
+	_, err := client.WalletTransactions().Reverse(context.Background(), 1, 1, decodeTestParams[sellapp.WalletTransactionsReverseParams](t, "{\"note\":\"test_note\",\"expected_balance_cents\":1}"))
+	require.IsType(t, &sellapp.NotFoundError{}, err)
 }
 
 func TestWalletTransactions_Error422(t *testing.T) {
@@ -85,7 +110,6 @@ func TestWalletTransactions_Error422(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.WalletTransactions().List(context.Background(), 1, &sellapp.WalletTransactionsListParams{})
-	require.False(t, iter.Next())
-	require.IsType(t, &sellapp.UnprocessableEntityError{}, iter.Err())
+	_, err := client.WalletTransactions().Reverse(context.Background(), 1, 1, decodeTestParams[sellapp.WalletTransactionsReverseParams](t, "{\"note\":\"test_note\",\"expected_balance_cents\":1}"))
+	require.IsType(t, &sellapp.UnprocessableEntityError{}, err)
 }

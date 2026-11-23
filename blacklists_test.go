@@ -135,6 +135,7 @@ func TestBlacklists_V2ListBlacklists(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		require.Equal(t, "GET", r.Method)
 		require.Equal(t, "/v2/blacklists", r.URL.Path)
+		require.Equal(t, "10", r.URL.Query().Get("limit"))
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		w.Write([]byte("{\"data\":[{\"id\":1,\"type\":\"ASN\",\"data\":\"leo.martin@example.com\",\"description\":\"Block the address used by our launch-day load-test bot.\",\"created_at\":\"2022-12-12T12:12:12.000000Z\",\"updated_at\":\"2022-12-12T12:12:12.000000Z\",\"store_id\":1}],\"links\":{\"next\":null},\"list_metadata\":{\"before\":null,\"after\":null}}"))
@@ -142,7 +143,7 @@ func TestBlacklists_V2ListBlacklists(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Blacklists().V2ListBlacklists(context.Background())
+	iter := client.Blacklists().V2ListBlacklists(context.Background(), &sellapp.BlacklistsV2ListBlacklistsParams{Limit: ptrInt(10)})
 	require.NotNil(t, iter)
 	require.True(t, iter.Next())
 	require.NoError(t, iter.Err())
@@ -159,7 +160,7 @@ func TestBlacklists_V2ListBlacklists_Empty(t *testing.T) {
 	defer server.Close()
 
 	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
-	iter := client.Blacklists().V2ListBlacklists(context.Background())
+	iter := client.Blacklists().V2ListBlacklists(context.Background(), &sellapp.BlacklistsV2ListBlacklistsParams{Limit: ptrInt(10)})
 	require.False(t, iter.Next())
 	require.NoError(t, iter.Err())
 }

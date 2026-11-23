@@ -115,6 +115,29 @@ func TestAffiliatePayouts_Update(t *testing.T) {
 	require.NotNil(t, result)
 }
 
+func TestAffiliatePayouts_MarkPaid(t *testing.T) {
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		require.Equal(t, "POST", r.Method)
+		require.Equal(t, "/v2/affiliate-payouts/mark-paid", r.URL.Path)
+		body, _ := io.ReadAll(r.Body)
+		var bodyMap map[string]interface{}
+		require.NoError(t, json.Unmarshal(body, &bodyMap))
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusOK)
+		fixture, err := os.ReadFile("testdata/sdk_mark_affiliate_payouts_paid_response_value_200_application_json.json")
+		if err != nil {
+			t.Fatalf("failed to read fixture: %v", err)
+		}
+		w.Write(fixture)
+	}))
+	defer server.Close()
+
+	client := sellapp.NewClient("sk_test", "store_test", sellapp.WithBaseURL(server.URL))
+	result, err := client.AffiliatePayouts().MarkPaid(context.Background(), decodeTestParams[sellapp.AffiliatePayoutsMarkPaidParams](t, "{\"payout_ids\":[1],\"expected_total_usd_cents\":1}"))
+	require.NoError(t, err)
+	require.NotNil(t, result)
+}
+
 func TestAffiliatePayouts_Error401(t *testing.T) {
 	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")

@@ -1,0 +1,59 @@
+{
+  "defaults": {
+    "is_active": true,
+    "supports_manual": true,
+    "supports_auto_respond": true
+  },
+  "permissions": {
+    "can_manage_automation": true
+  },
+  "counts": {
+    "total": 1,
+    "active": 1,
+    "manual": 1,
+    "auto": 1
+  },
+  "placeholders": [
+    {
+      "key": "test_key",
+      "token": "test_token",
+      "label": "test_label"
+    }
+  ],
+  "placeholder_guidance": {
+    "is_valid": true,
+    "used_placeholders": [
+      "test_used_placeholders"
+    ],
+    "requested_placeholders": [
+      "test_requested_placeholders"
+    ],
+    "unsupported_placeholders": [
+      "test_unsupported_placeholders"
+    ],
+    "suggested_replacements": [
+      {
+        "requested": "test_requested",
+        "replacement": "test_replacement",
+        "replacement_token": "test_replacement_token",
+        "message": "test_message"
+      }
+    ],
+    "supported_tokens": [
+      "test_supported_tokens"
+    ]
+  },
+  "availability_filters": [
+    {
+      "value": "test_value",
+      "label": "test_label"
+    }
+  ],
+  "active_state_filters": [
+    {
+      "value": "test_value",
+      "label": "test_label"
+    }
+  ],
+  "dashboard_url": "https://example.com"
+}

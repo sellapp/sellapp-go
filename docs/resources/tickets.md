@@ -369,8 +369,125 @@ import (
 func main() {
     client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
     params := &sellapp.TicketsUpdateParams{}
-    if err := json.Unmarshal([]byte("{\"status\":\"CLOSED\",\"archived\":true}"), params); err != nil { panic(err) }
+    if err := json.Unmarshal([]byte("{\"status\":\"CLOSED\",\"archived\":true,\"outcome\":\"delivered\"}"), params); err != nil { panic(err) }
     result, err := client.Tickets().Update(context.Background(), 42, params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## BatchUpdate
+
+Update several tickets
+
+[API reference](https://sell.app/docs/api/tickets/update-several-tickets) · Effect: **consequential**
+
+```go
+func (s *TicketService) BatchUpdate(ctx context.Context, params *TicketsBatchUpdateParams, opts ...RequestOption) (*SdkBatchUpdateTicketsResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| params | `*TicketsBatchUpdateParams` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkBatchUpdateTicketsResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "encoding/json"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    params := &sellapp.TicketsBatchUpdateParams{}
+    if err := json.Unmarshal([]byte("{\"action\":\"close\",\"outcome\":\"delivered\",\"resources\":[311,313]}"), params); err != nil { panic(err) }
+    result, err := client.Tickets().BatchUpdate(context.Background(), params)
+    if err != nil { panic(err) }
+    fmt.Println(result)
+}
+```
+
+### Authentication and errors
+
+Supported credential alternatives (each object is one alternative):
+
+```json
+[
+  {
+    "bearerAuth": []
+  },
+  {
+    "oauthAccessToken": [
+      "admin"
+    ],
+    "storeAuth": []
+  }
+]
+```
+
+Documented HTTP responses: 200, 400, 401, 403, 404, 409, 422, 429, 500. See the API reference for field-level validation and consequences.
+
+[Response access, transport controls, pagination, and typed errors](../usage.md)
+
+## GetContext
+
+Retrieve a ticket's customer and refund context
+
+[API reference](https://sell.app/docs/api/tickets/retrieve-ticket-context) · Effect: **read**
+
+```go
+func (s *TicketService) GetContext(ctx context.Context, ticket int, opts ...RequestOption) (*SdkV2GetTicketContextResponseValue200ApplicationJSON, error)
+```
+
+| Argument | Native type | Required |
+| --- | --- | --- |
+| ticket | `int` | Yes |
+| opts | `RequestOption` | Yes |
+
+Returns: `*SdkV2GetTicketContextResponseValue200ApplicationJSON`.
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+    "os"
+    "github.com/sellapp/sellapp-go"
+)
+
+func main() {
+    client := sellapp.NewClient(os.Getenv("SELLAPP_API_KEY"), os.Getenv("SELLAPP_STORE"), sellapp.WithBaseURL(os.Getenv("SELLAPP_API_BASE_URL")))
+    result, err := client.Tickets().GetContext(context.Background(), 312)
     if err != nil { panic(err) }
     fmt.Println(result)
 }

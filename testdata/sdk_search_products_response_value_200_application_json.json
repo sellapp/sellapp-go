@@ -53,6 +53,7 @@
         }
       ],
       "url": "https://example.com",
+      "type": "test_type",
       "price_range": "test_price_range",
       "stock": 1,
       "sales": 1,

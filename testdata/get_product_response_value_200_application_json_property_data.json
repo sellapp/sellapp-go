@@ -50,5 +50,6 @@
       "title": "test_title"
     }
   ],
-  "url": "https://example.com"
+  "url": "https://example.com",
+  "type": "test_type"
 }

@@ -2,12 +2,12 @@
   "schemaVersion": 1,
   "language": "go",
   "repository": "sellapp/sellapp-go",
-  "sourceSha": "77cf567815f22f4c07cf6b707ab25d4ca74877af",
-  "specSha256": "588138cc0421d9c2f8b7382d2924ce51982635c344b9e57f6f46b68e18ea4d69",
+  "sourceSha": "47e5b156f89777b62ae90a33cac16756b9830558",
+  "specSha256": "2319bc01512943c10a5788a130a1d189fbb2b14d76b0142e62a47b759c391662",
   "runId": "0",
   "runAttempt": "1",
-  "treeDigest": "5558bf3fa2eac52b0c0187ec80eb236a29a5947bba34c8f0594b0752f4448755",
-  "contentDigest": "039b992a418ec1571259c1f74d8a779135b8f425b60761e5621ab8fa37eb8ff1",
+  "treeDigest": "f6b523e2bb13ef91537a81eb015e9f6c4343931230ae18326d9f7eff1dbcbff7",
+  "contentDigest": "1d362e36662048394c7b739668a64dbeb578a844809596563eaf861b9f0265f5",
   "files": [
     {
       "path": ".github/scripts/native-ci.mjs",
@@ -32,7 +32,7 @@
     {
       "path": ".oagen-manifest.json",
       "mode": "100644",
-      "sha256": "fe64c70ac6c63195d9ec1d76cd6c1066df59d0cd85df18f16024c225832f2a85"
+      "sha256": "3d06a9ebcc133b6953c5707e5b68cad7b399423bc600321e93c23903f84404b5"
     },
     {
       "path": "LICENSE.txt",
@@ -47,7 +47,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "sha256": "d4f8e954aa07a0d55c54d6012655e4016080dfe9c5dc11a36725a5d7c3ee3818"
+      "sha256": "77c16bd32d512d697704e45c751757ccafd2e73f06322d26a4b34b916ac64669"
     },
     {
       "path": "account.go",
@@ -177,7 +177,7 @@
     {
       "path": "bookings_test.go",
       "mode": "100644",
-      "sha256": "6a3d247647af1b528cae16a7dc9257029c19c67e4f0772088a2281702c3822da"
+      "sha256": "d07ded896be07b9999d89554753f9f9c7892f1fafb1989605e35f5d5a2415613"
     },
     {
       "path": "bundle_items.go",
@@ -377,7 +377,7 @@
     {
       "path": "docs/migration.md",
       "mode": "100644",
-      "sha256": "93cb5f3632ba41e91cbef0eca56536cabd6d525e748dc9aac4e736502807b09e"
+      "sha256": "2a2c9726edcf4a78185eac87a67824fed8e50054d5c67c18bd1d44255cb49c8f"
     },
     {
       "path": "docs/operation-examples.json",
@@ -927,7 +927,7 @@
     {
       "path": "examples/onboarding/connected-workflow.json",
       "mode": "100644",
-      "sha256": "d5e2aef6a8841470113f33cefbb6d11e45df01559548623d0baf6bd249525f34"
+      "sha256": "82feaf9dc634953ef6b3623f3af7e69665a6f91823d03734a1e4e7e2fe32619e"
     },
     {
       "path": "examples/onboarding/connected_test.go",
@@ -967,7 +967,7 @@
     {
       "path": "generation-manifest.json",
       "mode": "100644",
-      "sha256": "4411bd4b81356348d22f1eb9838d6d09d1bcdffb087541460b8f1b73311faf81"
+      "sha256": "f1fa51a2f8bcf6a59fe316aaa57e3ec07af44247dbdd8d355fed40781f906bda"
     },
     {
       "path": "go.mod",
@@ -1072,7 +1072,7 @@
     {
       "path": "models.go",
       "mode": "100644",
-      "sha256": "4b0c09d2c9ec8f3436281e4dcb4d1823f6c34c2b98f8631dbee6e48e0f56242f"
+      "sha256": "7329c233aeb9ca889de5828eac78653fb4a964bbb7400398e01ae1108940fcf7"
     },
     {
       "path": "notifications.go",
@@ -1262,7 +1262,7 @@
     {
       "path": "products_test.go",
       "mode": "100644",
-      "sha256": "3da86292947638de5d52c1f041c74bdea608386ab3c9224afeeecd73496c60e2"
+      "sha256": "b1cf23a06d08750e2574754444fdfff2ffb2d1c035e632a56feda70c66ddf7a1"
     },
     {
       "path": "promotions.go",
@@ -1327,7 +1327,7 @@
     {
       "path": "runtime.go",
       "mode": "100644",
-      "sha256": "4498f6129b1d84680edf7d3ddb638d8e064529271aeef3b46fde017b606c77af"
+      "sha256": "993096e163c4550a26504a72d8e2b50e710c5071db655f57660874197fe6f2f5"
     },
     {
       "path": "runtime_contract_test.go",
@@ -1558,11 +1558,6 @@
       "path": "testdata/create_booking_product_request_application_json_property_availability_item.json",
       "mode": "100644",
       "sha256": "f8dff8e98bf9fe02a86161b6d2928f1cd3b11e7b22faa2ed1c3e4565d49d97b3"
-    },
-    {
-      "path": "testdata/create_booking_product_response_value_201_application_json_property_data.json",
-      "mode": "100644",
-      "sha256": "20aaede3d91fe5a58c208beb875122a20d7ae2954df4d9fdfe3b1d7bc034b392"
     },
     {
       "path": "testdata/create_cashback_rule_response_value_201_application_json_property_data.json",
@@ -2427,7 +2422,7 @@
     {
       "path": "testdata/get_product_response_value_200_application_json_property_data.json",
       "mode": "100644",
-      "sha256": "efeab483598f7e05ed92d576517c0a3831796a1076d4775d61cea650b936ca89"
+      "sha256": "20aaede3d91fe5a58c208beb875122a20d7ae2954df4d9fdfe3b1d7bc034b392"
     },
     {
       "path": "testdata/get_product_response_value_200_application_json_property_data_property_additional_information_item.json",
@@ -3017,7 +3012,7 @@
     {
       "path": "testdata/list_list_products_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "d51e9487ddd4a61f0540ec0bc8bc8c8b720b56514c902f86d092ca6aa5d54218"
+      "sha256": "17863442b7d38481fdc37ef128505066026e937d7a83ed2fc94ea6aa5ed00325"
     },
     {
       "path": "testdata/list_list_products_within_group_response_value_200_application_json_property_data_item.json",
@@ -3167,7 +3162,7 @@
     {
       "path": "testdata/list_products_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "1fc5903aa220916b2b9771cd3bb2a34d24227392d40381a4c17971a479d3391a"
+      "sha256": "70676f1ee0893151974d10804848fc9583e8b5c78786bd9355205cd96083e6d4"
     },
     {
       "path": "testdata/list_products_within_group_response_value_200_application_json_property_data_item.json",
@@ -3217,7 +3212,7 @@
     {
       "path": "testdata/list_search_products_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "d51e9487ddd4a61f0540ec0bc8bc8c8b720b56514c902f86d092ca6aa5d54218"
+      "sha256": "17863442b7d38481fdc37ef128505066026e937d7a83ed2fc94ea6aa5ed00325"
     },
     {
       "path": "testdata/list_search_products_within_group_response_value_200_application_json_property_data_item.json",
@@ -3702,7 +3697,7 @@
     {
       "path": "testdata/sdk_batch_create_products_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "f09e1a616d05a8f7628d7d244e33232333e8d0451e212e8a4edaed17f0ed3bcd"
+      "sha256": "71bed641939a144915b870fbbae4576ea738f09bb1ecedfd29b85d4ea8606c3e"
     },
     {
       "path": "testdata/sdk_batch_create_sections_request_application_json.json",
@@ -3808,11 +3803,6 @@
       "path": "testdata/sdk_create_booking_product_request_application_json.json",
       "mode": "100644",
       "sha256": "3eeb537d5f51af549f5b1c791b54c3b0db6d57c9cb1caa7ebf5a047d96b224d5"
-    },
-    {
-      "path": "testdata/sdk_create_booking_product_response_value_201_application_json.json",
-      "mode": "100644",
-      "sha256": "d6378e581a9fe131db3bdaec21e38be131dec63a66bcc044497ba2fec530e998"
     },
     {
       "path": "testdata/sdk_create_cashback_rule_request_application_json.json",
@@ -4447,7 +4437,7 @@
     {
       "path": "testdata/sdk_get_product_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "f3af7ab369143da53502c0d7dcab9c05780704c1a5968f196363f6dcc70b6b77"
+      "sha256": "d6378e581a9fe131db3bdaec21e38be131dec63a66bcc044497ba2fec530e998"
     },
     {
       "path": "testdata/sdk_get_product_variant_response_value_200_application_json.json",
@@ -4867,7 +4857,7 @@
     {
       "path": "testdata/sdk_list_products_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "b3085a0c0d2ccbaaf95275aa352f85b3547760fdbf3f4e6e0611c132cd6b37af"
+      "sha256": "d667ef8ab44b36d3368c326135c688ee26569425b2eb464da8fd1583e935e706"
     },
     {
       "path": "testdata/sdk_list_products_within_group_response_value_200_application_json.json",
@@ -5557,7 +5547,7 @@
     {
       "path": "testdata/sdk_search_products_response_value_200_application_json.json",
       "mode": "100644",
-      "sha256": "b3085a0c0d2ccbaaf95275aa352f85b3547760fdbf3f4e6e0611c132cd6b37af"
+      "sha256": "d667ef8ab44b36d3368c326135c688ee26569425b2eb464da8fd1583e935e706"
     },
     {
       "path": "testdata/sdk_search_products_within_group_response_value_200_application_json.json",
@@ -6107,7 +6097,7 @@
     {
       "path": "testdata/search_products_response_value_200_application_json_property_data_item.json",
       "mode": "100644",
-      "sha256": "1fc5903aa220916b2b9771cd3bb2a34d24227392d40381a4c17971a479d3391a"
+      "sha256": "70676f1ee0893151974d10804848fc9583e8b5c78786bd9355205cd96083e6d4"
     },
     {
       "path": "testdata/search_products_within_group_response_value_200_application_json_property_data_item.json",
